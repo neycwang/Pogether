@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
         loginButton = UIButton(type: .roundedRect)
         loginButton.setTitle("登录", for: UIControlState.normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+        loginButton.addTarget(self, action: #selector(LoginViewController.jumpToAlbum), for: UIControlEvents.touchUpInside)
     }
     
     override func viewDidLoad() {
@@ -74,6 +75,10 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func jumpToAlbum() {
+        let avc = AlbumTableViewController()
+        self.navigationController?.pushViewController(avc, animated: false)
+    }
 
     /*
     // MARK: - Navigation
