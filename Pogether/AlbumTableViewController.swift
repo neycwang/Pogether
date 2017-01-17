@@ -13,7 +13,7 @@ class AlbumTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForCell()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(AlbumTableViewController.jumpToProfile))
         tableView.separatorStyle = .singleLine
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -51,6 +51,10 @@ class AlbumTableViewController: UITableViewController {
         return cell
     }
     
+    func jumpToProfile() {
+        let avc = ProfileViewController()
+        self.navigationController?.pushViewController(avc, animated: false)
+    }
 
     /*
     // Override to support conditional editing of the table view.
