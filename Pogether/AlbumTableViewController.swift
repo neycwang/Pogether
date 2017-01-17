@@ -56,6 +56,10 @@ class AlbumTableViewController: UITableViewController {
         self.navigationController?.pushViewController(avc, animated: false)
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let avc = PhotoCollectionViewController()
+        self.navigationController?.pushViewController(avc, animated: false)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
