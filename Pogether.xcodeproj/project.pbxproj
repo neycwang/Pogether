@@ -13,6 +13,8 @@
 		35E6E2241E2C6CAA0093F791 /* PogetherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E2231E2C6CAA0093F791 /* PogetherTests.swift */; };
 		35E6E22F1E2C6CAB0093F791 /* PogetherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E22E1E2C6CAB0093F791 /* PogetherUITests.swift */; };
 		35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E23C1E2C76B50093F791 /* LoginViewController.swift */; };
+		35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E23E1E2DC9EC0093F791 /* AlbumTableViewController.swift */; };
+		35E6E2411E2DCA690093F791 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */; };
 		5D51FC7257F67778C048312C /* Pods_Pogether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */; };
 		65267959BE5D0A770A9C80EA /* Pods_PogetherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */; };
 		AC66FF04222EB85EBE37D037 /* Pods_PogetherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */; };
@@ -50,6 +52,8 @@
 		35E6E22E1E2C6CAB0093F791 /* PogetherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PogetherUITests.swift; sourceTree = "<group>"; };
 		35E6E2301E2C6CAB0093F791 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35E6E23C1E2C76B50093F791 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		35E6E23E1E2DC9EC0093F791 /* AlbumTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
+		35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		504614C52C3F4F858441BE5E /* Pods-Pogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.debug.xcconfig"; sourceTree = "<group>"; };
 		78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PogetherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E5E005323851980A98A118 /* Pods-PogetherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherUITests/Pods-PogetherUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */,
 				35E6E21A1E2C6CAA0093F791 /* Info.plist */,
 				35E6E23C1E2C76B50093F791 /* LoginViewController.swift */,
+				35E6E23E1E2DC9EC0093F791 /* AlbumTableViewController.swift */,
+				35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -446,7 +452,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */,
+				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E20D1E2C6CAA0093F791 /* AppDelegate.swift in Sources */,
+				35E6E2411E2DCA690093F791 /* AlbumTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +703,7 @@
 				35E6E2351E2C6CAB0093F791 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		35E6E2361E2C6CAB0093F791 /* Build configuration list for PBXNativeTarget "PogetherTests" */ = {
 			isa = XCConfigurationList;
@@ -703,6 +712,7 @@
 				35E6E2381E2C6CAB0093F791 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		35E6E2391E2C6CAB0093F791 /* Build configuration list for PBXNativeTarget "PogetherUITests" */ = {
 			isa = XCConfigurationList;
@@ -711,6 +721,7 @@
 				35E6E23B1E2C6CAB0093F791 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

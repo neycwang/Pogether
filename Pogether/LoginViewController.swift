@@ -30,6 +30,8 @@ class LoginViewController: UIViewController {
         pwdField.placeholder = "请输入密码"
         loginButton = UIButton(type: .roundedRect)
         loginButton.setTitle("登录", for: UIControlState.normal)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+        loginButton.addTarget(self, action: #selector(LoginViewController.jumpToAlbum), for: UIControlEvents.touchUpInside)
     }
     
     override func viewDidLoad() {
@@ -42,6 +44,8 @@ class LoginViewController: UIViewController {
         self.view.addSubview(pwdLabel)
         self.view.addSubview(pwdField)
         self.view.addSubview(loginButton)
+        let bgColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
+        self.view.backgroundColor = bgColor
         usernameLabel.snp.makeConstraints { (make) -> Void in
             make.centerX.equalTo(self.view).offset(-50)
             make.centerY.equalTo(self.view).offset(-100)
@@ -70,5 +74,21 @@ class LoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func jumpToAlbum() {
+        let avc = AlbumTableViewController()
+        self.navigationController?.pushViewController(avc, animated: false)
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 
 }
