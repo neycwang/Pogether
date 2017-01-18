@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     var pwdLabel: UILabel!
     var pwdField: UITextField!
     var loginButton: UIButton!
+    var registerLabel: UILabel!
     
     func initialize() {
         usernameLabel = UILabel()
@@ -32,6 +33,12 @@ class LoginViewController: UIViewController {
         loginButton.setTitle("登录", for: UIControlState.normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
         loginButton.addTarget(self, action: #selector(LoginViewController.jumpToAlbum), for: UIControlEvents.touchUpInside)
+        registerLabel = UILabel()
+        registerLabel.font = UIFont.systemFont(ofSize: 16)
+        registerLabel.text = "新用户？"
+        registerLabel.isUserInteractionEnabled = true
+        let touchRegisterRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.jumpToRegister))
+        registerLabel.addGestureRecognizer(touchRegisterRecognizer)
     }
     
     override func viewDidLoad() {
@@ -44,6 +51,7 @@ class LoginViewController: UIViewController {
         self.view.addSubview(pwdLabel)
         self.view.addSubview(pwdField)
         self.view.addSubview(loginButton)
+        self.view.addSubview(registerLabel)
         let bgColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         self.view.backgroundColor = bgColor
         usernameLabel.snp.makeConstraints { (make) -> Void in
@@ -68,17 +76,17 @@ class LoginViewController: UIViewController {
             make.centerX.equalTo(self.view)
             make.top.equalTo(pwdLabel.snp.bottom).offset(50)
         }
-
+        registerLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(loginButton.snp.bottom).offset(50)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func jumpToAlbum() {
-        let avc = AlbumTableViewController()
-        self.navigationController?.pushViewController(avc, animated: false)
-    }
+    
 
     /*
     // MARK: - Navigation
@@ -89,6 +97,15 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    // MARK: - Touch event
+    func jumpToAlbum() {
+        let avc = AlbumTableViewController()
+        self.navigationController?.pushViewController(avc, animated: false)
+    }
+    func jumpToRegister() {
+        let avc = RegisterViewController()
+        self.navigationController?.pushViewController(avc, animated: false)
+    }
 
 }

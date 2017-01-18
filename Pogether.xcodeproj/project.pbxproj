@@ -18,6 +18,7 @@
 		35E6E2431E2E53260093F791 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E2421E2E53260093F791 /* ProfileViewController.swift */; };
 		35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */; };
 		35E6E2471E2E6BC00093F791 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E2461E2E6BC00093F791 /* PhotoCollectionViewCell.swift */; };
+		35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E2481E2F451B0093F791 /* RegisterViewController.swift */; };
 		5D51FC7257F67778C048312C /* Pods_Pogether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */; };
 		65267959BE5D0A770A9C80EA /* Pods_PogetherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */; };
 		AC66FF04222EB85EBE37D037 /* Pods_PogetherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */; };
@@ -60,6 +61,7 @@
 		35E6E2421E2E53260093F791 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		35E6E2461E2E6BC00093F791 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		35E6E2481E2F451B0093F791 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		504614C52C3F4F858441BE5E /* Pods-Pogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.debug.xcconfig"; sourceTree = "<group>"; };
 		78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PogetherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E5E005323851980A98A118 /* Pods-PogetherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherUITests/Pods-PogetherUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		35E6E20B1E2C6CAA0093F791 /* Pogether */ = {
 			isa = PBXGroup;
 			children = (
+				35E6E2481E2F451B0093F791 /* RegisterViewController.swift */,
 				35E6E2421E2E53260093F791 /* ProfileViewController.swift */,
 				35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */,
 				35E6E2151E2C6CAA0093F791 /* Assets.xcassets */,
@@ -463,6 +466,7 @@
 				35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */,
 				35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */,
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
+				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
 				35E6E2431E2E53260093F791 /* ProfileViewController.swift in Sources */,
 				35E6E2471E2E6BC00093F791 /* PhotoCollectionViewCell.swift in Sources */,
 				35E6E20D1E2C6CAA0093F791 /* AppDelegate.swift in Sources */,

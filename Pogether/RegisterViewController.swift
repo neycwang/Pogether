@@ -124,7 +124,7 @@ class RegisterViewController: UIViewController
         mobilePhoneField.delegate = self
         
         registerButton = UIButton(type: .roundedRect)
-        registerButton.setTitle("登录", for: .normal)
+        registerButton.setTitle("注册", for: .normal)
         registerButton.titleLabel?.font = font
         registerButton.addTarget(self, action: #selector(register), for: .touchUpInside)
     }
