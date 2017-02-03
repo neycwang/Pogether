@@ -19,20 +19,24 @@ class LoginViewController: UIViewController {
     var registerLabel: UILabel!
     
     func initialize() {
+        
         usernameLabel = UILabel()
         usernameLabel.font = UIFont.systemFont(ofSize: 24)
         usernameLabel.text = "用户名"
         usernameField = UITextField()
         usernameField.placeholder = "请输入用户名"
+        
         pwdLabel = UILabel()
         pwdLabel.font = UIFont.systemFont(ofSize: 24)
         pwdLabel.text = "密码"
         pwdField = UITextField()
         pwdField.placeholder = "请输入密码"
+        
         loginButton = UIButton(type: .roundedRect)
         loginButton.setTitle("登录", for: UIControlState.normal)
-        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         loginButton.addTarget(self, action: #selector(LoginViewController.jumpToAlbum), for: UIControlEvents.touchUpInside)
+        
         registerLabel = UILabel()
         registerLabel.font = UIFont.systemFont(ofSize: 16)
         registerLabel.text = "新用户？"
