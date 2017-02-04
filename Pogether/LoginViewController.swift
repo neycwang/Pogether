@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
         registerButton.setTitle("注册", for: .normal)
         registerButton.titleLabel?.font = UIFont.systemFont(ofSize: height * 0.027)
         registerButton.addTarget(self, action: #selector(LoginViewController.jumpToRegister), for: .touchUpInside)
-        registerButton.setTitleColor(UIColor(red: 1, green: 145 / 255, blue: 161 / 255, alpha: 1), for: .normal)
+        registerButton.setTitleColor(ColorandFontTable.textPint, for: .normal)
     }
     
     override func viewDidLoad() {
@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
         self.view.addSubview(passwordGroundView)
         self.view.addSubview(loginButton)
         self.view.addSubview(registerButton)
-        let bgImage = UIImage(cgImage: #imageLiteral(resourceName: "background").cgImage!, scale: 960 / height, orientation: .up)
+        let bgImage = UIImage(cgImage: #imageLiteral(resourceName: "LoginView_Background").cgImage!, scale: 960 / height, orientation: .up)
         self.view.backgroundColor = UIColor(patternImage: bgImage)
         cameraImage.frame = CGRect(x: width / 2 - height * 0.075, y: height * 0.237, width: height * 0.15, height: height * 0.15)
         appLabel.frame = CGRect(x: width / 2 - height * 0.31125, y: height * 0.3915, width: height * 0.6225, height: height * 0.054)
@@ -129,7 +129,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Touch event
     func jumpToAlbum() {
-        let avc = AlbumTableViewController()
+        let avc = HomepageCollectionViewController()
         self.navigationController?.pushViewController(avc, animated: false)
     }
     func jumpToRegister() {
