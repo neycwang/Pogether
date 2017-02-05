@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
         registerButton.setTitle("注册", for: .normal)
         registerButton.titleLabel?.font = UIFont.systemFont(ofSize: height * 0.027)
         registerButton.addTarget(self, action: #selector(LoginViewController.jumpToRegister), for: .touchUpInside)
-        registerButton.setTitleColor(ColorandFontTable.textPint, for: .normal)
+        registerButton.setTitleColor(ColorandFontTable.textPink, for: .normal)
     }
     
     override func viewDidLoad() {

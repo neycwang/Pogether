@@ -11,5 +11,5 @@ import UIKit
 
 public class ColorandFontTable {
     static let primaryPink = UIColor(red: 1, green: 145 / 255, blue: 161 / 255, alpha: 1)
-    static let textPint = UIColor(red: 1, green: 145 / 255, blue: 161 / 255, alpha: 1)
+    static let textPink = UIColor(red: 1, green: 145 / 255, blue: 161 / 255, alpha: 1)
 }
