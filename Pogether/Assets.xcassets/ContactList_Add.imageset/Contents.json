@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Homepage_Resource.png",
+      "filename" : "ContactList_Add.png",
       "scale" : "1x"
     },
     {
@@ -11,7 +11,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Homepage_Resource-1.png",
+      "filename" : "ContactList_Add-1.png",
       "scale" : "3x"
     }
   ],

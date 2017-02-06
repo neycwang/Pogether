@@ -79,7 +79,18 @@ class HomepageCollectionViewController: UICollectionViewController {
         return FunctionArray.count
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        switch indexPath {
+        case [0,0]:
+            jumpTo(page: PhotoCollectionViewController())
+        case [0,1]:
+            jumpTo(page: ContactTableViewController())
+        case [1,0]:
+            jumpTo(page: PhotoCollectionViewController())
+        case [1,1]:
+            jumpTo(page: PhotoCollectionViewController())
+        default:
+            break
+        }
     }
     //MARK: Cell Setting
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -94,4 +105,10 @@ class HomepageCollectionViewController: UICollectionViewController {
         }
         return cell
     }
+    
+    func jumpTo(page: NSObject)
+    {
+        navigationController?.pushViewController(page as! UIViewController, animated: true)
+    }
+    
 }

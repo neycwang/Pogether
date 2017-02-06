@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 public class ColorandFontTable {
-    static let primaryPink = UIColor(red: 1, green: 145 / 255, blue: 161 / 255, alpha: 1)
+    static let primaryPink = UIColor(red: 248 / 255, green: 123 / 255, blue: 143 / 255, alpha: 1)
+    static let tintPink = UIColor(red: 248 / 255, green: 123 / 255, blue: 143 / 255, alpha: 1)
+    static let groundPink = UIColor(red: 253 / 255, green: 222 / 255, blue: 227 / 255, alpha: 1)
     static let textPink = UIColor(red: 1, green: 145 / 255, blue: 161 / 255, alpha: 1)
+    static let groundGray = UIColor(red: 240 / 255, green: 240 / 255, blue: 240 / 255, alpha: 1)
+    static let usualFont = UIFont(name: "Heiti SC", size: 17)
 }
