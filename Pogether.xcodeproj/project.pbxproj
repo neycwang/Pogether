@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */; };
+		359B03171E45C4840014D237 /* Quenda-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 359B03161E45C4840014D237 /* Quenda-Medium.otf */; };
+		359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */; };
+		359B031B1E45D94C0014D237 /* ColorandFontTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B031A1E45D94C0014D237 /* ColorandFontTable.swift */; };
 		35E6E20D1E2C6CAA0093F791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */; };
 		35E6E2161E2C6CAA0093F791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2151E2C6CAA0093F791 /* Assets.xcassets */; };
 		35E6E2191E2C6CAA0093F791 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */; };
@@ -44,6 +48,10 @@
 /* Begin PBXFileReference section */
 		17E7E5D61EC1BD9099A72FAF /* Pods-PogetherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherTests/Pods-PogetherTests.release.xcconfig"; sourceTree = "<group>"; };
 		24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PogetherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewCell.swift; sourceTree = "<group>"; };
+		359B03161E45C4840014D237 /* Quenda-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quenda-Medium.otf"; sourceTree = "<group>"; };
+		359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewController.swift; sourceTree = "<group>"; };
+		359B031A1E45D94C0014D237 /* ColorandFontTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorandFontTable.swift; sourceTree = "<group>"; };
 		35E6E2091E2C6CAA0093F791 /* Pogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35E6E2151E2C6CAA0093F791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +120,7 @@
 		35E6E2001E2C6CAA0093F791 = {
 			isa = PBXGroup;
 			children = (
+				359B03161E45C4840014D237 /* Quenda-Medium.otf */,
 				0FE48A4AE64295C247D3C3E3 /* Frameworks */,
 				3A12A1C40C24E1AFF4B08E6E /* Pods */,
 				35E6E20B1E2C6CAA0093F791 /* Pogether */,
@@ -134,17 +143,20 @@
 		35E6E20B1E2C6CAA0093F791 /* Pogether */ = {
 			isa = PBXGroup;
 			children = (
-				35E6E2481E2F451B0093F791 /* RegisterViewController.swift */,
-				35E6E2421E2E53260093F791 /* ProfileViewController.swift */,
+				35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */,
+				35E6E23E1E2DC9EC0093F791 /* AlbumTableViewController.swift */,
 				35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */,
 				35E6E2151E2C6CAA0093F791 /* Assets.xcassets */,
-				35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */,
+				359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */,
+				359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */,
 				35E6E21A1E2C6CAA0093F791 /* Info.plist */,
+				35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */,
 				35E6E23C1E2C76B50093F791 /* LoginViewController.swift */,
-				35E6E23E1E2DC9EC0093F791 /* AlbumTableViewController.swift */,
-				35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */,
-				35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */,
 				35E6E2461E2E6BC00093F791 /* PhotoCollectionViewCell.swift */,
+				35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */,
+				35E6E2421E2E53260093F791 /* ProfileViewController.swift */,
+				35E6E2481E2F451B0093F791 /* RegisterViewController.swift */,
+				359B031A1E45D94C0014D237 /* ColorandFontTable.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -299,6 +311,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				359B03171E45C4840014D237 /* Quenda-Medium.otf in Resources */,
 				35E6E2191E2C6CAA0093F791 /* LaunchScreen.storyboard in Resources */,
 				35E6E2161E2C6CAA0093F791 /* Assets.xcassets in Resources */,
 			);
@@ -467,8 +480,11 @@
 				35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */,
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
+				359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */,
 				35E6E2431E2E53260093F791 /* ProfileViewController.swift in Sources */,
+				359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */,
 				35E6E2471E2E6BC00093F791 /* PhotoCollectionViewCell.swift in Sources */,
+				359B031B1E45D94C0014D237 /* ColorandFontTable.swift in Sources */,
 				35E6E20D1E2C6CAA0093F791 /* AppDelegate.swift in Sources */,
 				35E6E2411E2DCA690093F791 /* AlbumTableViewCell.swift in Sources */,
 			);
