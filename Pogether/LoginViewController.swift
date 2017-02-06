@@ -23,6 +23,32 @@ class LoginViewController: UIViewController {
     var width, height: CGFloat!
     
     func initialize() {
+/*<<<<<<< HEAD
+        
+        usernameLabel = UILabel()
+        usernameLabel.font = UIFont.systemFont(ofSize: 24)
+        usernameLabel.text = "用户名"
+        usernameField = UITextField()
+        usernameField.placeholder = "请输入用户名"
+        
+        pwdLabel = UILabel()
+        pwdLabel.font = UIFont.systemFont(ofSize: 24)
+        pwdLabel.text = "密码"
+        pwdField = UITextField()
+        pwdField.placeholder = "请输入密码"
+        
+        loginButton = UIButton(type: .roundedRect)
+        loginButton.setTitle("登录", for: UIControlState.normal)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        loginButton.addTarget(self, action: #selector(LoginViewController.jumpToAlbum), for: UIControlEvents.touchUpInside)
+        
+        registerLabel = UILabel()
+        registerLabel.font = UIFont.systemFont(ofSize: 16)
+        registerLabel.text = "新用户？"
+        registerLabel.isUserInteractionEnabled = true
+        let touchRegisterRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.jumpToRegister))
+        registerLabel.addGestureRecognizer(touchRegisterRecognizer)
+=======*/
         width = view.frame.width
         height = view.frame.height
         
@@ -82,6 +108,7 @@ class LoginViewController: UIViewController {
         registerButton.titleLabel?.font = UIFont.systemFont(ofSize: height * 0.027)
         registerButton.addTarget(self, action: #selector(LoginViewController.jumpToRegister), for: .touchUpInside)
         registerButton.setTitleColor(ColorandFontTable.textPink, for: .normal)
+//>>>>>>> e745717e5c1cb1ad1426bc0b41d1d42c00ed626b
     }
     
     override func viewDidLoad() {
