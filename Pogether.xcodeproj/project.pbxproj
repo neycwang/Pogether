@@ -151,12 +151,17 @@
 		35E6E20B1E2C6CAA0093F791 /* Pogether */ = {
 			isa = PBXGroup;
 			children = (
+				357F45181E4701E8008B60CF /* Account.swift */,
 				35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */,
 				35E6E23E1E2DC9EC0093F791 /* AlbumTableViewController.swift */,
 				35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */,
 				35E6E2151E2C6CAA0093F791 /* Assets.xcassets */,
-				359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */,
+				359B031A1E45D94C0014D237 /* ColorandFontTable.swift */,
+				357F451A1E470F1B008B60CF /* ContactDataSource.swift */,
+				359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */,
+				359B031C1E46FCD60014D237 /* ContactTableViewController.swift */,
 				359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */,
+				359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */,
 				35E6E21A1E2C6CAA0093F791 /* Info.plist */,
 				35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */,
 				35E6E23C1E2C76B50093F791 /* LoginViewController.swift */,
@@ -164,11 +169,6 @@
 				35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */,
 				35E6E2421E2E53260093F791 /* ProfileViewController.swift */,
 				35E6E2481E2F451B0093F791 /* RegisterViewController.swift */,
-				359B031A1E45D94C0014D237 /* ColorandFontTable.swift */,
-				359B031C1E46FCD60014D237 /* ContactTableViewController.swift */,
-				359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */,
-				357F45181E4701E8008B60CF /* Account.swift */,
-				357F451A1E470F1B008B60CF /* ContactDataSource.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";

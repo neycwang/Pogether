@@ -25,7 +25,7 @@ class ContactTableViewCell: UITableViewCell {
     }
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        portraitView = UIImageView()
+        portraitView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         portraitView.image = #imageLiteral(resourceName: "default")
         portraitView.layer.masksToBounds = true
         portraitView.layer.cornerRadius = portraitView.frame.size.height / 2
@@ -37,8 +37,6 @@ class ContactTableViewCell: UITableViewCell {
         portraitView.snp.makeConstraints { (make) in
             make.left.equalTo(contentView).offset(10)
             make.centerY.equalTo(contentView)
-            make.height.equalTo(36)
-            make.width.equalTo(36)
         }
         usernameLabel.snp.makeConstraints { (make) in
             make.left.equalTo(portraitView.snp.right).offset(10)
