@@ -2,8 +2,8 @@
 //  RegisterViewController.swift
 //  Pogether
 //
-//  Created by WPS on 2017/2/6.
-//  Copyright © 2017年 WPS. All rights reserved.
+//  Created by 王沛晟 on 17/2/6.
+//  Copyright © 2017年 KiraMelody. All rights reserved.
 //
 
 import UIKit
@@ -14,40 +14,22 @@ class RegisterViewController: UIViewController {
     var cameraImage: UIImageView!
     var appLabel: UILabel!
     var lineImage: UIImageView!
-    var emailGroundView: UIView!
-    var emailCorrectImage: UIImageView!
-    var emailField: UITextField!
-    var usernameGroundView: UIView!
-    var usernameCorrectImage: UIImageView!
-    var usernameField: UITextField!
-    var passwordGroundView: UIView!
-    var passwordCorrectImage: UIImageView!
-    var passwordField: UITextField!
-    var repasswordGroundView: UIView!
-    var repasswordCorrectImage: UIImageView!
-    var repasswordField: UITextField!
+    
+    var emailTextFieldWithCheck: textFieldWithCheck!
+    var usernameTextFieldWithCheck: textFieldWithCheck!
+    var passwordTextFieldWithCheck: textFieldWithCheck!
+    var repasswordTextFieldWithCheck: textFieldWithCheck!
+    
     var registerButton: UIButton!
     var closeButton: UIButton!
     var width, height: CGFloat!
-    var groundViewWidth, groundViewHeight: CGFloat!
-    var fieldx,fieldy,fieldWidth,fieldHeight: CGFloat!
-    var correctIconX,correctIconY,correctIconWidth,correctIconHeight: CGFloat!
+    var textFieldFont: UIFont!
     
     func initialize() {
         
         width = view.frame.width
         height = view.frame.height
-        groundViewWidth = height * 0.4875
-        groundViewHeight = height * 0.09
-        fieldx = height * 0.105
-        fieldy = height * 0.0295
-        fieldWidth = height * 0.32
-        fieldHeight = height * 0.0315
-        correctIconX = height * 0.42
-        correctIconY = height * 0.027
-        correctIconWidth = height * 0.033
-        correctIconHeight = height * 0.0285
-        
+        textFieldFont = UIFont.systemFont(ofSize: height * 0.03)
         
         cameraImage = UIImageView()
         cameraImage.image = #imageLiteral(resourceName: "LoginView_Camera")
@@ -62,69 +44,22 @@ class RegisterViewController: UIViewController {
         lineImage = UIImageView()
         lineImage.image = #imageLiteral(resourceName: "LoginView_Line")
         
-        emailGroundView = UIView()
-        let emailBackgroundImage = makeGroundImageView()
-        emailBackgroundImage.image = #imageLiteral(resourceName: "LoginView_Box")
-        emailGroundView.addSubview(emailBackgroundImage)
-        let emailIconImage = UIImageView(frame: CGRect(x: height * 0.03, y: height * 0.027, width: height * 0.045, height: height * 0.033))
-        emailIconImage.image = #imageLiteral(resourceName: "RegisterView_MailIcon")
-        emailGroundView.addSubview(emailIconImage)
-        emailCorrectImage = makeCorrectIconImageView()
-        emailCorrectImage.image = #imageLiteral(resourceName: "RegisterView_CorrectIcon")
-        emailField = UITextField()
-        emailField.delegate = self
-        emailField.returnKeyType = .done
-        emailField.placeholder = "邮箱"
-        emailField.font = UIFont.systemFont(ofSize: height * 0.03)
-        emailGroundView.addSubview(emailField)
+        let emailIconView = makeIconView(frame: CGRect(x: height * 0.03, y: height * 0.027, width: height * 0.045, height: height * 0.033), iconImage: #imageLiteral(resourceName: "RegisterView_MailIcon"))
+        let usernameIconView = makeIconView(frame: CGRect(x: height * 0.03, y: height * 0.018, width: height * 0.0495, height: height * 0.0495), iconImage: #imageLiteral(resourceName: "LoginView_Icon0"))
+        let passwordIconView = makeIconView(frame: CGRect(x: height * 0.0345, y: height * 0.0195, width: height * 0.039, height: height * 0.039), iconImage: #imageLiteral(resourceName: "LoginView_Icon1"))
+        let repasswordIconView = makeIconView(frame: CGRect(x: height * 0.0345, y: height * 0.0195, width: height * 0.039, height: height * 0.039), iconImage: #imageLiteral(resourceName: "LoginView_Icon1"))
         
-        usernameGroundView = UIView()
-        let usernameBackgroundImage = makeGroundImageView()
-        usernameBackgroundImage.image = #imageLiteral(resourceName: "LoginView_Box")
-        usernameGroundView.addSubview(usernameBackgroundImage)
-        let usernameIconImage = UIImageView(frame: CGRect(x: height * 0.03, y: height * 0.018, width: height * 0.0495, height: height * 0.0495))
-        usernameIconImage.image = #imageLiteral(resourceName: "LoginView_Icon0")
-        usernameGroundView.addSubview(usernameIconImage)
-        usernameCorrectImage = makeCorrectIconImageView()
-        usernameCorrectImage.image = #imageLiteral(resourceName: "RegisterView_CorrectIcon")
-        usernameField = UITextField()
-        usernameField.delegate = self
-        usernameField.returnKeyType = .done
-        usernameField.placeholder = "用户名"
-        usernameField.font = UIFont.systemFont(ofSize: height * 0.03)
-        usernameGroundView.addSubview(usernameField)
- 
-        passwordGroundView = UIView()
-        let pswBackgroundImage = makeGroundImageView()
-        pswBackgroundImage.image = #imageLiteral(resourceName: "LoginView_Box")
-        passwordGroundView.addSubview(pswBackgroundImage)
-        let passwordIconImage = UIImageView(frame: CGRect(x: height * 0.0345, y: height * 0.0195, width: height * 0.039, height: height * 0.039))
-        passwordIconImage.image = #imageLiteral(resourceName: "LoginView_Icon1")
-        passwordGroundView.addSubview(passwordIconImage)
-        passwordCorrectImage = makeCorrectIconImageView()
-        passwordCorrectImage.image = #imageLiteral(resourceName: "RegisterView_CorrectIcon")
-        passwordField = UITextField()
-        passwordField.delegate = self
-        passwordField.returnKeyType = .done
-        passwordField.placeholder = "密码"
-        passwordField.font = UIFont.systemFont(ofSize: height * 0.03)
-        passwordGroundView.addSubview(passwordField)
+        emailTextFieldWithCheck = textFieldWithCheck(groundImageView: makeGroundImageView(groundImage: #imageLiteral(resourceName: "LoginView_Box")), iconImageView: emailIconView, correctImageView: makeCorrectIconView(), textFieldPlaceHolder: "邮箱", textFieldFont: self.textFieldFont, textFieldDelegate: self, textFieldFrame: makeFieldFrame())
+        emailTextFieldWithCheck.textField.keyboardType = .emailAddress
         
-        repasswordGroundView = UIView()
-        let repswBackgroundImage = makeGroundImageView()
-        repswBackgroundImage.image = #imageLiteral(resourceName: "LoginView_Box")
-        repasswordGroundView.addSubview(repswBackgroundImage)
-        let repasswordIconImage = UIImageView(frame: CGRect(x: height * 0.0345, y: height * 0.0195, width: height * 0.039, height: height * 0.039))
-        repasswordIconImage.image = #imageLiteral(resourceName: "LoginView_Icon1")
-        repasswordGroundView.addSubview(repasswordIconImage)
-        repasswordCorrectImage = makeCorrectIconImageView()
-        repasswordCorrectImage.image = #imageLiteral(resourceName: "RegisterView_CorrectIcon")
-        repasswordField = UITextField()
-        repasswordField.delegate = self
-        repasswordField.returnKeyType = .done
-        repasswordField.placeholder = "确认密码"
-        repasswordField.font = UIFont.systemFont(ofSize: height * 0.03)
-        repasswordGroundView.addSubview(repasswordField)
+        usernameTextFieldWithCheck = textFieldWithCheck(groundImageView: makeGroundImageView(groundImage: #imageLiteral(resourceName: "LoginView_Box")), iconImageView: usernameIconView, correctImageView: makeCorrectIconView(), textFieldPlaceHolder: "用户名", textFieldFont: self.textFieldFont, textFieldDelegate: self, textFieldFrame: makeFieldFrame())
+        usernameTextFieldWithCheck.textField.keyboardType = .default
+        
+        passwordTextFieldWithCheck = textFieldWithCheck(groundImageView: makeGroundImageView(groundImage: #imageLiteral(resourceName: "LoginView_Box")), iconImageView: passwordIconView, correctImageView: makeCorrectIconView(), textFieldPlaceHolder: "密码", textFieldFont: self.textFieldFont, textFieldDelegate: self, textFieldFrame: makeFieldFrame())
+        passwordTextFieldWithCheck.textField.isSecureTextEntry = true
+        
+        repasswordTextFieldWithCheck = textFieldWithCheck(groundImageView: makeGroundImageView(groundImage: #imageLiteral(resourceName: "LoginView_Box")), iconImageView: repasswordIconView, correctImageView: makeCorrectIconView() , textFieldPlaceHolder: "确认密码", textFieldFont: self.textFieldFont, textFieldDelegate: self, textFieldFrame: makeFieldFrame())
+        repasswordTextFieldWithCheck.textField.isSecureTextEntry = true
         
         registerButton = UIButton(type: .roundedRect)
         registerButton.setTitle("注册", for: .normal)
@@ -138,6 +73,7 @@ class RegisterViewController: UIViewController {
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         let closeButtonImage = UIImage(cgImage: #imageLiteral(resourceName: "RegisterView_CloseIcon").cgImage!, scale: 2000 / height, orientation: .up)
         closeButton.backgroundColor = UIColor(patternImage: closeButtonImage)
+        
     }
     
     override func viewDidLoad() {
@@ -148,43 +84,49 @@ class RegisterViewController: UIViewController {
         self.view.addSubview(cameraImage)
         self.view.addSubview(appLabel)
         self.view.addSubview(lineImage)
-        self.view.addSubview(emailGroundView)
-        self.view.addSubview(usernameGroundView)
-        self.view.addSubview(passwordGroundView)
-        self.view.addSubview(repasswordGroundView)
         self.view.addSubview(registerButton)
         self.view.addSubview(closeButton)
+        
+        self.view.addSubview(emailTextFieldWithCheck.groundView)
+        self.view.addSubview(usernameTextFieldWithCheck.groundView)
+        self.view.addSubview(passwordTextFieldWithCheck.groundView)
+        self.view.addSubview(repasswordTextFieldWithCheck.groundView)
         
         let bgImage = UIImage(cgImage: #imageLiteral(resourceName: "LoginView_Background").cgImage!, scale: 960 / height, orientation: .up)
         self.view.backgroundColor = UIColor(patternImage: bgImage)
         cameraImage.frame = CGRect(x: width / 2 - height * 0.075, y: height * 0.078, width: height * 0.15, height: height * 0.15)
         appLabel.frame = CGRect(x: width / 2 - height * 0.31125, y: height * 0.2325, width: height * 0.6225, height: height * 0.054)
         lineImage.frame = CGRect(x: width / 2 - height * 0.23625, y: height * 0.3085, width: height * 0.4725, height: height * 0.0045)
-        emailGroundView.frame = CGRect(x: width / 2 - height * 0.24375, y: height * 0.3343, width: groundViewWidth, height: groundViewHeight)
-        emailField.frame = makeFieldFrame()
-        usernameGroundView.frame = CGRect(x: width / 2 - height * 0.24375, y: height * 0.4453, width: groundViewWidth, height: groundViewHeight)
-        usernameField.frame = makeFieldFrame()
-        passwordGroundView.frame = CGRect(x: width / 2 - height * 0.24375, y: height * 0.5563, width: groundViewWidth, height:groundViewHeight)
-        passwordField.frame = makeFieldFrame()
-        repasswordGroundView.frame = CGRect(x: width / 2 - height * 0.24375, y: height * 0.6673, width: groundViewWidth, height: groundViewHeight)
-        repasswordField.frame = makeFieldFrame()
+        
+        emailTextFieldWithCheck.setPosition(frame: CGRect(x: width / 2 - height * 0.24375, y: height * 0.3343, width: height * 0.4875, height: height * 0.09))
+        usernameTextFieldWithCheck.setPosition(frame: CGRect(x: width / 2 - height * 0.24375, y: height * 0.4453, width: height * 0.4875, height: height * 0.09))
+        passwordTextFieldWithCheck.setPosition(frame: CGRect(x: width / 2 - height * 0.24375, y: height * 0.5563, width: height * 0.4875, height: height * 0.09))
+        repasswordTextFieldWithCheck.setPosition(frame: CGRect(x: width / 2 - height * 0.24375, y: height * 0.6673, width: height * 0.4875, height: height * 0.09))
+        
         registerButton.frame = CGRect(x: width / 2 - height * 0.24375, y: height * 0.7935, width: height * 0.4875, height: height * 0.084)
         closeButton.frame = CGRect(x: height*0.045 , y: height * 0.045, width: height * 0.028, height: height * 0.028)
+        
     }
-
     
-    func makeGroundImageView() -> UIImageView{
-        let newUIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: groundViewWidth, height: groundViewHeight))
+    func makeGroundImageView(groundImage:UIImage!) -> UIImageView{
+        let newUIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: height * 0.4875, height: height * 0.09))
+        newUIImageView.image = groundImage
         return newUIImageView
     }
     
-    func makeCorrectIconImageView() -> UIImageView{
-        let newUIImageView = UIImageView(frame: CGRect(x: correctIconX, y: correctIconY, width: correctIconWidth, height: correctIconHeight))
+    func makeIconView(frame:CGRect, iconImage:UIImage!) -> UIImageView{
+        let newUIImageView = UIImageView(frame: frame)
+        newUIImageView.image = iconImage
+        return newUIImageView
+    }
+    
+    func makeCorrectIconView() -> UIImageView {
+        let newUIImageView = makeIconView(frame: CGRect(x: height * 0.42, y: height * 0.027, width: height * 0.033, height: height * 0.0285), iconImage: #imageLiteral(resourceName: "RegisterView_CorrectIcon"))
         return newUIImageView
     }
     
     func makeFieldFrame() -> CGRect{
-        let frame = CGRect(x: fieldx, y: fieldy, width: fieldWidth, height: fieldHeight)
+        let frame = CGRect(x: height * 0.105, y: height * 0.0295, width: height * 0.32, height: height * 0.0315)
         return frame
     }
     
@@ -199,38 +141,17 @@ class RegisterViewController: UIViewController {
 }
 
 extension RegisterViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
-
-        if(emailField.text != ""){
-            emailGroundView.addSubview(emailCorrectImage)
+        emailTextFieldWithCheck.check()
+        usernameTextFieldWithCheck.check()
+        passwordTextFieldWithCheck.check()
+        if(!passwordTextFieldWithCheck.isEmpty() && !repasswordTextFieldWithCheck.isEmpty() && passwordTextFieldWithCheck.textField.text == repasswordTextFieldWithCheck.textField.text){
+            repasswordTextFieldWithCheck.correctIconVisible(visible: true)
+        }else{
+            repasswordTextFieldWithCheck.correctIconVisible(visible: false)
         }
-        else{
-            emailCorrectImage.removeFromSuperview()
-        }
-        
-        if(usernameField.text != ""){
-            usernameGroundView.addSubview(usernameCorrectImage)
-        }
-        else{
-            usernameCorrectImage.removeFromSuperview()
-        }
-
-        if(passwordField.text != ""){
-            passwordGroundView.addSubview(passwordCorrectImage)
-        }
-        else{
-            passwordCorrectImage.removeFromSuperview()
-        }
-        
-        if(repasswordField.text != "" && repasswordField.text == passwordField.text){
-            repasswordGroundView.addSubview(repasswordCorrectImage)
-        }
-        else{
-            repasswordCorrectImage.removeFromSuperview()
-        }
-        
         return true
     }
 }
