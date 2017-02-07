@@ -9,17 +9,24 @@
 import UIKit
 
 class ContactTableViewController: UITableViewController {
-    private var searchController = UISearchController()
+    var searchController = UISearchController()
     
-    private var presenters: [Account] = [] {
-        didSet  {
-            self.updateFilteredPresenters()
+    var contacts: [String : [Account]] = [:] {
+        didSet {
+            self.updatefilteredContacts()
+            sectionIndex = Array(filteredContacts.keys).sorted(by: <)
             tableView.reloadData()
         }
     }
     
-    private var filteredPresenters: [Account] = []
+    var sectionIndex: [String] = []
     
+    private var filteredContacts: [String : [Account]] = [:]
+    
+    /*传入数据
+     ['A':["哎哎哎"],
+     'B':["啵啵啵"]]
+     */
     var dataSource = ContactDataSource()
     
     func initialize()
@@ -48,13 +55,13 @@ class ContactTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.sectionIndexColor = ColorandFontTable.primaryPink
-        tableView.sectionIndexBackgroundColor = ColorandFontTable.primaryPink
+        tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView(frame: .zero)
         
         self.title = "通讯录"
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 20),
             NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.isHidden = false
+        
         self.navigationController?.navigationBar.barTintColor = ColorandFontTable.primaryPink
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
@@ -79,38 +86,53 @@ class ContactTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.groundPink
         self.searchController.searchBar.barTintColor = ColorandFontTable.groundPink
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        presenters.append(Account(username: "A"))
-        presenters.append(Account(username: "B"))
-        presenters.append(Account(username: "C"))
+        for i in 0...26
+        {
+            contacts["\(Character(UnicodeScalar(65 + i)!))"] = []
+        }
+        contacts["A"]!.append(Account(username: "哎哎哎"))
+        contacts["B"]!.append(Account(username: "啵啵啵"))
+        contacts["C"]!.append(Account(username: "吃吃吃"))
+        print(contacts)
         //NotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         //NotificationCenter.defaultCenter().addObserver(self, selector: #selector(tokenExpired), name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
     }
     
     //MARK: - SearchBar
     
-    func updateFilteredPresenters() {
-        self.filteredPresenters = self.presenters.filter {
-            (!searchController.isActive
-                ||
-                ($0.username?.lowercased().contains(searchController.searchBar.text!.lowercased()))!
-                ||
-                (searchController.isActive && searchController.searchBar.text! == ""))
+    func updatefilteredContacts() {
+        filteredContacts = [:]
+        for e in contacts
+        {
+            for i in e.value
+            {
+                if (!searchController.isActive
+                    ||
+                    (i.username?.lowercased().contains(searchController.searchBar.text!.lowercased()))!
+                    ||
+                    (searchController.isActive && searchController.searchBar.text! == ""))
+                {
+                    //print(filteredContacts[e.key])
+                    if filteredContacts[e.key] == nil
+                    {
+                        filteredContacts[e.key] = []
+                    }
+                    filteredContacts[e.key]!.append(i)
+                }
+            }
         }
-        self.tableView.reloadData()
+        print(filteredContacts)
     }
 
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return sectionIndex.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.presenters.count
-    }
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "\(section)"
+        return filteredContacts[sectionIndex[section]]!.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -119,7 +141,7 @@ class ContactTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let ground = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 22))
         let title = UILabel()
-        title.text = presenters[section].username
+        title.text = sectionIndex[section]
         title.textColor = ColorandFontTable.textPink
         title.font = ColorandFontTable.usualFont
         ground.addSubview(title)
@@ -130,8 +152,14 @@ class ContactTableViewController: UITableViewController {
         }
         return ground
     }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        print(sectionIndex)
+        return sectionIndex
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let key = self.filteredPresenters[indexPath.section]
+        //let key = self.filteredContacts[indexPath.section]
         //let sectionContacts = self.dataSource.searchResult[key as! String]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell", for: indexPath) as! ContactTableViewCell
         //cell.delegate = self
@@ -139,8 +167,12 @@ class ContactTableViewController: UITableViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     //public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-    //    return self.filteredPresenters as! [String]
+    //    return self.filteredContacts as! [String]
     //}
 
     //Mark: Respond function
@@ -161,7 +193,7 @@ extension ContactTableViewController: UISearchResultsUpdating
 {
     public func updateSearchResults(for searchController: UISearchController)
     {
-        self.updateFilteredPresenters()
+        self.updatefilteredContacts()
     }
     
 }
@@ -170,11 +202,11 @@ extension ContactTableViewController: UISearchControllerDelegate
 {
     public func didDismissSearchController(_ searchController: UISearchController)
     {
-        self.updateFilteredPresenters()
+        self.updatefilteredContacts()
     }
     public func willDismissSearchController(_ searchController: UISearchController)
     {
-        self.updateFilteredPresenters()
+        self.updatefilteredContacts()
     }
 }
 
@@ -182,11 +214,11 @@ extension ContactTableViewController: UISearchBarDelegate
 {
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
-        self.updateFilteredPresenters()
+        self.updatefilteredContacts()
     }
     
     public func searchCancel()
     {
-        updateFilteredPresenters()
+        updatefilteredContacts()
     }
 }

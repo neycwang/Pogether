@@ -17,8 +17,6 @@ class Account {
     var id: Int? //主键
     var username: String?
     var email: String?
-    var sex: Sex?
-    var age: Int?
     var signature: String?
     var portrait: URL?
     var poster: URL?

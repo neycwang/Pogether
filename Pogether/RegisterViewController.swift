@@ -172,6 +172,9 @@ class RegisterViewController: UIViewController {
         closeButton.frame = CGRect(x: height*0.045 , y: height * 0.045, width: height * 0.028, height: height * 0.028)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
     
     func makeGroundImageView() -> UIImageView{
         let newUIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: groundViewWidth, height: groundViewHeight))

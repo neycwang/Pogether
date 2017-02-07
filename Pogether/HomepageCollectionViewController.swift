@@ -106,6 +106,10 @@ class HomepageCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     func jumpTo(page: NSObject)
     {
         navigationController?.pushViewController(page as! UIViewController, animated: true)
