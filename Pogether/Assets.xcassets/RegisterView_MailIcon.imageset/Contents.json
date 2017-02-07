@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "Message-50.png",
       "scale" : "1x"
     },
     {
@@ -10,7 +11,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Message-50.png",
+      "filename" : "RegisterView_MailIcon.png",
       "scale" : "3x"
     }
   ],

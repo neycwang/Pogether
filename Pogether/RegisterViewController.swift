@@ -15,10 +15,10 @@ class RegisterViewController: UIViewController {
     var appLabel: UILabel!
     var lineImage: UIImageView!
     
-    var emailTextFieldWithCheck: textFieldWithCheck!
-    var usernameTextFieldWithCheck: textFieldWithCheck!
-    var passwordTextFieldWithCheck: textFieldWithCheck!
-    var repasswordTextFieldWithCheck: textFieldWithCheck!
+    var emailTextFieldWithCheck: TextFieldWithCheck!
+    var usernameTextFieldWithCheck: TextFieldWithCheck!
+    var passwordTextFieldWithCheck: TextFieldWithCheck!
+    var repasswordTextFieldWithCheck: TextFieldWithCheck!
     
     var registerButton: UIButton!
     var closeButton: UIButton!
@@ -44,22 +44,29 @@ class RegisterViewController: UIViewController {
         lineImage = UIImageView()
         lineImage.image = #imageLiteral(resourceName: "LoginView_Line")
         
-        let emailIconView = makeIconView(frame: CGRect(x: height * 0.03, y: height * 0.027, width: height * 0.045, height: height * 0.033), iconImage: #imageLiteral(resourceName: "RegisterView_MailIcon"))
-        let usernameIconView = makeIconView(frame: CGRect(x: height * 0.03, y: height * 0.018, width: height * 0.0495, height: height * 0.0495), iconImage: #imageLiteral(resourceName: "LoginView_Icon0"))
-        let passwordIconView = makeIconView(frame: CGRect(x: height * 0.0345, y: height * 0.0195, width: height * 0.039, height: height * 0.039), iconImage: #imageLiteral(resourceName: "LoginView_Icon1"))
-        let repasswordIconView = makeIconView(frame: CGRect(x: height * 0.0345, y: height * 0.0195, width: height * 0.039, height: height * 0.039), iconImage: #imageLiteral(resourceName: "LoginView_Icon1"))
-        
-        emailTextFieldWithCheck = textFieldWithCheck(groundImageView: makeGroundImageView(groundImage: #imageLiteral(resourceName: "LoginView_Box")), iconImageView: emailIconView, correctImageView: makeCorrectIconView(), textFieldPlaceHolder: "邮箱", textFieldFont: self.textFieldFont, textFieldDelegate: self, textFieldFrame: makeFieldFrame())
+        emailTextFieldWithCheck = TextFieldWithCheck(index: 1)
+        emailTextFieldWithCheck.iconImageView.image = #imageLiteral(resourceName: "RegisterView_MailIcon")
+        emailTextFieldWithCheck.textField.placeholder = "邮箱"
         emailTextFieldWithCheck.textField.keyboardType = .emailAddress
+        emailTextFieldWithCheck.checkdelegate = self
         
-        usernameTextFieldWithCheck = textFieldWithCheck(groundImageView: makeGroundImageView(groundImage: #imageLiteral(resourceName: "LoginView_Box")), iconImageView: usernameIconView, correctImageView: makeCorrectIconView(), textFieldPlaceHolder: "用户名", textFieldFont: self.textFieldFont, textFieldDelegate: self, textFieldFrame: makeFieldFrame())
+        usernameTextFieldWithCheck = TextFieldWithCheck(index: 2)
+        usernameTextFieldWithCheck.iconImageView.image = #imageLiteral(resourceName: "LoginView_User")
+        usernameTextFieldWithCheck.textField.placeholder = "用户名"
         usernameTextFieldWithCheck.textField.keyboardType = .default
+        usernameTextFieldWithCheck.checkdelegate = self
         
-        passwordTextFieldWithCheck = textFieldWithCheck(groundImageView: makeGroundImageView(groundImage: #imageLiteral(resourceName: "LoginView_Box")), iconImageView: passwordIconView, correctImageView: makeCorrectIconView(), textFieldPlaceHolder: "密码", textFieldFont: self.textFieldFont, textFieldDelegate: self, textFieldFrame: makeFieldFrame())
+        passwordTextFieldWithCheck = TextFieldWithCheck(index: 3)
+        passwordTextFieldWithCheck.iconImageView.image = #imageLiteral(resourceName: "LoginView_Password")
+        passwordTextFieldWithCheck.textField.placeholder = "密码"
         passwordTextFieldWithCheck.textField.isSecureTextEntry = true
+        passwordTextFieldWithCheck.checkdelegate = self
         
-        repasswordTextFieldWithCheck = textFieldWithCheck(groundImageView: makeGroundImageView(groundImage: #imageLiteral(resourceName: "LoginView_Box")), iconImageView: repasswordIconView, correctImageView: makeCorrectIconView() , textFieldPlaceHolder: "确认密码", textFieldFont: self.textFieldFont, textFieldDelegate: self, textFieldFrame: makeFieldFrame())
+        repasswordTextFieldWithCheck = TextFieldWithCheck(index: 4)
+        repasswordTextFieldWithCheck.iconImageView.image = #imageLiteral(resourceName: "LoginView_Password")
+        repasswordTextFieldWithCheck.textField.placeholder = "确认密码"
         repasswordTextFieldWithCheck.textField.isSecureTextEntry = true
+        repasswordTextFieldWithCheck.checkdelegate = self
         
         registerButton = UIButton(type: .roundedRect)
         registerButton.setTitle("注册", for: .normal)
@@ -70,7 +77,7 @@ class RegisterViewController: UIViewController {
         registerButton.setTitleColor(.white, for: .normal)
         
         closeButton = UIButton(type: .roundedRect)
-        closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(backToLast), for: .touchUpInside)
         let closeButtonImage = UIImage(cgImage: #imageLiteral(resourceName: "RegisterView_CloseIcon").cgImage!, scale: 2000 / height, orientation: .up)
         closeButton.backgroundColor = UIColor(patternImage: closeButtonImage)
         
@@ -118,45 +125,43 @@ class RegisterViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    func makeIconView(frame:CGRect, iconImage:UIImage!) -> UIImageView{
-        let newUIImageView = UIImageView(frame: frame)
-        newUIImageView.image = iconImage
-        return newUIImageView
-    }
-    
-    func makeCorrectIconView() -> UIImageView {
-        let newUIImageView = makeIconView(frame: CGRect(x: height * 0.42, y: height * 0.027, width: height * 0.033, height: height * 0.0285), iconImage: #imageLiteral(resourceName: "RegisterView_CorrectIcon"))
-        return newUIImageView
-    }
-    
-    func makeFieldFrame() -> CGRect{
-        let frame = CGRect(x: height * 0.105, y: height * 0.0295, width: height * 0.32, height: height * 0.0315)
-        return frame
-    }
     
     func register() {
         //after registerButton tapped
     }
     
-    func close() {
-        let avc = LoginViewController()
-        self.navigationController?.pushViewController(avc, animated: false)
+    func backToLast()
+    {
+        self.navigationController?.popViewController(animated: false)
     }
 }
 
-extension RegisterViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        emailTextFieldWithCheck.check()
-        usernameTextFieldWithCheck.check()
-        passwordTextFieldWithCheck.check()
-        if(!passwordTextFieldWithCheck.isEmpty() && !repasswordTextFieldWithCheck.isEmpty() && passwordTextFieldWithCheck.textField.text == repasswordTextFieldWithCheck.textField.text){
-            repasswordTextFieldWithCheck.correctIconVisible(visible: true)
-        }else{
-            repasswordTextFieldWithCheck.correctIconVisible(visible: false)
+extension RegisterViewController: CheckDelegate
+{
+    func validate(index: Int, text: String)
+    {
+        switch index {
+        case 1:
+            if text != ""
+            {
+                usernameTextFieldWithCheck.checkHidden = false
+            }
+        case 2:
+            if text != ""
+            {
+                emailTextFieldWithCheck.checkHidden = false
+            }
+        case 3:
+            if text != ""
+            {
+                passwordTextFieldWithCheck.checkHidden = false
+            }
+        default:
+            if text != ""
+            {
+                repasswordTextFieldWithCheck.checkHidden = false
+            }
         }
-        return true
     }
     
 }

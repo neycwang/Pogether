@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
         tmp0.image = #imageLiteral(resourceName: "LoginView_Box")
         usernameGroundView.addSubview(tmp0)
         let tmp1 = UIImageView(frame: CGRect(x: height * 0.03, y: height * 0.015, width: height * 0.0495, height: height * 0.0495))
-        tmp1.image = #imageLiteral(resourceName: "LoginView_Icon0")
+        tmp1.image = #imageLiteral(resourceName: "LoginView_User")
         usernameGroundView.addSubview(tmp1)
         
         usernameField = UITextField()
@@ -60,7 +60,7 @@ class LoginViewController: UIViewController {
         tmp2.image = #imageLiteral(resourceName: "LoginView_Box")
         passwordGroundView.addSubview(tmp2)
         let tmp3 = UIImageView(frame: CGRect(x: height * 0.0345, y: height * 0.0165, width: height * 0.039, height: height * 0.039))
-        tmp3.image = #imageLiteral(resourceName: "LoginView_Icon1")
+        tmp3.image = #imageLiteral(resourceName: "LoginView_Password")
         passwordGroundView.addSubview(tmp3)
         
         passwordField = UITextField()
