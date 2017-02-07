@@ -30,6 +30,7 @@
 		5D51FC7257F67778C048312C /* Pods_Pogether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */; };
 		65267959BE5D0A770A9C80EA /* Pods_PogetherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */; };
 		AC66FF04222EB85EBE37D037 /* Pods_PogetherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */; };
+		FBEB16D21E49AE7E00E513A5 /* textFieldWithCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEB16D11E49AE7E00E513A5 /* textFieldWithCheck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pogether.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3A7223FC851CED29B96711 /* Pods-PogetherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherTests/Pods-PogetherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDCE16A5914BC2BC79EEF091 /* Pods-PogetherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherUITests/Pods-PogetherUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FBEB16D11E49AE7E00E513A5 /* textFieldWithCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFieldWithCheck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */,
 				35E6E2421E2E53260093F791 /* ProfileViewController.swift */,
 				35E6E2481E2F451B0093F791 /* RegisterViewController.swift */,
+				FBEB16D11E49AE7E00E513A5 /* textFieldWithCheck.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
 				359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */,
+				FBEB16D21E49AE7E00E513A5 /* textFieldWithCheck.swift in Sources */,
 				35E6E2431E2E53260093F791 /* ProfileViewController.swift in Sources */,
 				359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */,
 				35E6E2471E2E6BC00093F791 /* PhotoCollectionViewCell.swift in Sources */,
