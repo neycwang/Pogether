@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		357F45191E4701E8008B60CF /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45181E4701E8008B60CF /* Account.swift */; };
 		357F451B1E470F1B008B60CF /* ContactDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451A1E470F1B008B60CF /* ContactDataSource.swift */; };
+		357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */; };
 		359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */; };
 		359B03171E45C4840014D237 /* Quenda-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 359B03161E45C4840014D237 /* Quenda-Medium.otf */; };
 		359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */; };
@@ -30,7 +31,6 @@
 		5D51FC7257F67778C048312C /* Pods_Pogether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */; };
 		65267959BE5D0A770A9C80EA /* Pods_PogetherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */; };
 		AC66FF04222EB85EBE37D037 /* Pods_PogetherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */; };
-		FBEB16D21E49AE7E00E513A5 /* TextFieldWithCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEB16D11E49AE7E00E513A5 /* TextFieldWithCheck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +55,7 @@
 		24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PogetherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		357F45181E4701E8008B60CF /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		357F451A1E470F1B008B60CF /* ContactDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDataSource.swift; sourceTree = "<group>"; };
+		357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithCheck.swift; sourceTree = "<group>"; };
 		359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewCell.swift; sourceTree = "<group>"; };
 		359B03161E45C4840014D237 /* Quenda-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quenda-Medium.otf"; sourceTree = "<group>"; };
 		359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +87,6 @@
 		DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pogether.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3A7223FC851CED29B96711 /* Pods-PogetherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherTests/Pods-PogetherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDCE16A5914BC2BC79EEF091 /* Pods-PogetherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherUITests/Pods-PogetherUITests.release.xcconfig"; sourceTree = "<group>"; };
-		FBEB16D11E49AE7E00E513A5 /* TextFieldWithCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithCheck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +171,7 @@
 				35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */,
 				35E6E2421E2E53260093F791 /* ProfileViewController.swift */,
 				35E6E2481E2F451B0093F791 /* RegisterViewController.swift */,
-				FBEB16D11E49AE7E00E513A5 /* TextFieldWithCheck.swift */,
+				357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -497,7 +497,7 @@
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
 				359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */,
-				FBEB16D21E49AE7E00E513A5 /* TextFieldWithCheck.swift in Sources */,
+				357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */,
 				35E6E2431E2E53260093F791 /* ProfileViewController.swift in Sources */,
 				359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */,
 				35E6E2471E2E6BC00093F791 /* PhotoCollectionViewCell.swift in Sources */,

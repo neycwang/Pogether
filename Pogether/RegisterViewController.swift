@@ -47,24 +47,28 @@ class RegisterViewController: UIViewController {
         emailTextFieldWithCheck = TextFieldWithCheck(index: 1)
         emailTextFieldWithCheck.iconImageView.image = #imageLiteral(resourceName: "RegisterView_MailIcon")
         emailTextFieldWithCheck.textField.placeholder = "邮箱"
+        emailTextFieldWithCheck.textField.font = UIFont.systemFont(ofSize: 20)
         emailTextFieldWithCheck.textField.keyboardType = .emailAddress
         emailTextFieldWithCheck.checkdelegate = self
         
         usernameTextFieldWithCheck = TextFieldWithCheck(index: 2)
         usernameTextFieldWithCheck.iconImageView.image = #imageLiteral(resourceName: "LoginView_User")
         usernameTextFieldWithCheck.textField.placeholder = "用户名"
+        usernameTextFieldWithCheck.textField.font = UIFont.systemFont(ofSize: 20)
         usernameTextFieldWithCheck.textField.keyboardType = .default
         usernameTextFieldWithCheck.checkdelegate = self
         
         passwordTextFieldWithCheck = TextFieldWithCheck(index: 3)
         passwordTextFieldWithCheck.iconImageView.image = #imageLiteral(resourceName: "LoginView_Password")
         passwordTextFieldWithCheck.textField.placeholder = "密码"
+        passwordTextFieldWithCheck.textField.font = UIFont.systemFont(ofSize: 20)
         passwordTextFieldWithCheck.textField.isSecureTextEntry = true
         passwordTextFieldWithCheck.checkdelegate = self
         
         repasswordTextFieldWithCheck = TextFieldWithCheck(index: 4)
         repasswordTextFieldWithCheck.iconImageView.image = #imageLiteral(resourceName: "LoginView_Password")
         repasswordTextFieldWithCheck.textField.placeholder = "确认密码"
+        repasswordTextFieldWithCheck.textField.font = UIFont.systemFont(ofSize: 20)
         repasswordTextFieldWithCheck.textField.isSecureTextEntry = true
         repasswordTextFieldWithCheck.checkdelegate = self
         
@@ -132,7 +136,7 @@ class RegisterViewController: UIViewController {
     
     func backToLast()
     {
-        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
