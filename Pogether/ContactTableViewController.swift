@@ -57,8 +57,7 @@ class ContactTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         
         self.title = "通讯录"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 20),
-            NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 20),NSForegroundColorAttributeName: UIColor.white]
         
         self.navigationController?.navigationBar.barTintColor = ColorandFontTable.primaryPink
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -90,9 +89,9 @@ class ContactTableViewController: UITableViewController {
             contacts["\(Character(UnicodeScalar(65 + i)!))"] = []
         }
         */
-        contacts["A"] = [Account(id: 1, username: "aaa"), Account(id: 4, username: "aba"), Account(id: 5, username: "aca"), Account(id: 6, username: "aac"), Account(id: 7, username: "acc")]
-        contacts["B"] = [Account(id: 2, username: "bbb")]
-        contacts["C"] = [Account(id: 3, username: "ccc")]
+        contacts["A"] = [Account(id: "1", username: "aaa"), Account(id: "4", username: "aba"), Account(id: "5", username: "aca"), Account(id: "6", username: "aac"), Account(id: "7", username: "acc")]
+        contacts["B"] = [Account(id: "2", username: "bbb")]
+        contacts["C"] = [Account(id: "3", username: "ccc")]
         //NotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         //NotificationCenter.defaultCenter().addObserver(self, selector: #selector(tokenExpired), name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
     }

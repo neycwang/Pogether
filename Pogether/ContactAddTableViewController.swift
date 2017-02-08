@@ -74,13 +74,9 @@ class ContactAddTableViewController: UITableViewController {
         tableView.tableHeaderView = header
         self.searchController.searchBar.isHidden = false
         self.searchController.searchBar.placeholder = "用户名/账号"
-        self.searchController.searchBar.tintColor = ColorandFontTable.groundPink
-        self.searchController.searchBar.barTintColor = ColorandFontTable.groundPink
+        self.searchController.searchBar.tintColor = ColorandFontTable.textPink
+        self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        contacts.append(Account(id: 1, username: "aaa"))
-        contacts.append(Account(id: 2, username: "bbb"))
-        contacts.append(Account(id: 3, username: "ccc"))
-        print(contacts)
         //NotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         //NotificationCenter.defaultCenter().addObserver(self, selector: #selector(tokenExpired), name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
     }
