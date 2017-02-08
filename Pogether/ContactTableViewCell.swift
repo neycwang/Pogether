@@ -12,7 +12,12 @@ class ContactTableViewCell: UITableViewCell {
 
     var portraitView: UIImageView!
     var usernameLabel: UILabel!
-    
+    var contact: Account? {
+        didSet {
+            portraitView.image = #imageLiteral(resourceName: "icon1")
+            usernameLabel.text = contact?.username
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,7 +35,7 @@ class ContactTableViewCell: UITableViewCell {
         portraitView.layer.masksToBounds = true
         portraitView.layer.cornerRadius = portraitView.frame.size.height / 2
         usernameLabel = UILabel()
-        usernameLabel.text = "哈哈哈哈"
+        usernameLabel.text = "默认"
         usernameLabel.font = UIFont.systemFont(ofSize: 17)
         contentView.addSubview(portraitView)
         contentView.addSubview(usernameLabel)

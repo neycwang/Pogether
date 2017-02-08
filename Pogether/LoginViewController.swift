@@ -104,9 +104,9 @@ class LoginViewController: UIViewController {
         appLabel.frame = CGRect(x: width / 2 - height * 0.31125, y: height * 0.3915, width: height * 0.6225, height: height * 0.054)
         lineImage.frame = CGRect(x: width / 2 - height * 0.23625, y: height * 0.4875, width: height * 0.4725, height: height * 0.0045)
         usernameGroundView.frame = CGRect(x: width / 2 - height * 0.24375, y: height * 0.5175, width: height * 0.4875, height: height * 0.078)
-        usernameField.frame = CGRect(x: height * 0.08325, y: height * 0.0255, width: height * 0.40425, height: height * 0.0315)
+        usernameField.frame = CGRect(x: height * 0.1, y: height * 0.0255, width: height * 0.40425, height: height * 0.0315)
         passwordGroundView.frame = CGRect(x: width / 2 - height * 0.24375, y: height * 0.597, width: height * 0.4875, height: height * 0.078)
-        passwordField.frame = CGRect(x: height * 0.08775, y: height * 0.0255, width: height * 0.39975, height: height * 0.0315)
+        passwordField.frame = CGRect(x: height * 0.1, y: height * 0.0255, width: height * 0.39975, height: height * 0.0315)
         loginButton.frame = CGRect(x: width / 2 - height * 0.24375, y: height * 0.6975, width: height * 0.4875, height: height * 0.0735)
         registerButton.frame = CGRect(x: width / 2 - height * 0.0285, y: height * 0.795, width: height * 0.057, height: height * 0.0285)
     }
