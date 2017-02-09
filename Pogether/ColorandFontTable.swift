@@ -16,4 +16,15 @@ public class ColorandFontTable {
     static let textPink = UIColor(red: 1, green: 145 / 255, blue: 161 / 255, alpha: 1)
     static let groundGray = UIColor(red: 240 / 255, green: 240 / 255, blue: 240 / 255, alpha: 1)
     static let usualFont = UIFont(name: "Heiti SC", size: 17)
+    static let textGray0 = UIColor(red: 74 / 255, green: 74 / 255, blue: 74 / 255, alpha: 0.7)
+    static let textGray1 = UIColor(red: 100 / 255, green: 100 / 255, blue: 100 / 255, alpha: 1)
+    static let fillGray = UIColor(red: 216 / 255, green: 216 / 255, blue: 216 / 255, alpha: 1)
+    static let borderGray = UIColor(red: 151 / 255, green: 151 / 255, blue: 151 / 255, alpha: 1)
+    static let transparent = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
+    static let signatureViewBackground = UIColor(red: 240 / 255, green: 239 / 255, blue: 245 / 255, alpha: 1)
+    static let labelPink = UIColor(red: 251 / 255, green: 189 / 255, blue: 199 / 255, alpha: 1)
 }
+/*
+ 可以废弃这个文件了
+ 设计师在调色盘上随便一点就是一个新颜色
+ */
