@@ -79,14 +79,15 @@ class HomepageCollectionViewController: UICollectionViewController {
         return FunctionArray.count
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
         switch indexPath {
         case [0,0]:
             jumpTo(page: PhotoCollectionViewController())
         case [0,1]:
             jumpTo(page: ContactTableViewController())
-        case [1,0]:
+        case [0,2]:
             jumpTo(page: PhotoCollectionViewController())
-        case [1,1]:
+        case [0,3]:
             jumpTo(page: PhotoCollectionViewController())
         default:
             break
@@ -107,6 +108,10 @@ class HomepageCollectionViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 20),NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.backgroundColor = ColorandFontTable.primaryPink
+        self.navigationController?.navigationBar.barTintColor = ColorandFontTable.primaryPink
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.isHidden = true
     }
     

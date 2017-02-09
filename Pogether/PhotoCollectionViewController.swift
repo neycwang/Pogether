@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import YCXMenu
 
-class PhotoCollectionViewController:  UICollectionViewController, UINavigationControllerDelegate, PhotoCollectionViewCellDelegate, UIImagePickerControllerDelegate {
+class PhotoCollectionViewController:  UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var ImageArray = [UIImage?]()
     var lastSelect: IndexPath!
@@ -18,31 +19,76 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     init() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 30) / 3, height: (UIScreen.main.bounds.width - 30) / 3)
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 2
         super.init(collectionViewLayout: layout)
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView!.delegate = self
-        collectionView!.backgroundColor = UIColor.white
+        collectionView!.backgroundColor = ColorandFontTable.groundGray
         self.view.addSubview(collectionView!)
         self.collectionView!.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
-        for _ in 1...9
+        for _ in 1...20
         {
-            ImageArray.append(nil)
+            ImageArray.append(#imageLiteral(resourceName: "default"))
         }
+        var setImage = #imageLiteral(resourceName: "PhotoList_Setting")
+        setImage = setImage.withRenderingMode(.alwaysOriginal)
+        let setItem = UIBarButtonItem (image: setImage, style: .plain, target: self, action: #selector(showSettings))
+        self.navigationItem.rightBarButtonItem = setItem
+        
+        var backImage = #imageLiteral(resourceName: "ContactList_Back")
+        backImage = backImage.withRenderingMode(.alwaysOriginal)
+        let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
+        self.navigationItem.leftBarButtonItem = backItem
+        
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "<九宫格>"
-        // Do any additional setup after loading the view.
+        self.title = "默认相册"
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func showSettings ()
+    {
+        var menuItems = [YCXMenuItem]()
+        
+        menuItems.append(YCXMenuItem())
+        menuItems[0].title = "所有人可见"
+        menuItems[0].target = self
+        menuItems[0].foreColor = UIColor.black
+        menuItems[0].action = #selector(setAuthority)
+        
+        menuItems.append(YCXMenuItem())
+        menuItems[1].title = "仅自己可见"
+        menuItems[1].target = self
+        menuItems[1].foreColor = UIColor.black
+        menuItems[1].action = #selector(setAuthority)
+        
+        menuItems.append(YCXMenuItem())
+        menuItems[2].title = "部分可见"
+        menuItems[2].target = self
+        menuItems[2].foreColor = UIColor.black
+        menuItems[2].action = #selector(setAuthority)
+        
+        menuItems.append(YCXMenuItem())
+        menuItems[3].title = "部分不可见"
+        menuItems[3].target = self
+        menuItems[3].foreColor = UIColor.black
+        menuItems[3].action = #selector(setAuthority)
+        
+        YCXMenu.setTintColor(UIColor.white)
+        YCXMenu.setSelectedColor(ColorandFontTable.selectedGray)
+        YCXMenu.setSeparatorColor(ColorandFontTable.lineBlack)
+        YCXMenu.show(in: self.view, from: CGRect(x: 325, y: 0, width: 45, height: 64), menuItems: menuItems, selected: { (index, item) in
+                print(index, item?.title!)
+            })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -53,31 +99,27 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 9
+        return 20
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        willAddImage(indexPath)
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as! PhotoCollectionViewCell
-        cell.layer.borderColor = UIColor.gray.cgColor
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 8
+
         cell.photoView.contentMode = .scaleAspectFit
-        cell.delegate = self
+        
         cell.indexPath = indexPath
         if (ImageArray[indexPath.row] != nil)
         {
             cell.photoView.image = ImageArray[indexPath.row]
             cell.photoView.contentMode = .scaleAspectFit
-            cell.addButton.isHidden = true
         }
         else
         {
             cell.photoView.image = nil
-            cell.addButton.isHidden = false
         }
         return cell
     }
@@ -118,6 +160,15 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func backToLast()
+    {
+        self.navigationController?.popViewController(animated: true)
+    }
+    func setAuthority()
+    {
+        
     }
 
 }

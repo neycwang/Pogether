@@ -57,11 +57,7 @@ class ContactTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         
         self.title = "通讯录"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 20),NSForegroundColorAttributeName: UIColor.white]
-        
-        self.navigationController?.navigationBar.barTintColor = ColorandFontTable.primaryPink
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        
+
         self.searchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self

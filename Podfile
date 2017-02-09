@@ -7,6 +7,7 @@ target 'Pogether' do
   pod 'SnapKit'
   pod 'Alamofire'
   pod 'PKHUD'
+  pod 'YCXMenu'
   # Pods for Pogether
 
   target 'PogetherTests' do
