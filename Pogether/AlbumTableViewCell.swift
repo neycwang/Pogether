@@ -10,32 +10,52 @@ import UIKit
 import SnapKit
 
 class AlbumTableViewCell: UITableViewCell {
-
+    
     var preImageView: UIImageView!
-    var descLabel: UILabel!
+    var albumNameLabel: UILabel!
+    var securityLabel: UILabel!
+    var countLabel: UILabel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         preImageView = UIImageView()
-        descLabel = UILabel()
-        descLabel.numberOfLines = 0
-        descLabel.font = UIFont.systemFont(ofSize: 16)
+        albumNameLabel = UILabel()
+        albumNameLabel.numberOfLines = 0
+        albumNameLabel.font = UIFont.systemFont(ofSize: 20)
+        securityLabel = UILabel()
+        securityLabel.numberOfLines = 0
+        securityLabel.font = UIFont.systemFont(ofSize: 12)
+        securityLabel.textColor = UIColor.gray
+        countLabel = UILabel()
+        countLabel.numberOfLines = 0
+        countLabel.font = UIFont.systemFont(ofSize: 20)
+        countLabel.textColor = UIColor.gray
         contentView.addSubview(preImageView)
-        contentView.addSubview(descLabel)
+        contentView.addSubview(albumNameLabel)
+        contentView.addSubview(securityLabel)
+        contentView.addSubview(countLabel)
         preImageView.image = #imageLiteral(resourceName: "default")
         preImageView.contentMode = .scaleToFill
         preImageView.snp.makeConstraints { (make) -> Void in
             make.centerY.equalTo(contentView)
-            make.left.equalTo(contentView).offset(30)
-            make.height.equalTo(48)
-            make.width.equalTo(48)
+            make.left.equalTo(contentView).offset(5)
+            make.height.equalTo(50)
+            make.width.equalTo(50)
         }
-        descLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(preImageView.snp.right).offset(30)
+        albumNameLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(preImageView.snp.right).offset(15)
             make.right.lessThanOrEqualTo(contentView).offset(-50)
-            make.top.equalTo(contentView)
-            make.bottom.equalTo(contentView)
-            make.height.greaterThanOrEqualTo(80)
+            make.top.equalTo(contentView).offset(15)
+        }
+        securityLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(preImageView.snp.right).offset(15)
+            make.right.lessThanOrEqualTo(contentView).offset(-50)
+            make.bottom.equalTo(contentView).offset(-10)
+        }
+        countLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(albumNameLabel.snp.right)
+            make.right.lessThanOrEqualTo(contentView).offset(-50)
+            make.centerY.equalTo(albumNameLabel)
         }
     }
     
@@ -47,11 +67,10 @@ class AlbumTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-
+    
 }

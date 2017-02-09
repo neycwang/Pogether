@@ -88,7 +88,7 @@ class HomepageCollectionViewController: UICollectionViewController {
         case [0,2]:
             jumpTo(page: PhotoCollectionViewController())
         case [0,3]:
-            jumpTo(page: PhotoCollectionViewController())
+            jumpTo(page: AlbumTableViewController())
         default:
             break
         }
