@@ -64,6 +64,9 @@ class HomepageCollectionViewController: UICollectionViewController {
             make.height.equalTo(32)
             make.width.equalTo(32)
         }
+        settingView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(setting))
+        settingView.addGestureRecognizer(tap)
 
     }
     
@@ -118,6 +121,11 @@ class HomepageCollectionViewController: UICollectionViewController {
     func jumpTo(page: NSObject)
     {
         navigationController?.pushViewController(page as! UIViewController, animated: true)
+    }
+    func setting()
+    {
+        let avc = ProfileViewController()
+        navigationController?.pushViewController(avc, animated: false)
     }
     
 }

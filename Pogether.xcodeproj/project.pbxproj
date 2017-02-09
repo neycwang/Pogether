@@ -12,6 +12,7 @@
 		357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */; };
 		357F451F1E4B0F61008B60CF /* ContactAddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */; };
 		357F45251E4CBDDF008B60CF /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45241E4CBDDF008B60CF /* AccountAPI.swift */; };
+		357F45271E4CC589008B60CF /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45261E4CC589008B60CF /* SignatureViewController.swift */; };
 		359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */; };
 		359B03171E45C4840014D237 /* Quenda-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 359B03161E45C4840014D237 /* Quenda-Medium.otf */; };
 		359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */; };
@@ -60,6 +61,7 @@
 		357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithCheck.swift; sourceTree = "<group>"; };
 		357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactAddTableViewController.swift; sourceTree = "<group>"; };
 		357F45241E4CBDDF008B60CF /* AccountAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = "<group>"; };
+		357F45261E4CC589008B60CF /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewCell.swift; sourceTree = "<group>"; };
 		359B03161E45C4840014D237 /* Quenda-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quenda-Medium.otf"; sourceTree = "<group>"; };
 		359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		35E6E20B1E2C6CAA0093F791 /* Pogether */ = {
 			isa = PBXGroup;
 			children = (
+				357F45261E4CC589008B60CF /* SignatureViewController.swift */,
 				357F45241E4CBDDF008B60CF /* AccountAPI.swift */,
 				357F45181E4701E8008B60CF /* Account.swift */,
 				35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */,
@@ -503,6 +506,7 @@
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
 				359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */,
+				357F45271E4CC589008B60CF /* SignatureViewController.swift in Sources */,
 				357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */,
 				35E6E2431E2E53260093F791 /* ProfileViewController.swift in Sources */,
 				359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */,
