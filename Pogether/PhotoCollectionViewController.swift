@@ -13,6 +13,8 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
 
     var ImageArray = [UIImage?]()
     var lastSelect: IndexPath!
+    var menuItems = [YCXMenuItem]()
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -43,22 +45,25 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backItem
         
-        
+        let addButton = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 46, width: UIScreen.main.bounds.width, height: 46))
+        addButton.titleLabel?.isHidden = false
+        addButton.setTitle("添加", for: .normal)
+        addButton.setTitleColor(UIColor.white, for: .normal)
+        addButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        addButton.backgroundColor = ColorandFontTable.primaryPink
+        addButton.addTarget(self, action: #selector(addNewPhoto), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(addButton)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "默认相册"
-    }
-    
-    func showSettings ()
+    func setMenu()
     {
-        var menuItems = [YCXMenuItem]()
-        
         menuItems.append(YCXMenuItem())
         menuItems[0].title = "所有人可见"
         menuItems[0].target = self
         menuItems[0].foreColor = UIColor.black
+        print(menuItems[0].enabled())
+        
+        menuItems[0].performAction()
         menuItems[0].action = #selector(setAuthority)
         
         menuItems.append(YCXMenuItem())
@@ -79,12 +84,22 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         menuItems[3].foreColor = UIColor.black
         menuItems[3].action = #selector(setAuthority)
         
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "默认相册"
+        setMenu()
+    }
+    
+    func showSettings ()
+    {
         YCXMenu.setTintColor(UIColor.white)
         YCXMenu.setSelectedColor(ColorandFontTable.selectedGray)
         YCXMenu.setSeparatorColor(ColorandFontTable.lineBlack)
         YCXMenu.show(in: self.view, from: CGRect(x: 325, y: 0, width: 45, height: 64), menuItems: menuItems, selected: { (index, item) in
-                print(index, item?.title!)
-            })
+            print(index, item?.title!)
+        })
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -167,6 +182,10 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         self.navigationController?.popViewController(animated: true)
     }
     func setAuthority()
+    {
+        print("click")
+    }
+    func addNewPhoto()
     {
         
     }

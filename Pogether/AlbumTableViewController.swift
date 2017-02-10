@@ -83,6 +83,18 @@ class AlbumTableViewController: UITableViewController {
         let avc = PhotoCollectionViewController()
         self.navigationController?.pushViewController(avc, animated: false)
     }
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete)
+        {
+            print("delete \(indexPath.row)")
+        }
+    }
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
+    }
     
     func backToLast() {
         self.navigationController?.popViewController(animated: true)
