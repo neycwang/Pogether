@@ -35,9 +35,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     var line1: UIImageView!
     
     var settingsButton: UIButton!
+    var backButton: UIButton!
     
     public var user: Account!
+    
     var isIcon = false
+    var isSetting = false
+    var isStranger = false
     
     func initialize() {
         width = view.frame.width
@@ -111,7 +115,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         signatureContentLabel!.lineBreakMode = .byTruncatingTail
         
         line0 = UIImageView()
-        line0.image = #imageLiteral(resourceName: "ProfiileView_Line")
+        line0.image = #imageLiteral(resourceName: "ProfileView_Line")
         
         albumView = UIView()
         albumView.backgroundColor = ColorandFontTable.transparent
@@ -140,19 +144,37 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         albumFrame2.contentMode = .scaleAspectFit
         albumArrow = UIImageView()
         albumArrow.image = #imageLiteral(resourceName: "ProfileView_Arrow")
+        albumArrow.contentMode = .scaleAspectFit
         
         line1 = UIImageView()
         line1.image = #imageLiteral(resourceName: "ProfileView_Line")
         
         settingsButton = UIButton(type: .roundedRect)
         settingsButton.layer.cornerRadius = 5
-        settingsButton.setTitle("设置权限", for: .normal)
+        if isSetting {
+            settingsButton.setTitle("退出账号", for: .normal)
+            settingsButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        } else if isStranger {
+            settingsButton.setTitle("加为好友", for: .normal)
+            settingsButton.addTarget(self, action: #selector(settings), for: .touchUpInside)
+        } else {
+            settingsButton.setTitle("设置权限", for: .normal)
+            settingsButton.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
+        }
+        
         settingsButton.setTitleColor(.white, for: .normal)
         settingsButton.backgroundColor = ColorandFontTable.tintPink
         settingsButton.titleLabel?.font = .systemFont(ofSize: height * 0.03)
-        settingsButton.addTarget(self, action: #selector(settings), for: .touchUpInside)
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped(sender:)))
         view.addGestureRecognizer(tap)
+        
+        
+        backButton = UIButton(frame: CGRect(x: 10, y: 30, width: 20, height: 20))
+        backButton.setImage(#imageLiteral(resourceName: "ProfileView_Back"), for: .normal)
+        backButton.isUserInteractionEnabled = true
+        backButton.addTarget(self, action: #selector(backToLast), for: .touchUpInside)
+        
+        
     }
     
     override func viewDidLoad()
@@ -183,7 +205,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         view.addSubview(scrollView)
         view.addSubview(wallpaperView)
         view.addSubview(iconView)
-        
+        view.addSubview(backButton)
         usernameLabel.snp.makeConstraints{(make) in
             make.centerX.equalTo(scrollView.snp.centerX)
             make.top.equalTo(scrollView.snp.top).offset(height * 0.456)
@@ -263,8 +285,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             //make.right.equalTo(scrollView.snp.right).offset(-width * 0.032)
             make.left.equalTo(scrollView.snp.left).offset(width * 0.92)
             make.top.equalTo(scrollView.snp.top).offset(height * 0.7035)
-            make.width.equalTo(width * 0.048)
-            make.height.equalTo(height * 0.03)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
         }
         
         line1.snp.makeConstraints{(make) in
@@ -406,6 +428,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             albumView.backgroundColor = ColorandFontTable.transparent
         }
     }
+    func backToLast()
+    {
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
     
     func tappedSignature()
     {
@@ -420,6 +446,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     func settings()
     {
         NSLog("Settings")
+    }
+    func logout()
+    {
+        NSLog("Logout")
+    }
+    func addFriend()
+    {
+        NSLog("addFriend")
     }
 }
 

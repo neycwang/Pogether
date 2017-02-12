@@ -160,16 +160,20 @@ class ContactTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let key = self.filteredContacts[indexPath.section]
-        //let sectionContacts = self.dataSource.searchResult[key as! String]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell", for: indexPath) as! ContactTableViewCell
         cell.selectionStyle = .none
         cell.contact = filteredContacts[sectionIndex[indexPath.section]]?[indexPath.row]
-        //cell.delegate = self
         return cell
 
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let avc = ProfileViewController()
+        avc.user = filteredContacts[sectionIndex[indexPath.section]]?[indexPath.row]
+        avc.isStranger = false
+        avc.isSetting = false
+        self.navigationController?.pushViewController(avc, animated: true)
+    }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }

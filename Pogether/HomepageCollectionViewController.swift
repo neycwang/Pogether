@@ -125,6 +125,7 @@ class HomepageCollectionViewController: UICollectionViewController {
     func setting()
     {
         let avc = ProfileViewController()
+        avc.isSetting = true
         navigationController?.pushViewController(avc, animated: false)
     }
     

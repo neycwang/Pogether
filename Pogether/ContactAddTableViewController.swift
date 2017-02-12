@@ -118,6 +118,13 @@ class ContactAddTableViewController: UITableViewController {
         return cell
         
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let avc = ProfileViewController()
+        avc.user = filteredContacts[indexPath.row]
+        avc.isStranger = true
+        avc.isSetting = false
+        self.navigationController?.pushViewController(avc, animated: true)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
