@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         }
         else
         {
-            wallpaperView.image = #imageLiteral(resourceName: "profile")
+            wallpaperView.image = #imageLiteral(resourceName: "Profile_Background")
         }
         
         scrollView = UIScrollView(frame: view.frame)
@@ -142,7 +142,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         albumArrow.image = #imageLiteral(resourceName: "ProfileView_Arrow")
         
         line1 = UIImageView()
-        line1.image = #imageLiteral(resourceName: "ProfiileView_Line")
+        line1.image = #imageLiteral(resourceName: "ProfileView_Line")
         
         settingsButton = UIButton(type: .roundedRect)
         settingsButton.layer.cornerRadius = 5

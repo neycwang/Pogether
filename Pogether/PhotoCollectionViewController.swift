@@ -57,32 +57,15 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     func setMenu()
     {
-        menuItems.append(YCXMenuItem())
-        menuItems[0].title = "所有人可见"
-        menuItems[0].target = self
-        menuItems[0].foreColor = UIColor.black
-        print(menuItems[0].enabled())
+        menuItems.append(YCXMenuItem("所有人可见", image: UIImage(), target: self, action: #selector(setAuthority)))
+        menuItems.append(YCXMenuItem("仅自己可见", image: UIImage(), target: self, action: #selector(setAuthority)))
+        menuItems.append(YCXMenuItem("部分可见", image: UIImage(), target: self, action: #selector(setAuthority)))
+        menuItems.append(YCXMenuItem("部分不可见", image: UIImage(), target: self, action: #selector(setAuthority)))
         
-        menuItems[0].performAction()
-        menuItems[0].action = #selector(setAuthority)
-        
-        menuItems.append(YCXMenuItem())
-        menuItems[1].title = "仅自己可见"
-        menuItems[1].target = self
-        menuItems[1].foreColor = UIColor.black
-        menuItems[1].action = #selector(setAuthority)
-        
-        menuItems.append(YCXMenuItem())
-        menuItems[2].title = "部分可见"
-        menuItems[2].target = self
-        menuItems[2].foreColor = UIColor.black
-        menuItems[2].action = #selector(setAuthority)
-        
-        menuItems.append(YCXMenuItem())
-        menuItems[3].title = "部分不可见"
-        menuItems[3].target = self
-        menuItems[3].foreColor = UIColor.black
-        menuItems[3].action = #selector(setAuthority)
+        for item in menuItems
+        {
+            item.foreColor = UIColor.black
+        }
         
     }
     override func viewDidLoad() {
@@ -96,8 +79,9 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         YCXMenu.setTintColor(UIColor.white)
         YCXMenu.setSelectedColor(ColorandFontTable.selectedGray)
         YCXMenu.setSeparatorColor(ColorandFontTable.lineBlack)
+        
         YCXMenu.show(in: self.view, from: CGRect(x: 325, y: 0, width: 45, height: 64), menuItems: menuItems, selected: { (index, item) in
-            print(index, item?.title!)
+            print(item)
         })
         
     }
@@ -118,14 +102,16 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let pvc = PresentationViewController()
+        pvc.canDelete = true
+        pvc.photo = ImageArray[indexPath.row]
+        self.navigationController?.pushViewController(pvc, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as! PhotoCollectionViewCell
 
         cell.photoView.contentMode = .scaleAspectFit
-        
         cell.indexPath = indexPath
         if (ImageArray[indexPath.row] != nil)
         {
@@ -138,7 +124,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         }
         return cell
     }
-    
+
     func willAddImage (_ indexPath: IndexPath)
     {
         let picker = UIImagePickerController()
@@ -179,7 +165,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     func backToLast()
     {
-        self.navigationController?.popViewController(animated: true)
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     func setAuthority()
     {

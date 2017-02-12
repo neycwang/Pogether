@@ -187,7 +187,7 @@ class ContactTableViewController: UITableViewController {
     }
     func backToLast()
     {
-        self.navigationController?.popViewController(animated: true)
+        let _ = self.navigationController?.popViewController(animated: true)
     }
 
    
