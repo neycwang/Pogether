@@ -111,9 +111,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         {
             signatureContentLabel!.text = ""
         }
-        signatureContentLabel!.font = .systemFont(ofSize: height * 0.027)
+        signatureContentLabel!.font = .systemFont(ofSize: 18)
         signatureContentLabel!.lineBreakMode = .byTruncatingTail
-        
         line0 = UIImageView()
         line0.image = #imageLiteral(resourceName: "ProfileView_Line")
         
@@ -126,7 +125,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         albumLabel.text = "相册"
         albumLabel.textColor = ColorandFontTable.textGray1
         albumLabel.textAlignment =  .center
-        albumLabel.font = .systemFont(ofSize: height * 0.03)
+        albumLabel.font = .systemFont(ofSize: 20)
         albumFrame0 = UIImageView()
         albumFrame0.backgroundColor = ColorandFontTable.fillGray
         albumFrame0.layer.borderWidth = 1
@@ -371,7 +370,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         alert.addAction(action0)
         alert.addAction(action1)
         alert.addAction(action2)
-        navigationController!.present(alert, animated: true, completion: nil)
+        navigationController?.present(alert, animated: true, completion: nil)
     }
     
     func changeIcon()
@@ -403,7 +402,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         alert.addAction(action1)
         alert.addAction(action2)
         alert.addAction(action3)
-        navigationController!.present(alert, animated: true, completion: nil)
+        navigationController?.present(alert, animated: true, completion: nil)
     }
     
     func holdingSignature(sender: UILongPressGestureRecognizer)
@@ -439,7 +438,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         let svc = SignatureViewController()
         svc.delegate = self
         svc.signature = self.user.signature
-        navigationController!.pushViewController(svc, animated: true)
+        navigationController?.pushViewController(svc, animated: true)
     }
     
     func tappedAlbum()

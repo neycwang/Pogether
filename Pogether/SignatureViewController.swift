@@ -19,6 +19,8 @@ class SignatureViewController: UIViewController
     var signature: String!
     weak var delegate: SignatureDelegate?
     
+    let textLimitation = 50
+    
     func initialize()
     {
         view.backgroundColor = ColorandFontTable.signatureViewBackground
@@ -38,7 +40,7 @@ class SignatureViewController: UIViewController
         
         countLabel = UILabel()
         let len = (textView.text as NSString).length
-        countLabel.text = "\(30 - len)"
+        countLabel.text = "\(textLimitation - len)"
         countLabel.font = .systemFont(ofSize: 20)
         countLabel.textColor = ColorandFontTable.labelPink
         self.automaticallyAdjustsScrollViewInsets = false
@@ -82,12 +84,12 @@ extension SignatureViewController: UITextViewDelegate
     func textViewDidChange(_ textView: UITextView)
     {
         var x = textView.text as NSString
-        if x.length > 30
+        if x.length > textLimitation
         {
-            x = x.substring(to: 30) as NSString
+            x = x.substring(to: textLimitation) as NSString
             textView.text = x as String
         }
-        countLabel.text = "\(30 - x.length)"
+        countLabel.text = "\(textLimitation - x.length)"
         self.signature = x as String
     }
 }
