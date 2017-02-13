@@ -8,27 +8,28 @@
 
 import SnapKit
 
+protocol SignatureDelegate: NSObjectProtocol {
+    func SignatureDidChange(signature: String)
+}
+
 class SignatureViewController: UIViewController
 {
-    var width, height: CGFloat!
-    
     var textView: UITextView!
     var countLabel: UILabel!
+    var signature: String!
+    weak var delegate: SignatureDelegate?
     
     func initialize()
     {
         view.backgroundColor = ColorandFontTable.signatureViewBackground
         
-        let vcs = navigationController!.viewControllers
-        let vc = vcs[vcs.count - 2] as! ProfileViewController
-        
         textView = UITextView()
         textView.delegate = self
         textView.font = .systemFont(ofSize: 24)
-        textView.textAlignment = .justified
-        if vc.user.signature != nil
+        textView.textAlignment = .left
+        if signature != nil
         {
-            textView.text = vc.user.signature
+            textView.text = signature
         }
         else
         {
@@ -40,6 +41,7 @@ class SignatureViewController: UIViewController
         countLabel.text = "\(30 - len)"
         countLabel.font = .systemFont(ofSize: 20)
         countLabel.textColor = ColorandFontTable.labelPink
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewDidLoad()
@@ -47,15 +49,9 @@ class SignatureViewController: UIViewController
         super.viewDidLoad()
         navigationController!.navigationBar.isHidden = false
         title = "个性签名"
-        navigationController!.navigationBar.barTintColor = ColorandFontTable.tintPink
-        navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 20), NSForegroundColorAttributeName: UIColor.white]
-        navigationController!.navigationBar.items![0].title = "个人信息"
+        self.title = "个人信息"
         let doneButton = UIBarButtonItem(title: "完成", style: .plain, target: self, action: #selector(done))
-        doneButton.tintColor = .white
         navigationItem.rightBarButtonItem = doneButton
-        
-        width = view.frame.width
-        height = view.frame.height
         
         initialize()
         
@@ -63,26 +59,22 @@ class SignatureViewController: UIViewController
         view.addSubview(countLabel)
         
         textView.snp.makeConstraints{(make) in
-            make.top.equalTo(view.snp.top).offset(100)
-            make.left.equalTo(view.snp.left)
-            make.width.equalTo(width)
+            make.top.equalTo(view).offset(100)
+            make.left.equalTo(view)
+            make.width.equalTo(view)
             make.height.equalTo(115)
         }
         
         countLabel.snp.makeConstraints{(make) in
-            make.right.equalTo(textView.snp.right)
-            make.bottom.equalTo(textView.snp.bottom)
-            make.height.equalTo(30)
-            make.width.equalTo(40)
+            make.right.equalTo(textView).offset(-20)
+            make.bottom.equalTo(textView).offset(-10)
         }
     }
     
     func done()
     {
-        let vcs = navigationController!.viewControllers
-        let vc = vcs[vcs.count - 2] as! ProfileViewController
-        vc.user.signature = textView.text
-        navigationController!.popViewController(animated: true)
+        self.delegate?.SignatureDidChange(signature: signature)
+        self.navigationController!.popViewController(animated: true)
     }
 }
 extension SignatureViewController: UITextViewDelegate
@@ -96,5 +88,6 @@ extension SignatureViewController: UITextViewDelegate
             textView.text = x as String
         }
         countLabel.text = "\(30 - x.length)"
+        self.signature = x as String
     }
 }

@@ -101,7 +101,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         signatureLabel.text = "签名"
         signatureLabel.textColor = ColorandFontTable.textGray1
         signatureLabel.textAlignment = .center
-        signatureLabel.font = .systemFont(ofSize: height * 0.03)
+        signatureLabel.font = .systemFont(ofSize: 20)
         signatureContentLabel = UILabel()
         if user.signature != nil
         {
@@ -169,7 +169,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         view.addGestureRecognizer(tap)
         
         
-        backButton = UIButton(frame: CGRect(x: 10, y: 30, width: 20, height: 20))
+        backButton = UIButton(frame: CGRect(x: 10, y: 20, width: 20, height: 20))
         backButton.setImage(#imageLiteral(resourceName: "ProfileView_Back"), for: .normal)
         backButton.isUserInteractionEnabled = true
         backButton.addTarget(self, action: #selector(backToLast), for: .touchUpInside)
@@ -202,45 +202,46 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         scrollView.addSubview(albumArrow)
         scrollView.addSubview(line1)
         scrollView.addSubview(settingsButton)
+
         view.addSubview(scrollView)
         view.addSubview(wallpaperView)
         view.addSubview(iconView)
         view.addSubview(backButton)
         usernameLabel.snp.makeConstraints{(make) in
-            make.centerX.equalTo(scrollView.snp.centerX)
-            make.top.equalTo(scrollView.snp.top).offset(height * 0.456)
+            make.centerX.equalTo(scrollView)
+            make.top.equalTo(scrollView).offset(height * 0.456)
             make.height.equalTo(height * 0.036)
         }
         
         idLabel.snp.makeConstraints{(make) in
             make.centerX.equalTo(scrollView.snp.centerX)
-            make.top.equalTo(scrollView.snp.top).offset(height * 0.504)
+            make.top.equalTo(scrollView).offset(height * 0.504)
             make.height.equalTo(height * 0.024)
         }
         
         signatureView.snp.makeConstraints{(make) in
-            make.left.equalTo(scrollView.snp.left)
+            make.left.equalTo(scrollView)
             make.width.equalTo(width)
-            make.top.equalTo(scrollView.snp.top).offset(height * 0.564)
+            make.top.equalTo(scrollView).offset(height * 0.564)
             make.height.equalTo(height * 0.057)
         }
         
         signatureLabel.snp.makeConstraints{(make) in
-            make.left.equalTo(scrollView.snp.left)
+            make.left.equalTo(scrollView)
             make.width.equalTo(width * 0.224)
-            make.top.equalTo(signatureView.snp.top)
-            make.bottom.equalTo(signatureView.snp.bottom)
+            make.top.equalTo(signatureView)
+            make.bottom.equalTo(signatureView)
         }
         
         signatureContentLabel!.snp.makeConstraints{(make) in
-            make.left.equalTo(scrollView.snp.left).offset(width * 0.23)
+            make.left.equalTo(scrollView).offset(width * 0.23)
             make.width.equalTo(width * 0.77)
-            make.top.equalTo(signatureView.snp.top)
-            make.bottom.equalTo(signatureView.snp.bottom)
+            make.top.equalTo(signatureView)
+            make.bottom.equalTo(signatureView)
         }
         
         line0.snp.makeConstraints{(make) in
-            make.top.equalTo(scrollView.snp.top).offset(height * 0.6315)
+            make.top.equalTo(scrollView).offset(height * 0.6315)
             make.left.equalTo(signatureLabel.snp.right)
             make.width.equalTo(width * 0.776)
             make.height.equalTo(2)
@@ -435,7 +436,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     
     func tappedSignature()
     {
-        navigationController!.pushViewController(SignatureViewController(), animated: true)
+        let svc = SignatureViewController()
+        svc.delegate = self
+        svc.signature = self.user.signature
+        navigationController!.pushViewController(svc, animated: true)
     }
     
     func tappedAlbum()
@@ -497,5 +501,14 @@ extension ProfileViewController: UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+//MARK: Change Signature
+extension ProfileViewController: SignatureDelegate
+{
+    func SignatureDidChange(signature: String) {
+        signatureContentLabel!.text = signature
+        user.signature = signature
     }
 }

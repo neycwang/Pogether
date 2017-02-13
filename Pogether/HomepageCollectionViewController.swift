@@ -18,7 +18,7 @@ fileprivate class Function {
         self.color = color
     }
 }
-class HomepageCollectionViewController: UICollectionViewController {
+class HomepageCollectionViewController: UICollectionViewController, UINavigationControllerDelegate {
 
     fileprivate var FunctionArray = [Function?]()
     var posterView: UIImageView!
@@ -89,7 +89,17 @@ class HomepageCollectionViewController: UICollectionViewController {
         case [0,1]:
             jumpTo(page: ContactTableViewController())
         case [0,2]:
-            jumpTo(page: PhotoCollectionViewController())
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
+            {
+                picker.sourceType = .camera
+                self.navigationController!.present(picker, animated: true, completion: nil)
+            }
+            else
+            {
+                NSLog("不支持相机")
+            }
         case [0,3]:
             jumpTo(page: AlbumTableViewController())
         default:
@@ -129,4 +139,18 @@ class HomepageCollectionViewController: UICollectionViewController {
         navigationController?.pushViewController(avc, animated: false)
     }
     
+}
+
+extension HomepageCollectionViewController: UIImagePickerControllerDelegate
+{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        let selectImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
