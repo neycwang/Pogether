@@ -15,6 +15,7 @@ class AlbumTableViewController: UITableViewController {
     var securityArray = [0,1,3,1]
     var albumPhotosCountArray = [100,100,60,50]
     
+    var albumArray = [Album]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +33,9 @@ class AlbumTableViewController: UITableViewController {
         self.title = "素材库"
         initialize()
         registerForCell()
+        
+        albumArray = [Album(name: "默认相册", count: 50, limit: Limit.all), Album(name: "背景图片", count: 50, limit: Limit.myself), Album(name: "Pogether 数据库", count: 50, limit: Limit.some), Album(name: "个人收藏", count: 50, limit: Limit.somenot)]
+        
     }
     
     //show navigation bar
@@ -65,15 +69,16 @@ class AlbumTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return albumString.count
+        return albumArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //set cell texts
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
-        cell.albumNameLabel.text = albumString[indexPath.row]
-        cell.securityLabel.text = securityString[securityArray[indexPath.row]]
-        cell.countLabel.text = " (\(albumPhotosCountArray[indexPath.row]))"
+        //cell.albumNameLabel.text = albumString[indexPath.row]
+        //cell.securityLabel.text = securityString[securityArray[indexPath.row]]
+        //cell.countLabel.text = " (\(albumPhotosCountArray[indexPath.row]))"
+        cell.album = albumArray[indexPath.row]
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -89,7 +94,9 @@ class AlbumTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete)
         {
-            print("delete \(indexPath.row)")
+            albumArray.remove(at: indexPath.row)
+            print(albumArray)
+            tableView.reloadData()
         }
     }
     override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
@@ -101,6 +108,20 @@ class AlbumTableViewController: UITableViewController {
     }
     
     func addNewAlbum() {
-        
+        let alertController = UIAlertController(title: "新建相册", message: "请为此相册输入名称", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: nil)
+        let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: {
+            action in
+            let name = alertController.textFields?[0].text
+            self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
+            self.tableView.reloadData()
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        alertController.addTextField {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "默认相册"
+        }
+        self.present(alertController, animated: true, completion: nil)
     }
 }

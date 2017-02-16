@@ -19,7 +19,7 @@ class Account {
     var email: String?
     var signature: String?
     var portrait: URL?
-    var poster: URL?
+    var avatar: URL?
     
     init(id: String, username: String)
     {

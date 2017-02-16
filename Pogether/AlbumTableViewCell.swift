@@ -15,6 +15,18 @@ class AlbumTableViewCell: UITableViewCell {
     var albumNameLabel: UILabel!
     var securityLabel: UILabel!
     var countLabel: UILabel!
+    var album: Album = Album() {
+        didSet {
+            if album.avanter != nil {
+                
+            }
+            albumNameLabel.text = album.name
+            securityLabel.text = album.limitString
+            if album.count != nil {
+                countLabel.text = " (\(album.count!.description))"
+            }
+        }
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
