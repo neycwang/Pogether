@@ -22,7 +22,7 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
 
     fileprivate var FunctionArray = [Function?]()
     var posterView: UIImageView!
-    var settingView: UIImageView!
+    var settingButton: UIButton!
     var width, height: CGFloat!
 
     init() {
@@ -46,27 +46,24 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
         FunctionArray.append(Function(name: "素材", image: #imageLiteral(resourceName: "Homepage_Resource"), color: UIColor(red: 254 / 255, green: 174 / 255, blue: 27 / 255, alpha: 1)))
         
         posterView = UIImageView()
-        settingView = UIImageView()
         posterView.image = #imageLiteral(resourceName: "Homepage_Poster")
-        settingView.image = #imageLiteral(resourceName: "Homepage_Setting")
         posterView.contentMode = .scaleAspectFit
-        settingView.contentMode = .scaleAspectFit
+        settingButton = UIButton()
+        settingButton.setImage(#imageLiteral(resourceName: "Homepage_Setting"), for: .normal)
+        settingButton.addTarget(self, action: #selector(setting), for: .touchUpInside)
         collectionView!.addSubview(posterView)
-        collectionView!.addSubview(settingView)
+        collectionView!.addSubview(settingButton)
         posterView.snp.makeConstraints { (make) in
             make.centerX.equalTo(view)
             make.top.equalTo(view).offset(20)
             make.height.equalTo(view).dividedBy(2)
         }
-        settingView.snp.makeConstraints { (make) in
+        settingButton.snp.makeConstraints { (make) in
             make.top.equalTo(view).offset(32)
             make.right.equalTo(view).offset(-32)
             make.height.equalTo(32)
             make.width.equalTo(32)
         }
-        settingView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(setting))
-        settingView.addGestureRecognizer(tap)
 
     }
     
@@ -82,7 +79,6 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
         return FunctionArray.count
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
         switch indexPath {
         case [0,0]:
             jumpTo(page: PhotoCollectionViewController())

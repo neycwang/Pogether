@@ -48,7 +48,7 @@ class AlbumTableViewController: UITableViewController {
         
         var addImage = #imageLiteral(resourceName: "Album_Add")
         addImage = addImage.withRenderingMode(.alwaysOriginal)
-        let addAlbum = UIBarButtonItem (image: addImage, style: .plain, target: self, action: #selector(AlbumTableViewController.jumpToProfile))
+        let addAlbum = UIBarButtonItem (image: addImage, style: .plain, target: self, action: #selector(addNewAlbum))
         self.navigationItem.rightBarButtonItem = addAlbum
     }
     
@@ -100,8 +100,7 @@ class AlbumTableViewController: UITableViewController {
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
-    func jumpToProfile() {
-        let avc = ProfileViewController()
-        self.navigationController?.pushViewController(avc, animated: false)
+    func addNewAlbum() {
+        
     }
 }
