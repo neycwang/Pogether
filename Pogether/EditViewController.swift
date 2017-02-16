@@ -12,7 +12,6 @@ class EditViewController: UIViewController {
     
     var photoImageView: UIImageView!
     var photo: UIImage!
-    var inputToolBar: UIToolbar!
     
     func initialize()
     {
@@ -25,21 +24,15 @@ class EditViewController: UIViewController {
         photoImageView.contentMode = .scaleAspectFit
         photoImageView.image = photo
         
-        let edit = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Edit"), style: .plain, target: self, action: #selector(backToLast))
-        let augment = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Augment"), style: .plain, target: self, action: #selector(backToLast))
-        let matting = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Matting"), style: .plain, target: self, action: #selector(backToLast))
-        let text = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Text"), style: .plain, target: self, action: #selector(backToLast))
+        let crop = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Edit"), style: .plain, target: self, action: #selector(jumpToCrop))
+        let augment = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Augment"), style: .plain, target: self, action: #selector(jumpToAugment))
+        let matting = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Matting"), style: .plain, target: self, action: #selector(jumpToMatting))
+        let text = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Text"), style: .plain, target: self, action: #selector(jumpToText))
         let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
-        let preserve = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Preserve"), style: .plain, target: self, action: #selector(backToLast))
+        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(backToLast))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let barArray = [cancel, space, edit, space, augment, space, matting, space, text, space, preserve]
+        let barArray = [cancel, space, crop, space, augment, space, matting, space, text, space, save]
         self.toolbarItems = barArray
-        //inputToolBar = UIToolbar(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 52, width: UIScreen.main.bounds.width, height: 52))
-        //inputToolBar.tintColor = UIColor.white
-        //inputToolBar.backgroundColor = ColorandFontTable.primaryPink
-        //inputToolBar.barStyle = .default
-        //inputToolBar.setItems(barArray, animated: false)
-        //self.view.addSubview(inputToolBar)
     }
     
     override func viewDidLoad() {
@@ -54,9 +47,12 @@ class EditViewController: UIViewController {
         self.navigationController?.toolbar.barTintColor = ColorandFontTable.primaryPink
         self.navigationController?.toolbar.tintColor = UIColor.white
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.setToolbarHidden(false, animated: false)
+    }
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setToolbarHidden(true, animated: true)
+        self.navigationController?.setToolbarHidden(true, animated: false)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -67,7 +63,34 @@ class EditViewController: UIViewController {
     {
         let _ = self.navigationController?.popViewController(animated: true)
     }
-    
+    func jumpToCrop()
+    {
+        let avc = CropViewController()
+        avc.photo = self.photo
+        self.navigationController?.pushViewController(avc, animated: true)
+    }
+    func jumpToAugment()
+    {
+        let avc = AugmentViewController()
+        avc.photo = self.photo
+        self.navigationController?.pushViewController(avc, animated: true)
+    }
+    func jumpToMatting()
+    {
+        let avc = MattingViewController()
+        avc.photo = self.photo
+        self.navigationController?.pushViewController(avc, animated: true)
+    }
+    func jumpToText()
+    {
+        let avc = TextViewController()
+        avc.photo = self.photo
+        self.navigationController?.pushViewController(avc, animated: true)
+    }
+    func buttonTapped(sender: UIBarButtonItem)
+    {
+        
+    }
     func editPhoto()
     {
         

@@ -23,7 +23,7 @@ class SignatureViewController: UIViewController
     
     func initialize()
     {
-        view.backgroundColor = ColorandFontTable.signatureViewBackground
+        view.backgroundColor = ColorandFontTable.groundGray
         
         textView = UITextView()
         textView.delegate = self
@@ -42,7 +42,7 @@ class SignatureViewController: UIViewController
         let len = (textView.text as NSString).length
         countLabel.text = "\(textLimitation - len)"
         countLabel.font = .systemFont(ofSize: 20)
-        countLabel.textColor = ColorandFontTable.labelPink
+        countLabel.textColor = ColorandFontTable.textPink
         self.automaticallyAdjustsScrollViewInsets = false
     }
     

@@ -83,7 +83,7 @@ class PresentationViewController: UIViewController {
     {
         let evc = EditViewController()
         evc.photo = self.photo
-        self.navigationController?.pushViewController(evc, animated: false)
+        self.navigationController?.pushViewController(evc, animated: true)
     }
     func storePhoto()
     {

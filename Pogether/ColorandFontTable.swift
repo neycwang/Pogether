@@ -23,10 +23,5 @@ public class ColorandFontTable {
     static let fillGray = UIColor(red: 216 / 255, green: 216 / 255, blue: 216 / 255, alpha: 1)
     static let borderGray = UIColor(red: 151 / 255, green: 151 / 255, blue: 151 / 255, alpha: 1)
     static let transparent = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
-    static let signatureViewBackground = UIColor(red: 240 / 255, green: 239 / 255, blue: 245 / 255, alpha: 1)
-    static let labelPink = UIColor(red: 251 / 255, green: 189 / 255, blue: 199 / 255, alpha: 1)
+    static let purple = UIColor(red: 184 / 255, green: 73 / 255, blue: 120 / 255, alpha: 1)
 }
-/*
- 可以废弃这个文件了
- 设计师在调色盘上随便一点就是一个新颜色
- */

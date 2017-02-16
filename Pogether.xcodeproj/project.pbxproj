@@ -15,6 +15,11 @@
 		357F45271E4CC589008B60CF /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45261E4CC589008B60CF /* SignatureViewController.swift */; };
 		357F452B1E505413008B60CF /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F452A1E505413008B60CF /* PresentationViewController.swift */; };
 		357F452D1E506031008B60CF /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F452C1E506031008B60CF /* EditViewController.swift */; };
+		357F452F1E5366FD008B60CF /* AugmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F452E1E5366FD008B60CF /* AugmentViewController.swift */; };
+		357F45311E536713008B60CF /* MattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45301E536713008B60CF /* MattingViewController.swift */; };
+		357F45331E5367AA008B60CF /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45321E5367AA008B60CF /* TextViewController.swift */; };
+		357F45351E5367E3008B60CF /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45341E5367E3008B60CF /* CropViewController.swift */; };
+		357F45371E5466AD008B60CF /* CropCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */; };
 		359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */; };
 		359B03171E45C4840014D237 /* Quenda-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 359B03161E45C4840014D237 /* Quenda-Medium.otf */; };
 		359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */; };
@@ -66,6 +71,11 @@
 		357F45261E4CC589008B60CF /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		357F452A1E505413008B60CF /* PresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
 		357F452C1E506031008B60CF /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		357F452E1E5366FD008B60CF /* AugmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AugmentViewController.swift; sourceTree = "<group>"; };
+		357F45301E536713008B60CF /* MattingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MattingViewController.swift; sourceTree = "<group>"; };
+		357F45321E5367AA008B60CF /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
+		357F45341E5367E3008B60CF /* CropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
+		357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropCollectionViewCell.swift; sourceTree = "<group>"; };
 		359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewCell.swift; sourceTree = "<group>"; };
 		359B03161E45C4840014D237 /* Quenda-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quenda-Medium.otf"; sourceTree = "<group>"; };
 		359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewController.swift; sourceTree = "<group>"; };
@@ -174,7 +184,6 @@
 				357F451A1E470F1B008B60CF /* ContactDataSource.swift */,
 				359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */,
 				359B031C1E46FCD60014D237 /* ContactTableViewController.swift */,
-				357F452C1E506031008B60CF /* EditViewController.swift */,
 				359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */,
 				359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */,
 				35E6E21A1E2C6CAA0093F791 /* Info.plist */,
@@ -187,6 +196,12 @@
 				35E6E2481E2F451B0093F791 /* RegisterViewController.swift */,
 				357F45261E4CC589008B60CF /* SignatureViewController.swift */,
 				357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */,
+				357F452C1E506031008B60CF /* EditViewController.swift */,
+				357F452E1E5366FD008B60CF /* AugmentViewController.swift */,
+				357F45301E536713008B60CF /* MattingViewController.swift */,
+				357F45321E5367AA008B60CF /* TextViewController.swift */,
+				357F45341E5367E3008B60CF /* CropViewController.swift */,
+				357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -506,17 +521,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				357F45311E536713008B60CF /* MattingViewController.swift in Sources */,
 				359B031F1E46FCE90014D237 /* ContactTableViewCell.swift in Sources */,
 				35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */,
 				35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */,
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
+				357F45351E5367E3008B60CF /* CropViewController.swift in Sources */,
 				359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */,
 				357F45271E4CC589008B60CF /* SignatureViewController.swift in Sources */,
 				357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */,
+				357F452F1E5366FD008B60CF /* AugmentViewController.swift in Sources */,
 				35E6E2431E2E53260093F791 /* ProfileViewController.swift in Sources */,
 				359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */,
 				35E6E2471E2E6BC00093F791 /* PhotoCollectionViewCell.swift in Sources */,
+				357F45371E5466AD008B60CF /* CropCollectionViewCell.swift in Sources */,
 				357F451F1E4B0F61008B60CF /* ContactAddTableViewController.swift in Sources */,
 				359B031D1E46FCD60014D237 /* ContactTableViewController.swift in Sources */,
 				357F45251E4CBDDF008B60CF /* AccountAPI.swift in Sources */,
@@ -527,6 +546,7 @@
 				357F452B1E505413008B60CF /* PresentationViewController.swift in Sources */,
 				357F451B1E470F1B008B60CF /* ContactDataSource.swift in Sources */,
 				357F452D1E506031008B60CF /* EditViewController.swift in Sources */,
+				357F45331E5367AA008B60CF /* TextViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
