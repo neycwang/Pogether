@@ -41,11 +41,6 @@ class EditViewController: UIViewController {
         self.title = "编辑"
         self.view.addSubview(photoImageView)
         self.view.backgroundColor = ColorandFontTable.groundGray
-        self.navigationController?.setToolbarHidden(false, animated: false)
-        self.navigationController?.toolbar.backgroundColor = ColorandFontTable.primaryPink
-        self.navigationController?.toolbar.barStyle = .default
-        self.navigationController?.toolbar.barTintColor = ColorandFontTable.primaryPink
-        self.navigationController?.toolbar.tintColor = UIColor.white
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
