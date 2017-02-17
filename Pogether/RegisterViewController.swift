@@ -63,6 +63,7 @@ class RegisterViewController: UIViewController {
         passwordTextFieldWithCheck.textField.placeholder = "密码"
         passwordTextFieldWithCheck.textField.font = UIFont.systemFont(ofSize: 20)
         passwordTextFieldWithCheck.textField.isSecureTextEntry = true
+        passwordTextFieldWithCheck.textField.keyboardType = .default
         passwordTextFieldWithCheck.checkdelegate = self
         
         repasswordTextFieldWithCheck = TextFieldWithCheck(index: 4)
@@ -70,6 +71,7 @@ class RegisterViewController: UIViewController {
         repasswordTextFieldWithCheck.textField.placeholder = "确认密码"
         repasswordTextFieldWithCheck.textField.font = UIFont.systemFont(ofSize: 20)
         repasswordTextFieldWithCheck.textField.isSecureTextEntry = true
+        repasswordTextFieldWithCheck.textField.keyboardType = .default
         repasswordTextFieldWithCheck.checkdelegate = self
         
         registerButton = UIButton(type: .roundedRect)
@@ -119,7 +121,7 @@ class RegisterViewController: UIViewController {
         
     }
     
-    func makeGroundImageView(groundImage:UIImage!) -> UIImageView{
+    func makeGroundImageView(groundImage:UIImage!) -> UIImageView {
         let newUIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: height * 0.4875, height: height * 0.09))
         newUIImageView.image = groundImage
         return newUIImageView
@@ -134,36 +136,38 @@ class RegisterViewController: UIViewController {
         //after registerButton tapped
     }
     
-    func backToLast()
-    {
+    func backToLast() {
         let _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    func recheck() {
+        if passwordTextFieldWithCheck.textField.text != repasswordTextFieldWithCheck.textField.text {
+            repasswordTextFieldWithCheck.checkHidden = true
+            repasswordTextFieldWithCheck.correctImageView.isHidden = true
+        }
     }
 }
 
-extension RegisterViewController: CheckDelegate
-{
-    func validate(index: Int, text: String)
-    {
+extension RegisterViewController: CheckDelegate {
+    func validate(index: Int, text: String) {
         switch index {
         case 1:
-            if text != ""
-            {
-                usernameTextFieldWithCheck.checkHidden = false
-            }
-        case 2:
-            if text != ""
-            {
+            if text != "" {
                 emailTextFieldWithCheck.checkHidden = false
             }
+        case 2:
+            if text != "" {
+                usernameTextFieldWithCheck.checkHidden = false
+            }
         case 3:
-            if text != ""
-            {
+            if text != "" {
                 passwordTextFieldWithCheck.checkHidden = false
+                self.recheck()
             }
         default:
-            if text != ""
-            {
+            if text != "" {
                 repasswordTextFieldWithCheck.checkHidden = false
+                self.recheck()
             }
         }
     }

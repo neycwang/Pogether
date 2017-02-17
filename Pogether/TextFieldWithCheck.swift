@@ -29,13 +29,13 @@ class TextFieldWithCheck: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
     init(index: Int){
         super.init(frame: .zero)
         self.index = index
         self.groundView = UIView(frame: .zero)
         self.textField = UITextField()
         self.textField.returnKeyType = .done
-        self.textField.keyboardType = .asciiCapable
         self.textField.delegate = self
         self.groundImageView = UIImageView()
         self.groundImageView.image = #imageLiteral(resourceName: "LoginView_Box")
@@ -76,14 +76,15 @@ class TextFieldWithCheck: UIView {
     
 }
 
-extension TextFieldWithCheck: UITextFieldDelegate
-{
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if self.textField.text == nil || self.textField.text == "" {
-            self.checkHidden = false
+extension TextFieldWithCheck: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if self.textField.text == "" {
+            self.checkHidden = true
         } else {
             self.checkdelegate!.validate(index: index, text: self.textField.text!)
         }
         self.correctImageView.isHidden = self.checkHidden
+        self.textField.resignFirstResponder()
+        return true
     }
 }
