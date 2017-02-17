@@ -39,9 +39,25 @@ class ComposeCollectionViewController: UICollectionViewController {
         let barArray = [cancel, space, add, space, save]
         self.toolbarItems = barArray
         
-        photoImageView = UIImageView(frame: self.view.frame)
+        photoImageView = UIImageView()
         photoImageView.contentMode = .scaleAspectFit
         collectionView!.addSubview(photoImageView)
+        photoImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view).offset(20)
+            make.bottom.equalTo(self.view).offset(-170)
+            make.left.equalTo(self.view).offset(10)
+            make.right.equalTo(self.view).offset(-10)
+        }
+        let tagView = UIImageView()
+        tagView.contentMode = .scaleAspectFit
+        tagView.image = #imageLiteral(resourceName: "Resource_Title")
+        collectionView!.addSubview(tagView)
+        tagView.snp.makeConstraints { (make) in
+            make.right.equalTo(self.view).offset(-2)
+            make.bottom.equalTo(self.view).offset(-140)
+            make.height.equalTo(20)
+            make.width.equalTo(135)
+        }
     }
 
     
@@ -84,18 +100,13 @@ class ComposeCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectCollectionViewCell", for: indexPath) as! SelectCollectionViewCell
-        if cell.isSelected {
+        let cell = collectionView.cellForItem(at: indexPath) as! SelectCollectionViewCell
+        cell.isAdded = !cell.isAdded
+        if cell.isAdded {
             cell.selectView.image = #imageLiteral(resourceName: "Select_Yes")
         } else {
             cell.selectView.image = #imageLiteral(resourceName: "Select_None")
         }
-        //collectionView.deselectItem(at: indexPath, animated: true)
-        collectionView.beginInteractiveMovementForItem(at: indexPath)
-        collectionView.endInteractiveMovement()
-        //cell.isSelect = !cell.isSelect
-        //collectionView.reloadItems(at: [indexPath])
-        //collectionView.reloadData()
     }
 
     /*
@@ -134,7 +145,8 @@ class ComposeCollectionViewController: UICollectionViewController {
     }
     func addResource()
     {
-        
+        let avc = SelectPhotoCollectionViewController()
+        self.navigationController?.pushViewController(avc, animated: true)
     }
 
 }

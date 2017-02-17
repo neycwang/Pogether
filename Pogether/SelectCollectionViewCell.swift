@@ -12,6 +12,7 @@ class SelectCollectionViewCell: UICollectionViewCell {
     var photoView: UIImageView!
     var selectView: UIImageView!
     var indexPath: IndexPath!
+    var isAdded = false
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,8 +38,5 @@ class SelectCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(20)
             make.width.equalTo(20)
         }
-    }
-    override func select(_ sender: Any?) {
-        
     }
 }

@@ -20,13 +20,16 @@ class CropViewController: UICollectionViewController {
     }
     init()
     {
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 69, height: 80)
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 600, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: 80, height: 80)
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: UIScreen.main.bounds.height - 140, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
         super.init(collectionViewLayout: layout)
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 80), collectionViewLayout: layout)
+        let height = self.view.frame.height
+        let width = self.view.frame.width
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: height - 140, width: width, height: 80), collectionViewLayout: layout)
         collectionView?.delegate = self
         collectionView?.backgroundColor = ColorandFontTable.groundGray
         collectionView?.showsVerticalScrollIndicator = false
@@ -36,7 +39,7 @@ class CropViewController: UICollectionViewController {
         photoImageView = UIImageView(frame: self.view.frame)
         photoImageView.contentMode = .scaleAspectFit
         
-        resetButton = UIButton(frame: CGRect(x: 20, y: 560, width: 70, height: 30))
+        resetButton = UIButton()
         resetButton.addTarget(self, action: #selector(reset), for: .touchUpInside)
         resetButton.setTitle("重置", for: .normal)
         resetButton.setTitleColor(ColorandFontTable.textPink, for: .normal)
@@ -46,7 +49,7 @@ class CropViewController: UICollectionViewController {
         resetButton.layer.masksToBounds = true
         resetButton.layer.borderWidth = 2
         
-        cutButton = UIButton(frame: CGRect(x: 324, y: 560, width: 70, height: 30))
+        cutButton = UIButton()
         cutButton.addTarget(self, action: #selector(cutting), for: .touchUpInside)
         cutButton.setTitle("裁剪", for: .normal)
         cutButton.setTitleColor(ColorandFontTable.textPink, for: .normal)
@@ -69,6 +72,25 @@ class CropViewController: UICollectionViewController {
         collectionView!.addSubview(photoImageView)
         collectionView!.addSubview(resetButton)
         collectionView!.addSubview(cutButton)
+        
+        photoImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view).offset(20)
+            make.bottom.equalTo(resetButton.snp.top).offset(-5)
+            make.left.equalTo(self.view).offset(10)
+            make.right.equalTo(self.view).offset(-10)
+        }
+        resetButton.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view).offset(20)
+            make.bottom.equalTo(self.view).offset(-130)
+            make.width.equalTo(70)
+            make.height.equalTo(30)
+        }
+        cutButton.snp.makeConstraints { (make) in
+            make.right.equalTo(self.view).offset(-20)
+            make.bottom.equalTo(self.view).offset(-130)
+            make.width.equalTo(70)
+            make.height.equalTo(30)
+        }
     }
     
     //MARK:- View Control
