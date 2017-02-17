@@ -77,7 +77,17 @@ class TextFieldWithCheck: UIView {
 }
 
 extension TextFieldWithCheck: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        checkCorrect()
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        checkCorrect()
+        return true
+    }
+    
+    func checkCorrect() {
         if self.textField.text == "" {
             self.checkHidden = true
         } else {
@@ -85,6 +95,5 @@ extension TextFieldWithCheck: UITextFieldDelegate {
         }
         self.correctImageView.isHidden = self.checkHidden
         self.textField.resignFirstResponder()
-        return true
     }
 }
