@@ -22,10 +22,10 @@ class ComposeCollectionViewController: UICollectionViewController {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 69, height: 80)
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 600, left: 0, bottom: 0, right: 0)
+        //layout.sectionInset = UIEdgeInsets(top: 500, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
         super.init(collectionViewLayout: layout)
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 80), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 500, width: 414, height: 80), collectionViewLayout: layout)
         collectionView?.delegate = self
         collectionView?.backgroundColor = ColorandFontTable.groundGray
         collectionView?.showsVerticalScrollIndicator = false
@@ -33,7 +33,7 @@ class ComposeCollectionViewController: UICollectionViewController {
         self.collectionView!.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
         
         let add = UIBarButtonItem(title: "添加素材", style: .plain, target: self, action: #selector(addResource))
-        let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(addResource))
+        let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
         let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(addResource))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let barArray = [cancel, space, add, space, save]
@@ -41,13 +41,13 @@ class ComposeCollectionViewController: UICollectionViewController {
         
         photoImageView = UIImageView(frame: self.view.frame)
         photoImageView.contentMode = .scaleAspectFit
-        
         collectionView!.addSubview(photoImageView)
     }
 
     
     //MARK:- View Control
     override func viewWillAppear(_ animated: Bool) {
+        photoImageView.image = photo
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
