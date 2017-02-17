@@ -22,6 +22,7 @@
 		357F45371E5466AD008B60CF /* CropCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */; };
 		357F453B1E558B40008B60CF /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F453A1E558B40008B60CF /* Album.swift */; };
 		358C10FE1E5602880038F03C /* ComposeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */; };
+		358C11001E5735140038F03C /* SelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */; };
 		359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */; };
 		359B03171E45C4840014D237 /* Quenda-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 359B03161E45C4840014D237 /* Quenda-Medium.otf */; };
 		359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */; };
@@ -80,6 +81,7 @@
 		357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropCollectionViewCell.swift; sourceTree = "<group>"; };
 		357F453A1E558B40008B60CF /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCollectionViewController.swift; sourceTree = "<group>"; };
+		358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewCell.swift; sourceTree = "<group>"; };
 		359B03161E45C4840014D237 /* Quenda-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quenda-Medium.otf"; sourceTree = "<group>"; };
 		359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				357F45341E5367E3008B60CF /* CropViewController.swift */,
 				357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */,
 				358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */,
+				358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				357F45351E5367E3008B60CF /* CropViewController.swift in Sources */,
 				359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */,
 				357F45271E4CC589008B60CF /* SignatureViewController.swift in Sources */,
+				358C11001E5735140038F03C /* SelectCollectionViewCell.swift in Sources */,
 				358C10FE1E5602880038F03C /* ComposeCollectionViewController.swift in Sources */,
 				357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */,
 				357F452F1E5366FD008B60CF /* AugmentViewController.swift in Sources */,

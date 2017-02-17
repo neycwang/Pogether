@@ -20,9 +20,9 @@ class ComposeCollectionViewController: UICollectionViewController {
     init()
     {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 69, height: 80)
+        layout.itemSize = CGSize(width: 80, height: 80)
         layout.scrollDirection = .horizontal
-        //layout.sectionInset = UIEdgeInsets(top: 500, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 500, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
         super.init(collectionViewLayout: layout)
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 500, width: 414, height: 80), collectionViewLayout: layout)
@@ -30,7 +30,7 @@ class ComposeCollectionViewController: UICollectionViewController {
         collectionView?.backgroundColor = ColorandFontTable.groundGray
         collectionView?.showsVerticalScrollIndicator = false
         collectionView?.showsHorizontalScrollIndicator = false
-        self.collectionView!.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
+        self.collectionView!.register(SelectCollectionViewCell.self, forCellWithReuseIdentifier: "SelectCollectionViewCell")
         
         let add = UIBarButtonItem(title: "添加素材", style: .plain, target: self, action: #selector(addResource))
         let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
@@ -61,16 +61,6 @@ class ComposeCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -84,14 +74,29 @@ class ComposeCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as! PhotoCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectCollectionViewCell", for: indexPath) as! SelectCollectionViewCell
         cell.photoView.image = #imageLiteral(resourceName: "default")
+        cell.selectView.image = #imageLiteral(resourceName: "Select_None")
         // Configure the cell
     
         return cell
     }
 
     // MARK: UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectCollectionViewCell", for: indexPath) as! SelectCollectionViewCell
+        if cell.isSelected {
+            cell.selectView.image = #imageLiteral(resourceName: "Select_Yes")
+        } else {
+            cell.selectView.image = #imageLiteral(resourceName: "Select_None")
+        }
+        //collectionView.deselectItem(at: indexPath, animated: true)
+        collectionView.beginInteractiveMovementForItem(at: indexPath)
+        collectionView.endInteractiveMovement()
+        //cell.isSelect = !cell.isSelect
+        //collectionView.reloadItems(at: [indexPath])
+        //collectionView.reloadData()
+    }
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
