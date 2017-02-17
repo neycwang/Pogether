@@ -153,7 +153,7 @@ extension RegisterViewController: CheckDelegate {
         switch index {
         case 1:
             if text != "" {
-                emailTextFieldWithCheck.checkHidden = false
+                emailTextFieldWithCheck.checkHidden = !validateEmail(email: text)
             }
         case 2:
             if text != "" {
@@ -171,5 +171,10 @@ extension RegisterViewController: CheckDelegate {
             }
         }
     }
-    
+}
+
+func validateEmail(email: String) -> Bool {
+    let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+    let emailTest:NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+    return emailTest.evaluate(with: email)
 }
