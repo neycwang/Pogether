@@ -49,6 +49,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         
         wallpaperView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height * 0.3555))
         wallpaperView.contentMode = .scaleAspectFill
+        wallpaperView.clipsToBounds = true
         if user.avatar != nil
         {
             wallpaperView.image = imageFromURL(url: user.avatar!)
