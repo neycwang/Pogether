@@ -27,6 +27,36 @@ class AlbumTableViewCell: UITableViewCell {
             }
         }
     }
+    var  select = 0 {
+        didSet
+        {
+            let selectTag = UIView()
+            selectTag.backgroundColor = ColorandFontTable.primaryPink
+            selectTag.layer.cornerRadius = 8
+            selectTag.layer.masksToBounds = true
+            self.contentView.addSubview(selectTag)
+            selectTag.snp.makeConstraints { (make) in
+                make.right.equalTo(contentView)
+                make.centerY.equalTo(contentView)
+                make.height.equalTo(16)
+                make.width.equalTo(30)
+            }
+            let selectLabel = UILabel()
+            selectLabel.textColor = UIColor.white
+            selectLabel.font = UIFont.systemFont(ofSize: 14)
+            selectLabel.text = select.description
+            selectTag.addSubview(selectLabel)
+            selectLabel.snp.makeConstraints { (make) in
+                make.center.equalTo(selectTag)
+            }
+            if select == 0 {
+                selectTag.isHidden = true
+            } else {
+                selectTag.isHidden = false
+            }
+        }
+    }
+    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

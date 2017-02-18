@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class SelectPhotoCollectionViewController:  UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var ImageArray = [UIImage?]()
@@ -51,11 +49,12 @@ class SelectPhotoCollectionViewController:  UICollectionViewController, UINaviga
         self.view.addSubview(addButton)
         
         self.title = "选择素材"
+        
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -80,7 +79,7 @@ class SelectPhotoCollectionViewController:  UICollectionViewController, UINaviga
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.collectionView!.cellForItem(at: indexPath) as! SelectCollectionViewCell
+        let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "SelectCollectionViewCell", for: indexPath) as! SelectCollectionViewCell
         
         cell.photoView.contentMode = .scaleAspectFit
         cell.indexPath = indexPath

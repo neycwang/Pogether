@@ -24,6 +24,7 @@
 		358C10FE1E5602880038F03C /* ComposeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */; };
 		358C11001E5735140038F03C /* SelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */; };
 		358C11021E5755E10038F03C /* SelectPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */; };
+		358C11041E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C11031E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift */; };
 		359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */; };
 		359B03171E45C4840014D237 /* Quenda-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 359B03161E45C4840014D237 /* Quenda-Medium.otf */; };
 		359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */; };
@@ -84,6 +85,7 @@
 		358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCollectionViewController.swift; sourceTree = "<group>"; };
 		358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		358C11031E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewCell.swift; sourceTree = "<group>"; };
 		359B03161E45C4840014D237 /* Quenda-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quenda-Medium.otf"; sourceTree = "<group>"; };
 		359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */,
 				358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */,
 				358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */,
+				358C11031E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				357F45191E4701E8008B60CF /* Account.swift in Sources */,
 				357F452B1E505413008B60CF /* PresentationViewController.swift in Sources */,
 				357F453B1E558B40008B60CF /* Album.swift in Sources */,
+				358C11041E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift in Sources */,
 				357F451B1E470F1B008B60CF /* ContactDataSource.swift in Sources */,
 				357F452D1E506031008B60CF /* EditViewController.swift in Sources */,
 				357F45331E5367AA008B60CF /* TextViewController.swift in Sources */,

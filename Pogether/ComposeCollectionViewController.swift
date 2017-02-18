@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class ComposeCollectionViewController: UICollectionViewController {
     var photoImageView: UIImageView!
     var photo: UIImage!
@@ -145,7 +143,7 @@ class ComposeCollectionViewController: UICollectionViewController {
     }
     func addResource()
     {
-        let avc = SelectPhotoCollectionViewController()
+        let avc = SelectAlbumTableViewController()
         self.navigationController?.pushViewController(avc, animated: true)
     }
 
