@@ -11,6 +11,8 @@ import UIKit
 class SelectAlbumTableViewController: UITableViewController {
     
     var albumArray = [Album]()
+    var selectedPhotos = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +48,15 @@ class SelectAlbumTableViewController: UITableViewController {
         backImage = backImage.withRenderingMode(.alwaysOriginal)
         let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backItem
+        
+        let addButton = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 46, width: UIScreen.main.bounds.width, height: 46))
+        addButton.titleLabel?.isHidden = false
+        addButton.setTitle("开始合成", for: .normal)
+        addButton.setTitleColor(UIColor.white, for: .normal)
+        addButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        addButton.backgroundColor = ColorandFontTable.primaryPink
+        addButton.addTarget(self, action: #selector(backToLast), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(addButton)
     }
     
     func registerForCell() {
@@ -68,7 +79,6 @@ class SelectAlbumTableViewController: UITableViewController {
         //set cell texts
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
         cell.album = albumArray[indexPath.row]
-        cell.select = indexPath.row
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -76,21 +86,27 @@ class SelectAlbumTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let avc = SelectPhotoCollectionViewController()
+        avc.delegate = self
+        avc.indexPath = indexPath
         self.navigationController?.pushViewController(avc, animated: false)
     }
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete)
-        {
-            albumArray.remove(at: indexPath.row)
-            print(albumArray)
-            tableView.reloadData()
-        }
-    }
-    
+
     func backToLast() {
         let _ = self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension SelectAlbumTableViewController: SelectPhotoDelegate
+{
+    func returnSelectedPhotos(indexPath: IndexPath, photos: [UIImage])
+    {
+        if photos.count > 0 {
+            for p in photos
+            {
+                selectedPhotos.append(p)
+            }
+            let cell = tableView.cellForRow(at: indexPath) as! AlbumTableViewCell
+            cell.select = photos.count
+        }
     }
 }

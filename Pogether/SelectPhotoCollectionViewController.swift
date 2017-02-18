@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol SelectPhotoDelegate: NSObjectProtocol {
+    func returnSelectedPhotos(indexPath: IndexPath, photos: [UIImage])
+}
+
 class SelectPhotoCollectionViewController:  UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var ImageArray = [UIImage?]()
-    var lastSelect: IndexPath!
+    var isSelected = [Bool]()
+    weak var delegate: SelectPhotoDelegate?
+    var indexPath: IndexPath!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -19,7 +25,7 @@ class SelectPhotoCollectionViewController:  UICollectionViewController, UINaviga
     
     init() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 40, right: 10)
         layout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 30) / 3, height: (UIScreen.main.bounds.width - 30) / 3)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
@@ -29,9 +35,10 @@ class SelectPhotoCollectionViewController:  UICollectionViewController, UINaviga
         collectionView!.backgroundColor = ColorandFontTable.groundGray
         self.view.addSubview(collectionView!)
         self.collectionView!.register(SelectCollectionViewCell.self, forCellWithReuseIdentifier: "SelectCollectionViewCell")
-        for _ in 1...20
+        for _ in 0...20
         {
             ImageArray.append(#imageLiteral(resourceName: "default"))
+            isSelected.append(false)
         }
         
         var backImage = #imageLiteral(resourceName: "ContactList_Back")
@@ -58,14 +65,12 @@ class SelectPhotoCollectionViewController:  UICollectionViewController, UINaviga
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 20
+        return ImageArray.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -73,8 +78,10 @@ class SelectPhotoCollectionViewController:  UICollectionViewController, UINaviga
         cell.isAdded = !cell.isAdded
         if cell.isAdded {
             cell.selectView.image = #imageLiteral(resourceName: "Select_Yes")
+            isSelected[indexPath.row] = true
         } else {
             cell.selectView.image = #imageLiteral(resourceName: "Select_None")
+            isSelected[indexPath.row] = false
         }
     }
     
@@ -97,6 +104,14 @@ class SelectPhotoCollectionViewController:  UICollectionViewController, UINaviga
     
     func backToLast()
     {
+        var photos = [UIImage]()
+        for i in 0..<ImageArray.count
+        {
+            if isSelected[i] {
+                photos.append(ImageArray[i]!)
+            }
+        }
+        self.delegate?.returnSelectedPhotos(indexPath: indexPath, photos: photos)
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
