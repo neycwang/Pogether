@@ -329,7 +329,7 @@
 				TargetAttributes = {
 					35E6E2081E2C6CAA0093F791 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 64VC6J8U2G;
+						DevelopmentTeam = 6484JS687H;
 						ProvisioningStyle = Automatic;
 					};
 					35E6E21E1E2C6CAA0093F791 = {
@@ -712,11 +712,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 64VC6J8U2G;
+				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.Pogether;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pogether.Pogether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -728,11 +728,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 64VC6J8U2G;
+				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.Pogether;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pogether.Pogether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

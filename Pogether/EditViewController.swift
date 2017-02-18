@@ -48,7 +48,7 @@ class EditViewController: UIViewController {
         scrollImageView.contentSize = photo.size
         scrollImageView.delegate = self
         scrollImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(65)
+            make.top.equalTo(self.view)
             make.bottom.equalTo(self.view).offset(-50)
             make.left.equalTo(self.view).offset(10)
             make.right.equalTo(self.view).offset(-10)
@@ -96,29 +96,25 @@ class EditViewController: UIViewController {
     {
         let avc = CropViewController()
         avc.photo = self.photo
-        self.navigationController?.pushViewController(avc, animated: true)
+        self.navigationController?.pushViewController(avc, animated: false)
     }
     func jumpToAugment()
     {
         let avc = AugmentViewController()
         avc.photo = self.photo
-        self.navigationController?.pushViewController(avc, animated: true)
+        self.navigationController?.pushViewController(avc, animated: false)
     }
     func jumpToMatting()
     {
         let avc = MattingViewController()
         avc.photo = self.photo
-        self.navigationController?.pushViewController(avc, animated: true)
+        self.navigationController?.pushViewController(avc, animated: false)
     }
     func jumpToText()
     {
         let avc = TextViewController()
         avc.photo = self.photo
-        self.navigationController?.pushViewController(avc, animated: true)
-    }
-    func buttonTapped(sender: UIBarButtonItem)
-    {
-        
+        self.navigationController?.pushViewController(avc, animated: false)
     }
     func editPhoto()
     {
