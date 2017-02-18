@@ -88,6 +88,7 @@ class ContactTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }

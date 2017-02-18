@@ -23,7 +23,7 @@ class CropViewController: UICollectionViewController {
     {
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 80, height: 80)
+        layout.itemSize = CGSize(width: 60, height: 80)
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: UIScreen.main.bounds.height - 140, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = 0
@@ -64,7 +64,7 @@ class CropViewController: UICollectionViewController {
         let barArray = [cancel, space, crop, space, save]
         self.toolbarItems = barArray
         
-        dataArray = [(48, 32), (36, 36), (24, 36), (36, 24), (27, 36), (18, 32)]
+        dataArray = [(48, 32), (36, 36), (24, 36), (36, 24), (27, 36), (36, 27), (18, 32)]
         
         collectionView!.addSubview(resetButton)
         collectionView!.addSubview(cutButton)

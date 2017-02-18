@@ -81,7 +81,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         YCXMenu.setSeparatorColor(ColorandFontTable.lineBlack)
         
         YCXMenu.show(in: self.view, from: CGRect(x: 325, y: 0, width: 45, height: 64), menuItems: menuItems, selected: { (index, item) in
-            print(item)
+            
         })
         
     }
