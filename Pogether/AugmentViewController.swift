@@ -32,6 +32,7 @@ class AugmentViewController: UIViewController {
         let barArray = [cancel, space, a0, space, a1, space, a2, space, save]
         self.toolbarItems = barArray
         
+        photo = #imageLiteral(resourceName: "Homepage_Background") //we need to initialize a photo
         groundView = UIView()
         groundView.backgroundColor = ColorandFontTable.primaryPink
         
@@ -174,14 +175,15 @@ class AugmentViewController: UIViewController {
     {
         if (sliderLabel.text?.contains("亮度"))!
         {
-            brightness = CGFloat(slider.value)
+            brightness = CGFloat(slider.value) * 2 - 1 //range[-1,1]
         } else if (sliderLabel.text?.contains("饱和度"))! {
-            saturation = CGFloat(slider.value)
+            saturation = CGFloat(slider.value) * 2 //range[0,2]
         } else if (sliderLabel.text?.contains("对比度"))! {
-            contrast = CGFloat(slider.value)
+            contrast = CGFloat(slider.value) * 4 //range[0,4]
         }
-        photo = ImageProcessing.colorControlsWithOriginalImage(image: photo, brightness: brightness, saturation: saturation, contrast: contrast)
-        photoImageView.image = photo
+        var photoAfterProcess = UIImage() //如果不新建变量，那么每次修改都是在上次修改之后的再修改，可能不太对
+        photoAfterProcess = ImageProcessing.colorControlsWithOriginalImage(image: photo, brightness: brightness, saturation: saturation, contrast: contrast)
+        photoImageView.image = photoAfterProcess
     }
 }
 
