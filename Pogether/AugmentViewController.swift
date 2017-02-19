@@ -17,9 +17,9 @@ class AugmentViewController: UIViewController {
     var slider: UISlider!
     var sliderLabel : UILabel!
     
-    var brightness: CGFloat! = 0
-    var saturation: CGFloat! = 0.5
-    var contrast: CGFloat! = 1.0
+    var brightness: CGFloat! = 0 // we need to initialize the brightness,saturation and contrast
+    var saturation: CGFloat! = 1
+    var contrast: CGFloat! = 2
     
     func initialize()
     {
