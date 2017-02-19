@@ -20,10 +20,6 @@ class EditViewController: UIViewController {
         let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backItem
         
-        photoImageView = UIImageView(frame: self.view.frame)
-        photoImageView.contentMode = .scaleAspectFit
-        photoImageView.image = photo
-        
         let crop = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Edit"), style: .plain, target: self, action: #selector(jumpToCrop))
         let augment = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Augment"), style: .plain, target: self, action: #selector(jumpToAugment))
         let matting = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Matting"), style: .plain, target: self, action: #selector(jumpToMatting))
@@ -48,7 +44,7 @@ class EditViewController: UIViewController {
         scrollImageView.contentSize = photo.size
         scrollImageView.delegate = self
         scrollImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view)
+            make.top.equalTo(self.view).offset(70)
             make.bottom.equalTo(self.view).offset(-50)
             make.left.equalTo(self.view).offset(10)
             make.right.equalTo(self.view).offset(-10)
@@ -69,14 +65,13 @@ class EditViewController: UIViewController {
         photoImageView.contentMode = .scaleAspectFit
         scrollImageView.addSubview(photoImageView)
         
-        centerScrollViewContents()
-        
         let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(scrollViewDoubleTapped(recognizer:)))
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         scrollImageView.addGestureRecognizer(doubleTapRecognizer)
     }
     override func viewWillAppear(_ animated: Bool) {
+        centerScrollViewContents()
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }

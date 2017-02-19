@@ -18,8 +18,8 @@ class AugmentViewController: UIViewController {
     var sliderLabel : UILabel!
     
     var brightness: CGFloat! = 0
-    var saturation: CGFloat! = 0
-    var contrast: CGFloat! = 0
+    var saturation: CGFloat! = 0.5
+    var contrast: CGFloat! = 1.0
     
     func initialize()
     {
@@ -39,8 +39,8 @@ class AugmentViewController: UIViewController {
         slider.minimumTrackTintColor = ColorandFontTable.purple
         slider.maximumTrackTintColor = ColorandFontTable.fillGray
         slider.thumbTintColor = UIColor.white
-        slider.value = 0.0
-        slider.minimumValue = -1.0
+        slider.value = 0.5
+        slider.minimumValue = 0.0
         slider.maximumValue = 1.0
         slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         sliderLabel = UILabel()
@@ -71,7 +71,7 @@ class AugmentViewController: UIViewController {
         scrollImageView.showsVerticalScrollIndicator = false
         scrollImageView.showsHorizontalScrollIndicator = false
         photoImageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 190)))
-        photoImageView.image = photo
+        photoImageView.image = #imageLiteral(resourceName: "default")
         photoImageView.contentMode = .scaleAspectFit
         scrollImageView.addSubview(photoImageView)
         
@@ -112,6 +112,8 @@ class AugmentViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        photo = ImageProcessing.colorControlsWithOriginalImage(image: photo, brightness: brightness, saturation: saturation, contrast: contrast)
+        photoImageView.image = photo
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -124,6 +126,7 @@ class AugmentViewController: UIViewController {
         self.slider.isHidden = false
         self.sliderLabel.isHidden = false
         slider.value = 0.0
+        slider.minimumValue = -1.0
         sliderLabel.text = "亮度"
         
     }
@@ -133,7 +136,8 @@ class AugmentViewController: UIViewController {
         self.slider.isHidden = false
         self.sliderLabel.isHidden = false
         sliderLabel.text = "饱和度"
-        slider.value = 0.0
+        slider.minimumValue = 0.0
+        slider.value = 0.5
     }
     func contrastSlider()
     {
@@ -141,7 +145,8 @@ class AugmentViewController: UIViewController {
         self.slider.isHidden = false
         self.sliderLabel.isHidden = false
         sliderLabel.text = "对比度"
-        slider.value = 0.0
+        slider.minimumValue = -1.0
+        slider.value = 1.0
     }
     func backToLast()
     {
