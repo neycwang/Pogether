@@ -454,14 +454,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     func logout()
     {
         let alert = UIAlertController(title: "注销", message: "您确定要注销帐号吗？", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "确定", style: .default, handler: { (action:UIAlertAction) in
             let avc = LoginViewController()
+            let _ = self.navigationController?.popToRootViewController(animated: true)
             self.navigationController?.pushViewController(avc, animated: false)
             })
         )
-        alert.addAction(UIAlertAction(title: "取消", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-        NSLog("Logout")
     }
     func addFriend()
     {
