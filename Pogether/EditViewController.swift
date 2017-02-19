@@ -62,7 +62,8 @@ class EditViewController: UIViewController {
         scrollImageView.maximumZoomScale = 2.0
         scrollImageView.zoomScale = minScale
         scrollImageView.bouncesZoom = true
-        
+        scrollImageView.showsVerticalScrollIndicator = false
+        scrollImageView.showsHorizontalScrollIndicator = false
         photoImageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 190)))
         photoImageView.image = photo
         photoImageView.contentMode = .scaleAspectFit

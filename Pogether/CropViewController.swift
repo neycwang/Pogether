@@ -10,12 +10,15 @@ import UIKit
 
 class CropViewController: UICollectionViewController {
 
-    var photoImageView: UIImageView!
+    //var photoImageView: UIImageView!
     var photo: UIImage!
-    var dataArray = [(Int, Int)]()
+    var cropPhoto: UIImage!
+    var dataArray = [(String, (Int, Int))]()
     var resetButton: UIButton!
     var cutButton: UIButton!
     var scrollImageView: UIScrollView!
+    var cropImageView: TKImageView!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -35,6 +38,7 @@ class CropViewController: UICollectionViewController {
         collectionView?.backgroundColor = ColorandFontTable.groundGray
         collectionView?.showsVerticalScrollIndicator = false
         collectionView?.showsHorizontalScrollIndicator = false
+        collectionView?.bounces = false
         self.collectionView!.register(CropCollectionViewCell.self, forCellWithReuseIdentifier: "CropCollectionViewCell")
         
         resetButton = UIButton()
@@ -64,7 +68,7 @@ class CropViewController: UICollectionViewController {
         let barArray = [cancel, space, crop, space, save]
         self.toolbarItems = barArray
         
-        dataArray = [(48, 32), (36, 36), (24, 36), (36, 24), (27, 36), (36, 27), (18, 32)]
+        dataArray = [("原型",(48, 32)), ("1 : 1",(36, 36)), ("2 : 3",(24, 36)), ("3 : 2",(36, 24)), ("3 : 4",(27, 36)), ("4 : 3",(36, 27)), ("9 : 16",(18, 32))]
         
         collectionView!.addSubview(resetButton)
         collectionView!.addSubview(cutButton)
@@ -108,11 +112,28 @@ class CropViewController: UICollectionViewController {
         scrollImageView.maximumZoomScale = 2.0
         scrollImageView.zoomScale = minScale
         scrollImageView.bouncesZoom = true
-        
-        photoImageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 190)))
-        photoImageView.image = photo
-        photoImageView.contentMode = .scaleAspectFit
-        scrollImageView.addSubview(photoImageView)
+        scrollImageView.showsVerticalScrollIndicator = false
+        scrollImageView.showsHorizontalScrollIndicator = false
+        cropImageView = TKImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 190)))
+        cropImageView.toCropImage = self.photo
+        cropImageView.needScaleCrop = false
+        cropImageView.showMidLines = true
+        cropImageView.showCrossLines = true
+        cropImageView.cornerBorderInImage = true
+        cropImageView.cropAreaCornerWidth = 44
+        cropImageView.cropAreaCornerHeight = 44
+        cropImageView.minSpace = 30
+        cropImageView.cropAreaCrossLineColor = UIColor.white
+        cropImageView.cropAreaBorderLineColor = UIColor.white
+        cropImageView.cropAreaCornerLineColor = ColorandFontTable.primaryPink
+        cropImageView.cropAreaMidLineColor = ColorandFontTable.primaryPink
+        cropImageView.cropAreaCornerLineWidth = 3
+        cropImageView.cropAreaBorderLineWidth = 1
+        cropImageView.cropAreaMidLineWidth = 30
+        cropImageView.cropAreaMidLineHeight = 3
+        cropImageView.cropAreaCrossLineWidth = 1
+        cropImageView.contentMode = .scaleAspectFit
+        scrollImageView.addSubview(cropImageView)
         
         centerScrollViewContents()
         
@@ -140,14 +161,22 @@ class CropViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "CropCollectionViewCell", for: indexPath) as! CropCollectionViewCell
         cell.iconView.snp.makeConstraints { (make) in
-            make.width.equalTo(dataArray[indexPath.row].0)
-            make.height.equalTo(dataArray[indexPath.row].1)
+            make.width.equalTo(dataArray[indexPath.row].1.0)
+            make.height.equalTo(dataArray[indexPath.row].1.1)
         }
-        cell.titleLabel.text = "\(dataArray[indexPath.row].0) : \(dataArray[indexPath.row].1)"
+        cell.titleLabel.text = "\(dataArray[indexPath.row].0)"
         cell.backgroundColor = ColorandFontTable.primaryPink
         return cell
     }
-    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            cropImageView.cropAspectRatio = 0
+        } else {
+            let width = dataArray[indexPath.row].1.0
+            let height = dataArray[indexPath.row].1.1
+            cropImageView.cropAspectRatio = CGFloat(width)/CGFloat(height)
+        }
+    }
     //MARK:- Button Tapped
     func backToLast()
     {
@@ -155,15 +184,17 @@ class CropViewController: UICollectionViewController {
     }
     func reset()
     {
-        
+        cropPhoto = photo
+        cropImageView.toCropImage = cropPhoto
     }
     func cutting()
     {
-        
+        cropPhoto = cropImageView.currentCroppedImage()
+        cropImageView.toCropImage = cropPhoto
     }
     func centerScrollViewContents() {
         let boundsSize = scrollImageView.bounds.size
-        var contentsFrame = photoImageView.frame
+        var contentsFrame = cropImageView.frame
         
         if contentsFrame.size.width < boundsSize.width {
             contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0
@@ -177,14 +208,14 @@ class CropViewController: UICollectionViewController {
             contentsFrame.origin.y = 0.0
         }
         
-        photoImageView.frame = contentsFrame
+        cropImageView.frame = contentsFrame
     }
 }
 extension CropViewController
 {
     // MARK: - UIScrollViewDelegate
     override func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return photoImageView
+        return cropImageView
     }
     
     override func scrollViewDidZoom(_ scrollView: UIScrollView) {
@@ -202,7 +233,7 @@ extension CropViewController
         }
     }
     func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer) {
-        let pointInView = recognizer.location(in: photoImageView)
+        let pointInView = recognizer.location(in: cropImageView)
         
         var newZoomScale = scrollImageView.zoomScale * 1.5
         newZoomScale = min(newZoomScale, scrollImageView.maximumZoomScale)

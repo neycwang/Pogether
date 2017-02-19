@@ -31,6 +31,7 @@
 		359B031B1E45D94C0014D237 /* ColorandFontTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B031A1E45D94C0014D237 /* ColorandFontTable.swift */; };
 		359B031D1E46FCD60014D237 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B031C1E46FCD60014D237 /* ContactTableViewController.swift */; };
 		359B031F1E46FCE90014D237 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */; };
+		35E6B2D71E59631F00BD7210 /* TKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B2D61E59631F00BD7210 /* TKImageView.m */; };
 		35E6E20D1E2C6CAA0093F791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */; };
 		35E6E2161E2C6CAA0093F791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2151E2C6CAA0093F791 /* Assets.xcassets */; };
 		35E6E2191E2C6CAA0093F791 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */; };
@@ -92,6 +93,9 @@
 		359B031A1E45D94C0014D237 /* ColorandFontTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorandFontTable.swift; sourceTree = "<group>"; };
 		359B031C1E46FCD60014D237 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		35E6B2D41E59631E00BD7210 /* Pogether-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pogether-Bridging-Header.h"; sourceTree = "<group>"; };
+		35E6B2D51E59631F00BD7210 /* TKImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKImageView.h; sourceTree = "<group>"; };
+		35E6B2D61E59631F00BD7210 /* TKImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKImageView.m; sourceTree = "<group>"; };
 		35E6E2091E2C6CAA0093F791 /* Pogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35E6E2151E2C6CAA0093F791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,7 +115,10 @@
 		35E6E2461E2E6BC00093F791 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		35E6E2481E2F451B0093F791 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		504614C52C3F4F858441BE5E /* Pods-Pogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.debug.xcconfig"; sourceTree = "<group>"; };
+		5273CA1ECC176F4723A93E76 /* Pods-PogetherTests.ad hoc distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherTests.ad hoc distribution.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherTests/Pods-PogetherTests.ad hoc distribution.xcconfig"; sourceTree = "<group>"; };
+		668F2E7DA02BF07323746E35 /* Pods-Pogether.ad hoc distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.ad hoc distribution.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.ad hoc distribution.xcconfig"; sourceTree = "<group>"; };
 		78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PogetherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F18FDA28EECE0E1FCF00CA4 /* Pods-PogetherUITests.ad hoc distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherUITests.ad hoc distribution.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherUITests/Pods-PogetherUITests.ad hoc distribution.xcconfig"; sourceTree = "<group>"; };
 		B9E5E005323851980A98A118 /* Pods-PogetherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherUITests/Pods-PogetherUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA913891DA1A4A5942F6D237 /* Pods-Pogether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.release.xcconfig"; sourceTree = "<group>"; };
 		DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pogether.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +190,8 @@
 		35E6E20B1E2C6CAA0093F791 /* Pogether */ = {
 			isa = PBXGroup;
 			children = (
+				35E6B2D51E59631F00BD7210 /* TKImageView.h */,
+				35E6B2D61E59631F00BD7210 /* TKImageView.m */,
 				357F45181E4701E8008B60CF /* Account.swift */,
 				357F45241E4CBDDF008B60CF /* AccountAPI.swift */,
 				35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */,
@@ -217,6 +226,7 @@
 				358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */,
 				358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */,
 				358C11031E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift */,
+				35E6B2D41E59631E00BD7210 /* Pogether-Bridging-Header.h */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -248,6 +258,9 @@
 				17E7E5D61EC1BD9099A72FAF /* Pods-PogetherTests.release.xcconfig */,
 				B9E5E005323851980A98A118 /* Pods-PogetherUITests.debug.xcconfig */,
 				EDCE16A5914BC2BC79EEF091 /* Pods-PogetherUITests.release.xcconfig */,
+				668F2E7DA02BF07323746E35 /* Pods-Pogether.ad hoc distribution.xcconfig */,
+				5273CA1ECC176F4723A93E76 /* Pods-PogetherTests.ad hoc distribution.xcconfig */,
+				9F18FDA28EECE0E1FCF00CA4 /* Pods-PogetherUITests.ad hoc distribution.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -330,6 +343,7 @@
 					35E6E2081E2C6CAA0093F791 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 6484JS687H;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					35E6E21E1E2C6CAA0093F791 = {
@@ -541,6 +555,7 @@
 				359B031F1E46FCE90014D237 /* ContactTableViewCell.swift in Sources */,
 				35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */,
 				35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */,
+				35E6B2D71E59631F00BD7210 /* TKImageView.m in Sources */,
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
 				357F45351E5367E3008B60CF /* CropViewController.swift in Sources */,
@@ -658,23 +673,25 @@
 		};
 		35E6B2D11E589C3900BD7210 /* ad hoc distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA913891DA1A4A5942F6D237 /* Pods-Pogether.release.xcconfig */;
+			baseConfigurationReference = 668F2E7DA02BF07323746E35 /* Pods-Pogether.ad hoc distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.Pogether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pogether/Pogether-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = "ad hoc distribution";
 		};
 		35E6B2D21E589C3900BD7210 /* ad hoc distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17E7E5D61EC1BD9099A72FAF /* Pods-PogetherTests.release.xcconfig */;
+			baseConfigurationReference = 5273CA1ECC176F4723A93E76 /* Pods-PogetherTests.ad hoc distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -690,7 +707,7 @@
 		};
 		35E6B2D31E589C3900BD7210 /* ad hoc distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDCE16A5914BC2BC79EEF091 /* Pods-PogetherUITests.release.xcconfig */;
+			baseConfigurationReference = 9F18FDA28EECE0E1FCF00CA4 /* Pods-PogetherUITests.ad hoc distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 64VC6J8U2G;
@@ -802,12 +819,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.Pogether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pogether/Pogether-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -818,12 +838,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.Pogether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pogether/Pogether-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

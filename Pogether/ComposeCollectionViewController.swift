@@ -28,6 +28,7 @@ class ComposeCollectionViewController: UICollectionViewController {
         collectionView?.backgroundColor = ColorandFontTable.groundGray
         collectionView?.showsVerticalScrollIndicator = false
         collectionView?.showsHorizontalScrollIndicator = false
+        collectionView?.bounces = false
         self.collectionView!.register(SelectCollectionViewCell.self, forCellWithReuseIdentifier: "SelectCollectionViewCell")
         
         let add = UIBarButtonItem(title: "添加素材", style: .plain, target: self, action: #selector(addResource))
@@ -62,7 +63,8 @@ class ComposeCollectionViewController: UICollectionViewController {
         scrollImageView.maximumZoomScale = 2.0
         scrollImageView.zoomScale = minScale
         scrollImageView.bouncesZoom = true
-        
+        scrollImageView.showsVerticalScrollIndicator = false
+        scrollImageView.showsHorizontalScrollIndicator = false
         photoImageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 190)))
         photoImageView.image = photo
         photoImageView.contentMode = .scaleAspectFit
