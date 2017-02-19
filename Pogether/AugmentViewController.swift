@@ -17,6 +17,10 @@ class AugmentViewController: UIViewController {
     var slider: UISlider!
     var sliderLabel : UILabel!
     
+    var brightness: CGFloat! = 0
+    var saturation: CGFloat! = 0
+    var contrast: CGFloat! = 0
+    
     func initialize()
     {
         let a0 = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Brightness"), style: .plain, target: self, action: #selector(brightnessSlider))
@@ -35,7 +39,10 @@ class AugmentViewController: UIViewController {
         slider.minimumTrackTintColor = ColorandFontTable.purple
         slider.maximumTrackTintColor = ColorandFontTable.fillGray
         slider.thumbTintColor = UIColor.white
-        
+        slider.value = 0.0
+        slider.minimumValue = -1.0
+        slider.maximumValue = 1.0
+        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         sliderLabel = UILabel()
         sliderLabel.font = UIFont.systemFont(ofSize: 14)
         sliderLabel.textColor = UIColor.white
@@ -116,10 +123,9 @@ class AugmentViewController: UIViewController {
         self.groundView.isHidden = false
         self.slider.isHidden = false
         self.sliderLabel.isHidden = false
+        slider.value = 0.0
         sliderLabel.text = "亮度"
-        slider.value = 50
-        slider.minimumValue = 0
-        slider.maximumValue = 100
+        
     }
     func saturationSlider()
     {
@@ -127,8 +133,7 @@ class AugmentViewController: UIViewController {
         self.slider.isHidden = false
         self.sliderLabel.isHidden = false
         sliderLabel.text = "饱和度"
-        slider.minimumValue = 0
-        slider.maximumValue = 10
+        slider.value = 0.0
     }
     func contrastSlider()
     {
@@ -136,8 +141,7 @@ class AugmentViewController: UIViewController {
         self.slider.isHidden = false
         self.sliderLabel.isHidden = false
         sliderLabel.text = "对比度"
-        slider.minimumValue = 0
-        slider.maximumValue = 1
+        slider.value = 0.0
     }
     func backToLast()
     {
@@ -160,6 +164,19 @@ class AugmentViewController: UIViewController {
         }
         
         photoImageView.frame = contentsFrame
+    }
+    func sliderValueChanged()
+    {
+        if (sliderLabel.text?.contains("亮度"))!
+        {
+            brightness = CGFloat(slider.value)
+        } else if (sliderLabel.text?.contains("饱和度"))! {
+            saturation = CGFloat(slider.value)
+        } else if (sliderLabel.text?.contains("对比度"))! {
+            contrast = CGFloat(slider.value)
+        }
+        photo = ImageProcessing.colorControlsWithOriginalImage(image: photo, brightness: brightness, saturation: saturation, contrast: contrast)
+        photoImageView.image = photo
     }
 }
 
@@ -202,4 +219,5 @@ extension AugmentViewController: UIScrollViewDelegate
     }
     
 }
+
 

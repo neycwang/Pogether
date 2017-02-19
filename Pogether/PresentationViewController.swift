@@ -59,7 +59,7 @@ class PresentationViewController: UIViewController {
         scrollImageView.contentSize = photo.size
         scrollImageView.delegate = self
         scrollImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(60)
+            make.top.equalTo(self.view).offset(70)
             make.bottom.equalTo(self.view).offset(-50)
             make.left.equalTo(self.view).offset(10)
             make.right.equalTo(self.view).offset(-10)
@@ -75,7 +75,7 @@ class PresentationViewController: UIViewController {
         scrollImageView.bouncesZoom = true
         scrollImageView.showsVerticalScrollIndicator = false
         scrollImageView.showsHorizontalScrollIndicator = false
-        photoImageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 190)))
+        photoImageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 120)))
         photoImageView.image = photo
         photoImageView.contentMode = .scaleAspectFit
         scrollImageView.addSubview(photoImageView)
