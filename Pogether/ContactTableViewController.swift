@@ -55,8 +55,6 @@ class ContactTableViewController: UITableViewController {
         tableView.sectionIndexColor = ColorandFontTable.primaryPink
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView(frame: .zero)
-        
-        self.title = "通讯录"
 
         self.searchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -79,18 +77,22 @@ class ContactTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        /*
-        for i in 0...4
-        {
-            contacts["\(Character(UnicodeScalar(65 + i)!))"] = []
-        }
-        */
         contacts["A"] = [Account(id: "1", username: "aaa"), Account(id: "4", username: "aba"), Account(id: "5", username: "aca"), Account(id: "6", username: "aac"), Account(id: "7", username: "acc")]
         contacts["B"] = [Account(id: "2", username: "bbb")]
         contacts["C"] = [Account(id: "3", username: "ccc")]
         //NotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         //NotificationCenter.defaultCenter().addObserver(self, selector: #selector(tokenExpired), name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
+        
+        self.title = "通讯录"
+        self.navigationController?.navigationBar.isHidden = false
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     
     //MARK: - SearchBar
     
@@ -173,9 +175,6 @@ class ContactTableViewController: UITableViewController {
         avc.isStranger = false
         avc.isSetting = false
         self.navigationController?.pushViewController(avc, animated: true)
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     //public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {

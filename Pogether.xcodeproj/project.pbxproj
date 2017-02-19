@@ -21,12 +21,17 @@
 		357F45351E5367E3008B60CF /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45341E5367E3008B60CF /* CropViewController.swift */; };
 		357F45371E5466AD008B60CF /* CropCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */; };
 		357F453B1E558B40008B60CF /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F453A1E558B40008B60CF /* Album.swift */; };
+		358C10FE1E5602880038F03C /* ComposeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */; };
+		358C11001E5735140038F03C /* SelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */; };
+		358C11021E5755E10038F03C /* SelectPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */; };
+		358C11041E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C11031E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift */; };
 		359B03151E45BF3F0014D237 /* HomepageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */; };
 		359B03171E45C4840014D237 /* Quenda-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 359B03161E45C4840014D237 /* Quenda-Medium.otf */; };
 		359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */; };
 		359B031B1E45D94C0014D237 /* ColorandFontTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B031A1E45D94C0014D237 /* ColorandFontTable.swift */; };
 		359B031D1E46FCD60014D237 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B031C1E46FCD60014D237 /* ContactTableViewController.swift */; };
 		359B031F1E46FCE90014D237 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */; };
+		35E6B2D71E59631F00BD7210 /* TKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B2D61E59631F00BD7210 /* TKImageView.m */; };
 		35E6E20D1E2C6CAA0093F791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */; };
 		35E6E2161E2C6CAA0093F791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2151E2C6CAA0093F791 /* Assets.xcassets */; };
 		35E6E2191E2C6CAA0093F791 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */; };
@@ -78,12 +83,19 @@
 		357F45341E5367E3008B60CF /* CropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
 		357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropCollectionViewCell.swift; sourceTree = "<group>"; };
 		357F453A1E558B40008B60CF /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCollectionViewController.swift; sourceTree = "<group>"; };
+		358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
+		358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		358C11031E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewCell.swift; sourceTree = "<group>"; };
 		359B03161E45C4840014D237 /* Quenda-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quenda-Medium.otf"; sourceTree = "<group>"; };
 		359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageCollectionViewController.swift; sourceTree = "<group>"; };
 		359B031A1E45D94C0014D237 /* ColorandFontTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorandFontTable.swift; sourceTree = "<group>"; };
 		359B031C1E46FCD60014D237 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		35E6B2D41E59631E00BD7210 /* Pogether-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pogether-Bridging-Header.h"; sourceTree = "<group>"; };
+		35E6B2D51E59631F00BD7210 /* TKImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKImageView.h; sourceTree = "<group>"; };
+		35E6B2D61E59631F00BD7210 /* TKImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKImageView.m; sourceTree = "<group>"; };
 		35E6E2091E2C6CAA0093F791 /* Pogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35E6E2151E2C6CAA0093F791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,7 +115,10 @@
 		35E6E2461E2E6BC00093F791 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		35E6E2481E2F451B0093F791 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		504614C52C3F4F858441BE5E /* Pods-Pogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.debug.xcconfig"; sourceTree = "<group>"; };
+		5273CA1ECC176F4723A93E76 /* Pods-PogetherTests.ad hoc distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherTests.ad hoc distribution.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherTests/Pods-PogetherTests.ad hoc distribution.xcconfig"; sourceTree = "<group>"; };
+		668F2E7DA02BF07323746E35 /* Pods-Pogether.ad hoc distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.ad hoc distribution.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.ad hoc distribution.xcconfig"; sourceTree = "<group>"; };
 		78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PogetherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F18FDA28EECE0E1FCF00CA4 /* Pods-PogetherUITests.ad hoc distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherUITests.ad hoc distribution.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherUITests/Pods-PogetherUITests.ad hoc distribution.xcconfig"; sourceTree = "<group>"; };
 		B9E5E005323851980A98A118 /* Pods-PogetherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherUITests/Pods-PogetherUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA913891DA1A4A5942F6D237 /* Pods-Pogether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.release.xcconfig"; sourceTree = "<group>"; };
 		DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pogether.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +190,8 @@
 		35E6E20B1E2C6CAA0093F791 /* Pogether */ = {
 			isa = PBXGroup;
 			children = (
+				35E6B2D51E59631F00BD7210 /* TKImageView.h */,
+				35E6B2D61E59631F00BD7210 /* TKImageView.m */,
 				357F45181E4701E8008B60CF /* Account.swift */,
 				357F45241E4CBDDF008B60CF /* AccountAPI.swift */,
 				35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */,
@@ -205,6 +222,11 @@
 				357F45321E5367AA008B60CF /* TextViewController.swift */,
 				357F45341E5367E3008B60CF /* CropViewController.swift */,
 				357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */,
+				358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */,
+				358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */,
+				358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */,
+				358C11031E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift */,
+				35E6B2D41E59631E00BD7210 /* Pogether-Bridging-Header.h */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -236,6 +258,9 @@
 				17E7E5D61EC1BD9099A72FAF /* Pods-PogetherTests.release.xcconfig */,
 				B9E5E005323851980A98A118 /* Pods-PogetherUITests.debug.xcconfig */,
 				EDCE16A5914BC2BC79EEF091 /* Pods-PogetherUITests.release.xcconfig */,
+				668F2E7DA02BF07323746E35 /* Pods-Pogether.ad hoc distribution.xcconfig */,
+				5273CA1ECC176F4723A93E76 /* Pods-PogetherTests.ad hoc distribution.xcconfig */,
+				9F18FDA28EECE0E1FCF00CA4 /* Pods-PogetherUITests.ad hoc distribution.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -317,7 +342,8 @@
 				TargetAttributes = {
 					35E6E2081E2C6CAA0093F791 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 64VC6J8U2G;
+						DevelopmentTeam = 6484JS687H;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					35E6E21E1E2C6CAA0093F791 = {
@@ -525,14 +551,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				357F45311E536713008B60CF /* MattingViewController.swift in Sources */,
+				358C11021E5755E10038F03C /* SelectPhotoCollectionViewController.swift in Sources */,
 				359B031F1E46FCE90014D237 /* ContactTableViewCell.swift in Sources */,
 				35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */,
 				35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */,
+				35E6B2D71E59631F00BD7210 /* TKImageView.m in Sources */,
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
 				357F45351E5367E3008B60CF /* CropViewController.swift in Sources */,
 				359B03191E45CA640014D237 /* HomepageCollectionViewController.swift in Sources */,
 				357F45271E4CC589008B60CF /* SignatureViewController.swift in Sources */,
+				358C11001E5735140038F03C /* SelectCollectionViewCell.swift in Sources */,
+				358C10FE1E5602880038F03C /* ComposeCollectionViewController.swift in Sources */,
 				357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */,
 				357F452F1E5366FD008B60CF /* AugmentViewController.swift in Sources */,
 				35E6E2431E2E53260093F791 /* ProfileViewController.swift in Sources */,
@@ -548,6 +578,7 @@
 				357F45191E4701E8008B60CF /* Account.swift in Sources */,
 				357F452B1E505413008B60CF /* PresentationViewController.swift in Sources */,
 				357F453B1E558B40008B60CF /* Album.swift in Sources */,
+				358C11041E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift in Sources */,
 				357F451B1E470F1B008B60CF /* ContactDataSource.swift in Sources */,
 				357F452D1E506031008B60CF /* EditViewController.swift in Sources */,
 				357F45331E5367AA008B60CF /* TextViewController.swift in Sources */,
@@ -597,6 +628,98 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		35E6B2D01E589C3900BD7210 /* ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "ad hoc distribution";
+		};
+		35E6B2D11E589C3900BD7210 /* ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 668F2E7DA02BF07323746E35 /* Pods-Pogether.ad hoc distribution.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 6484JS687H;
+				INFOPLIST_FILE = Pogether/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.Pogether;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pogether/Pogether-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = "ad hoc distribution";
+		};
+		35E6B2D21E589C3900BD7210 /* ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5273CA1ECC176F4723A93E76 /* Pods-PogetherTests.ad hoc distribution.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 64VC6J8U2G;
+				INFOPLIST_FILE = PogetherTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.PogetherTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pogether.app/Pogether";
+			};
+			name = "ad hoc distribution";
+		};
+		35E6B2D31E589C3900BD7210 /* ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F18FDA28EECE0E1FCF00CA4 /* Pods-PogetherUITests.ad hoc distribution.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 64VC6J8U2G;
+				INFOPLIST_FILE = PogetherUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.PogetherUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Pogether;
+			};
+			name = "ad hoc distribution";
+		};
 		35E6E2311E2C6CAB0093F791 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -694,13 +817,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 504614C52C3F4F858441BE5E /* Pods-Pogether.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 64VC6J8U2G;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.Pogether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pogether/Pogether-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -709,13 +836,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DA913891DA1A4A5942F6D237 /* Pods-Pogether.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 64VC6J8U2G;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KiraMelody.Pogether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pogether/Pogether-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -790,6 +920,7 @@
 			buildConfigurations = (
 				35E6E2311E2C6CAB0093F791 /* Debug */,
 				35E6E2321E2C6CAB0093F791 /* Release */,
+				35E6B2D01E589C3900BD7210 /* ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -799,6 +930,7 @@
 			buildConfigurations = (
 				35E6E2341E2C6CAB0093F791 /* Debug */,
 				35E6E2351E2C6CAB0093F791 /* Release */,
+				35E6B2D11E589C3900BD7210 /* ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -808,6 +940,7 @@
 			buildConfigurations = (
 				35E6E2371E2C6CAB0093F791 /* Debug */,
 				35E6E2381E2C6CAB0093F791 /* Release */,
+				35E6B2D21E589C3900BD7210 /* ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -817,6 +950,7 @@
 			buildConfigurations = (
 				35E6E23A1E2C6CAB0093F791 /* Debug */,
 				35E6E23B1E2C6CAB0093F791 /* Release */,
+				35E6B2D31E589C3900BD7210 /* ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

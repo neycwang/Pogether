@@ -1,21 +1,18 @@
 //
-//  AlbumTableViewController.swift
+//  SelectAlbumCollectionViewController.swift
 //  Pogether
 //
-//  Created by KiraMelody on 2017/1/17.
+//  Created by KiraMelody on 2017/2/18.
 //  Copyright © 2017年 KiraMelody. All rights reserved.
 //
 
 import UIKit
 
-class AlbumTableViewController: UITableViewController {
-    
-    var albumString = ["默认相册","背景图片","Pogether 数据库","个人收藏"]
-    var securityString = ["仅自己可见","部分可见","部分不可见","对所有人可见"]
-    var securityArray = [0,1,3,1]
-    var albumPhotosCountArray = [100,100,60,50]
+class SelectAlbumTableViewController: UITableViewController {
     
     var albumArray = [Album]()
+    var selectedPhotos = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +27,7 @@ class AlbumTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         
         //set navigation bar
-        self.title = "素材库"
+        self.title = "添加素材"
         initialize()
         registerForCell()
         self.navigationController?.navigationBar.isHidden = false
@@ -52,10 +49,14 @@ class AlbumTableViewController: UITableViewController {
         let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backItem
         
-        var addImage = #imageLiteral(resourceName: "Album_Add")
-        addImage = addImage.withRenderingMode(.alwaysOriginal)
-        let addAlbum = UIBarButtonItem (image: addImage, style: .plain, target: self, action: #selector(addNewAlbum))
-        self.navigationItem.rightBarButtonItem = addAlbum
+        let addButton = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 46, width: UIScreen.main.bounds.width, height: 46))
+        addButton.titleLabel?.isHidden = false
+        addButton.setTitle("开始合成", for: .normal)
+        addButton.setTitleColor(UIColor.white, for: .normal)
+        addButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        addButton.backgroundColor = ColorandFontTable.primaryPink
+        addButton.addTarget(self, action: #selector(backToLast), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(addButton)
     }
     
     func registerForCell() {
@@ -77,9 +78,6 @@ class AlbumTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //set cell texts
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
-        //cell.albumNameLabel.text = albumString[indexPath.row]
-        //cell.securityLabel.text = securityString[securityArray[indexPath.row]]
-        //cell.countLabel.text = " (\(albumPhotosCountArray[indexPath.row]))"
         cell.album = albumArray[indexPath.row]
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
@@ -87,43 +85,28 @@ class AlbumTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let avc = PhotoCollectionViewController()
+        let avc = SelectPhotoCollectionViewController()
+        avc.delegate = self
+        avc.indexPath = indexPath
         self.navigationController?.pushViewController(avc, animated: false)
     }
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete)
-        {
-            albumArray.remove(at: indexPath.row)
-            print(albumArray)
-            tableView.reloadData()
-        }
-    }
-    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "删除"
-    }
-    
+
     func backToLast() {
         let _ = self.navigationController?.popViewController(animated: true)
     }
-    
-    func addNewAlbum() {
-        let alertController = UIAlertController(title: "新建相册", message: "请为此相册输入名称", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: nil)
-        let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: {
-            action in
-            let name = alertController.textFields?[0].text
-            self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
-            self.tableView.reloadData()
-        })
-        alertController.addAction(cancelAction)
-        alertController.addAction(okAction)
-        alertController.addTextField {
-            (textField: UITextField!) -> Void in
-            textField.placeholder = "默认相册"
+}
+
+extension SelectAlbumTableViewController: SelectPhotoDelegate
+{
+    func returnSelectedPhotos(indexPath: IndexPath, photos: [UIImage])
+    {
+        if photos.count > 0 {
+            for p in photos
+            {
+                selectedPhotos.append(p)
+            }
+            let cell = tableView.cellForRow(at: indexPath) as! AlbumTableViewCell
+            cell.select = photos.count
         }
-        self.present(alertController, animated: true, completion: nil)
     }
 }

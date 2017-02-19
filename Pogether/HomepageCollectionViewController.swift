@@ -81,7 +81,9 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath {
         case [0,0]:
-            jumpTo(page: PhotoCollectionViewController())
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            self.navigationController!.present(picker, animated: true, completion: nil)
         case [0,1]:
             jumpTo(page: ContactTableViewController())
         case [0,2]:
@@ -122,6 +124,11 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
         self.navigationController?.navigationBar.barTintColor = ColorandFontTable.primaryPink
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.isHidden = true
+        
+        self.navigationController?.toolbar.backgroundColor = ColorandFontTable.primaryPink
+        self.navigationController?.toolbar.barStyle = .default
+        self.navigationController?.toolbar.barTintColor = ColorandFontTable.primaryPink
+        self.navigationController?.toolbar.tintColor = UIColor.white
     }
     
     func jumpTo(page: NSObject)
@@ -142,8 +149,10 @@ extension HomepageCollectionViewController: UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         let selectImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let avc = ComposeCollectionViewController()
+        avc.photo = selectImage
+        jumpTo(page: avc)
         picker.dismiss(animated: true, completion: nil)
-        
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {

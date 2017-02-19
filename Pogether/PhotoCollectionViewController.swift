@@ -81,7 +81,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         YCXMenu.setSeparatorColor(ColorandFontTable.lineBlack)
         
         YCXMenu.show(in: self.view, from: CGRect(x: 325, y: 0, width: 45, height: 64), menuItems: menuItems, selected: { (index, item) in
-            print(item)
+            
         })
         
     }
@@ -125,41 +125,16 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         return cell
     }
 
-    func willAddImage (_ indexPath: IndexPath)
-    {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        let actions = UIAlertController(title: "提示", message: "选取或拍摄照片", preferredStyle: UIAlertControllerStyle.actionSheet)
-        let action1 = UIAlertAction(title: "在图库中选取", style: UIAlertActionStyle.default) { (action) in
-            self.navigationController!.present(picker, animated: true, completion: nil)
-        }
-        let action2 = UIAlertAction(title: "拍照", style: UIAlertActionStyle.default) { (action) in
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
-            {
-                picker.sourceType = .camera
-                self.navigationController!.present(picker, animated: true, completion: nil)
-            }
-            else
-            {
-                print ("不支持相机")
-            }
-            
-        }
-        let action3 = UIAlertAction(title: "取消", style: .cancel) { (action) in Void() }
-        actions.addAction(action1)
-        actions.addAction(action2)
-        actions.addAction(action3)
-        lastSelect = indexPath
-        self.navigationController!.present(actions, animated: true, completion: nil)
-    }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         let selectImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        ImageArray[lastSelect.row] = selectImage
+        let avc = EditViewController()
+        avc.photo = selectImage
+        self.navigationController?.pushViewController(avc, animated: true)
         picker.dismiss(animated: true, completion: nil)
-        collectionView?.reloadItems(at: [lastSelect])
     }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -173,7 +148,9 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     }
     func addNewPhoto()
     {
-        
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        self.navigationController!.present(picker, animated: true, completion: nil)
     }
 
 }
