@@ -8,6 +8,7 @@ target 'Pogether' do
   pod 'Alamofire'
   pod 'PKHUD'
   pod 'YCXMenu'
+  pod ‘WYCDynamicTextController’
   # Pods for Pogether
 
   target 'PogetherTests' do
