@@ -26,10 +26,6 @@ class PresentationViewController: UIViewController {
         let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backItem
         
-        photoImageView = UIImageView(frame: self.view.frame)
-        photoImageView.contentMode = .scaleAspectFit
-        photoImageView.image = photo
-        
         let addButton = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 46, width: UIScreen.main.bounds.width, height: 46))
         addButton.titleLabel?.isHidden = false
         addButton.setTitleColor(UIColor.white, for: .normal)
@@ -80,15 +76,16 @@ class PresentationViewController: UIViewController {
         photoImageView.contentMode = .scaleAspectFit
         scrollImageView.addSubview(photoImageView)
         
-        centerScrollViewContents()
-        
         let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(scrollViewDoubleTapped(recognizer:)))
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         scrollImageView.addGestureRecognizer(doubleTapRecognizer)
-        // Do any additional setup after loading the view.
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        centerScrollViewContents()
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

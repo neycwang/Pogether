@@ -1,21 +1,24 @@
 PODS:
   - Alamofire (4.3.0)
   - PKHUD (4.2.0)
-  - SnapKit (3.1.2)
+  - SnapKit (3.2.0)
+  - WYCDynamicTextController (1.0.0)
   - YCXMenu (0.0.11)
 
 DEPENDENCIES:
   - Alamofire
   - PKHUD
   - SnapKit
+  - WYCDynamicTextController
   - YCXMenu
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
-  SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  WYCDynamicTextController: 576087f65521bc2845362c48c43b06675686d8c1
   YCXMenu: 6003bcd20d8ac72e3eb3c442c97ed21948c6dc1f
 
-PODFILE CHECKSUM: 87ef3acc33e4a562f4fc5a13c711cb8430150efd
+PODFILE CHECKSUM: a02cc03277045e194f4c31efe68540584efef5dd
 
 COCOAPODS: 1.1.1

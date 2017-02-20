@@ -10,11 +10,6 @@ import UIKit
 
 class AlbumTableViewController: UITableViewController {
     
-    var albumString = ["默认相册","背景图片","Pogether 数据库","个人收藏"]
-    var securityString = ["仅自己可见","部分可见","部分不可见","对所有人可见"]
-    var securityArray = [0,1,3,1]
-    var albumPhotosCountArray = [100,100,60,50]
-    
     var albumArray = [Album]()
     override func viewDidLoad() {
         super.viewDidLoad()

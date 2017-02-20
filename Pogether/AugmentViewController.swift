@@ -12,14 +12,15 @@ class AugmentViewController: UIViewController {
 
     var photoImageView: UIImageView!
     var photo: UIImage!
+    var resultPhoto: UIImage!
     var scrollImageView: UIScrollView!
     var groundView: UIView!
     var slider: UISlider!
     var sliderLabel : UILabel!
     
-    var brightness: CGFloat! = 0 // we need to initialize the brightness,saturation and contrast
+    var brightness: CGFloat! = 0
     var saturation: CGFloat! = 1
-    var contrast: CGFloat! = 2
+    var contrast: CGFloat! = 1
     
     func initialize()
     {
@@ -32,7 +33,6 @@ class AugmentViewController: UIViewController {
         let barArray = [cancel, space, a0, space, a1, space, a2, space, save]
         self.toolbarItems = barArray
         
-        photo = #imageLiteral(resourceName: "Homepage_Background") //we need to initialize a photo
         groundView = UIView()
         groundView.backgroundColor = ColorandFontTable.primaryPink
         
@@ -113,6 +113,8 @@ class AugmentViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        resultPhoto = ImageProcessing.colorControlsWithOriginalImage(image: photo, brightness: brightness, saturation: saturation, contrast: contrast)
+        photoImageView.image = resultPhoto
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -124,7 +126,7 @@ class AugmentViewController: UIViewController {
         self.groundView.isHidden = false
         self.slider.isHidden = false
         self.sliderLabel.isHidden = false
-        slider.value = 0.5 //now the slider.value decides the position of the scroll
+        slider.value = 0.5
         sliderLabel.text = "亮度"
         
     }
@@ -142,7 +144,7 @@ class AugmentViewController: UIViewController {
         self.slider.isHidden = false
         self.sliderLabel.isHidden = false
         sliderLabel.text = "对比度"
-        slider.value = 0.5
+        slider.value = 0.0
     }
     func backToLast()
     {
@@ -174,11 +176,11 @@ class AugmentViewController: UIViewController {
         } else if (sliderLabel.text?.contains("饱和度"))! {
             saturation = CGFloat(slider.value) * 2 //range[0,2]
         } else if (sliderLabel.text?.contains("对比度"))! {
-            contrast = CGFloat(slider.value) * 4 //range[0,4]
+            contrast = CGFloat(slider.value) * 2 + 1 //range[1,3]
         }
-        var photoAfterProcess = UIImage() //如果不新建变量，那么每次修改都是在上次修改之后的再修改，可能不太对
-        photoAfterProcess = ImageProcessing.colorControlsWithOriginalImage(image: photo, brightness: brightness, saturation: saturation, contrast: contrast)
-        photoImageView.image = photoAfterProcess
+        
+        resultPhoto = ImageProcessing.colorControlsWithOriginalImage(image: photo, brightness: brightness, saturation: saturation, contrast: contrast)
+        photoImageView.image = resultPhoto
     }
 }
 
