@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MovableImageView
 
 class ComposeCollectionViewController: UICollectionViewController {
     var photoImageView: UIImageView!
@@ -57,7 +56,16 @@ class ComposeCollectionViewController: UICollectionViewController {
             make.height.equalTo(20)
             make.width.equalTo(135)
         }
-
+        photoImageView = UIImageView()
+        photoImageView.image = photo
+        photoImageView.contentMode = .scaleAspectFit
+        self.view.addSubview(photoImageView)
+        photoImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view).offset(20)
+            make.left.equalTo(self.view).offset(10)
+            make.right.equalTo(self.view).offset(-10)
+            make.bottom.equalTo(self.view).offset(-170)
+        }
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
 

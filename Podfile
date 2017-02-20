@@ -8,7 +8,7 @@ target 'Pogether' do
   pod 'Alamofire'
   pod 'PKHUD'
   pod 'YCXMenu'
-  pod 'MovableImageView', :git => 'https://github.com/bloodysnowx/MovableImageView.git'
+  pod ‘WYCDynamicTextController’
   # Pods for Pogether
 
   target 'PogetherTests' do
