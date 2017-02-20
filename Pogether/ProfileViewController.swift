@@ -158,7 +158,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             settingsButton.setTitle("加为好友", for: .normal)
             settingsButton.addTarget(self, action: #selector(settings), for: .touchUpInside)
         } else {
-            settingsButton.setTitle("设置权限", for: .normal)
+            settingsButton.setTitle("删除好友", for: .normal)
             settingsButton.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
         }
         
@@ -182,9 +182,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         super.viewDidLoad()
         
         navigationController!.navigationBar.isHidden = true
-        
-        user = Account(id: "14307130105", username: "祝TB生日快乐")
-        user.signature = "Pain is temporary, but GPA is"
+
+        user.signature = "默认签名"
         
         initialize()
         
