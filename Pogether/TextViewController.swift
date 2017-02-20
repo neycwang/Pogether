@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import WYCDynamicTextController
 
-class TextViewController: UIViewController {
+class TextViewController: WYCDynamicTextController
+{
 
     var photoImageView: UIImageView!
     var photo: UIImage!
@@ -20,9 +22,9 @@ class TextViewController: UIViewController {
         photoImageView.contentMode = .scaleAspectFit
         photoImageView.image = photo
         
-        let text = UIBarButtonItem(title: "添加文字", style: .plain, target: self, action: #selector(backToLast))
+        let text = UIBarButtonItem(title: "添加文字", style: .plain, target: self, action: #selector(addText))
         let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
-        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(backToLast))
+        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(done))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let barArray = [cancel, space, text, space, save]
         self.toolbarItems = barArray
@@ -61,51 +63,93 @@ class TextViewController: UIViewController {
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         scrollImageView.addGestureRecognizer(doubleTapRecognizer)
+        
+        textField.isHidden = true
+        textField.placeholder = "点击输入文字"
+        minDist = 20
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         initialize()
         self.view.backgroundColor = ColorandFontTable.groundGray
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool)
+    {
         self.navigationController?.setToolbarHidden(true, animated: false)
     }
+    
     func backToLast()
     {
         let _ = self.navigationController?.popViewController(animated: true)
     }
-    func centerScrollViewContents() {
+    
+    func centerScrollViewContents()
+    {
         let boundsSize = scrollImageView.bounds.size
         var contentsFrame = photoImageView.frame
         
-        if contentsFrame.size.width < boundsSize.width {
+        if contentsFrame.size.width < boundsSize.width
+        {
             contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0
-        } else {
+        }
+        else
+        {
             contentsFrame.origin.x = 0.0
         }
         
-        if contentsFrame.size.height < boundsSize.height {
+        if contentsFrame.size.height < boundsSize.height
+        {
             contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0
-        } else {
+        }
+        else
+        {
             contentsFrame.origin.y = 0.0
         }
         
         photoImageView.frame = contentsFrame
     }
+    
+    func addText()
+    {
+        textField.isHidden = false
+        view.bringSubview(toFront: textField)
+    }
+    
+    func done()
+    {
+        if textField.text == ""
+        {
+            textField.isHidden = true
+        }
+        else
+        {
+            textField.backgroundColor = ColorandFontTable.transparent
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        textField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+    }
 }
+
 extension TextViewController: UIScrollViewDelegate
 {
     // MARK: - UIScrollViewDelegate
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView?
+    {
         return photoImageView
     }
     
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+    func scrollViewDidZoom(_ scrollView: UIScrollView)
+    {
         centerScrollViewContents()
     }
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat)
@@ -119,7 +163,9 @@ extension TextViewController: UIScrollViewDelegate
             scrollView.setZoomScale(2.0, animated: true)
         }
     }
-    func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer) {
+    
+    func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer)
+    {
         let pointInView = recognizer.location(in: photoImageView)
         
         var newZoomScale = scrollImageView.zoomScale * 1.5
