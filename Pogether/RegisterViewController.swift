@@ -134,6 +134,9 @@ class RegisterViewController: UIViewController {
     
     func register() {
         //after registerButton tapped
+        //现在暂时用来跳转到选择联系人
+        let avc = SelectContactTableViewController()
+        self.navigationController?.pushViewController(avc, animated: false)
     }
     
     func backToLast() {
