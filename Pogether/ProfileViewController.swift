@@ -43,7 +43,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     var isSetting = false
     var isStranger = false
     
-    func initialize() {
+    func initialize()
+    {
         width = view.frame.width
         height = view.frame.height
         
@@ -66,7 +67,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         scrollView.backgroundColor = .white
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.contentSize = CGSize(width: width, height: height)
+        scrollView.contentSize = CGSize(width: width, height: height + 1)
         
         iconView = UIImageView(frame: CGRect(x: width / 2 - height * 0.08625, y: height * 0.26925, width: height * 0.1725, height: height * 0.1725))
         iconView.contentMode = .scaleAspectFill
@@ -168,13 +169,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped(sender:)))
         view.addGestureRecognizer(tap)
         
-        
         backButton = UIButton(frame: CGRect(x: 10, y: 20, width: 20, height: 20))
         backButton.setImage(#imageLiteral(resourceName: "ProfileView_Back"), for: .normal)
         backButton.isUserInteractionEnabled = true
         backButton.addTarget(self, action: #selector(backToLast), for: .touchUpInside)
-        
-        
     }
     
     override func viewDidLoad()
@@ -182,8 +180,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         super.viewDidLoad()
         
         navigationController!.navigationBar.isHidden = true
+        automaticallyAdjustsScrollViewInsets = false
 
-        user.signature = "默认签名"
+        user = Account(id: "14307130105", username: "膜TB")
+        user.signature = "我知道您不过生日了可是您也不能让它在这崩溃啊"
         
         initialize()
         
