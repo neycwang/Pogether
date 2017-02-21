@@ -10,6 +10,8 @@ import UIKit
 
 class EditViewController: UIViewController {
     
+    // WYC: 如果多个文件布局有交集，建议实现基类
+    
     var photoImageView: UIImageView!
     var photo: UIImage!
     var scrollImageView: UIScrollView!
@@ -36,6 +38,7 @@ class EditViewController: UIViewController {
         initialize()
         self.title = "编辑"
         self.view.backgroundColor = ColorandFontTable.groundGray
+        self.automaticallyAdjustsScrollViewInsets = false// WYC: 建议在其它必要的地方也加上这句话
         
         //创建并添加scrollView
         scrollImageView = UIScrollView()
@@ -50,10 +53,12 @@ class EditViewController: UIViewController {
             make.right.equalTo(self.view).offset(-10)
         }
         
+        // WYC: Autolayout之后frame是CGRect.zero 以下代码没有意义 建议作者修改
         let scrollViewFrame = scrollImageView.frame
         let scaleWidth = scrollViewFrame.size.width / scrollImageView.contentSize.width
         let scaleHeight = scrollViewFrame.size.height / scrollImageView.contentSize.height
         let minScale = min(scaleWidth, scaleHeight)
+        // WYC: Autolayout之后frame是CGRect.zero 以上代码没有意义 建议作者修改
         scrollImageView.minimumZoomScale = 0.3
         scrollImageView.maximumZoomScale = 2.0
         scrollImageView.zoomScale = minScale
