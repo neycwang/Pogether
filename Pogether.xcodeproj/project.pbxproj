@@ -34,6 +34,7 @@
 		35E6B2D71E59631F00BD7210 /* TKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B2D61E59631F00BD7210 /* TKImageView.m */; };
 		35E6B2D91E59744600BD7210 /* ImageProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B2D81E59744600BD7210 /* ImageProcessing.swift */; };
 		35E6B3751E5B465E00BD7210 /* MovableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B3741E5B465E00BD7210 /* MovableImageView.swift */; };
+		35E6B3771E5C8E6D00BD7210 /* ScrollImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B3761E5C8E6D00BD7210 /* ScrollImageViewController.swift */; };
 		35E6E20D1E2C6CAA0093F791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */; };
 		35E6E2161E2C6CAA0093F791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2151E2C6CAA0093F791 /* Assets.xcassets */; };
 		35E6E2191E2C6CAA0093F791 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */; };
@@ -102,6 +103,7 @@
 		35E6B2D61E59631F00BD7210 /* TKImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKImageView.m; sourceTree = "<group>"; };
 		35E6B2D81E59744600BD7210 /* ImageProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessing.swift; sourceTree = "<group>"; };
 		35E6B3741E5B465E00BD7210 /* MovableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovableImageView.swift; sourceTree = "<group>"; };
+		35E6B3761E5C8E6D00BD7210 /* ScrollImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollImageViewController.swift; sourceTree = "<group>"; };
 		35E6E2091E2C6CAA0093F791 /* Pogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35E6E2151E2C6CAA0093F791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				35E6B2D51E59631F00BD7210 /* TKImageView.h */,
 				35E6B2D61E59631F00BD7210 /* TKImageView.m */,
 				35E6B3741E5B465E00BD7210 /* MovableImageView.swift */,
+				35E6B3761E5C8E6D00BD7210 /* ScrollImageViewController.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */,
 				35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */,
 				35E6B2D71E59631F00BD7210 /* TKImageView.m in Sources */,
+				35E6B3771E5C8E6D00BD7210 /* ScrollImageViewController.swift in Sources */,
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
 				357F45351E5367E3008B60CF /* CropViewController.swift in Sources */,
