@@ -24,15 +24,14 @@ class CropViewController: UICollectionViewController {
     }
     init()
     {
-        
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 60, height: 80)
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: UIScreen.main.bounds.height - 140, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: height - 140, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = 0
         super.init(collectionViewLayout: layout)
-        let height = self.view.frame.height
-        let width = self.view.frame.width
         collectionView = UICollectionView(frame: CGRect(x: 0, y: height - 140, width: width, height: 80), collectionViewLayout: layout)
         collectionView?.delegate = self
         collectionView?.backgroundColor = ColorandFontTable.groundGray

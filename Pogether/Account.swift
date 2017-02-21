@@ -21,6 +21,9 @@ class Account {
     var portrait: URL?
     var avatar: URL?
     
+    init()
+    {
+    }
     init(id: String, username: String)
     {
         self.id = id
