@@ -38,7 +38,7 @@ class EditViewController: UIViewController {
         initialize()
         self.title = "编辑"
         self.view.backgroundColor = ColorandFontTable.groundGray
-        self.automaticallyAdjustsScrollViewInsets = false// WYC: 建议在其它必要的地方也加上这句话
+        self.automaticallyAdjustsScrollViewInsets = false
         
         //创建并添加scrollView
         scrollImageView = UIScrollView()
@@ -53,15 +53,8 @@ class EditViewController: UIViewController {
             make.right.equalTo(self.view).offset(-10)
         }
         
-        // WYC: Autolayout之后frame是CGRect.zero 以下代码没有意义 建议作者修改
-        let scrollViewFrame = scrollImageView.frame
-        let scaleWidth = scrollViewFrame.size.width / scrollImageView.contentSize.width
-        let scaleHeight = scrollViewFrame.size.height / scrollImageView.contentSize.height
-        let minScale = min(scaleWidth, scaleHeight)
-        // WYC: Autolayout之后frame是CGRect.zero 以上代码没有意义 建议作者修改
         scrollImageView.minimumZoomScale = 0.3
         scrollImageView.maximumZoomScale = 2.0
-        scrollImageView.zoomScale = minScale
         scrollImageView.bouncesZoom = true
         scrollImageView.showsVerticalScrollIndicator = false
         scrollImageView.showsHorizontalScrollIndicator = false

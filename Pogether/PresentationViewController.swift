@@ -61,13 +61,8 @@ class PresentationViewController: UIViewController {
             make.right.equalTo(self.view).offset(-10)
         }
         
-        let scrollViewFrame = scrollImageView.frame
-        let scaleWidth = scrollViewFrame.size.width / scrollImageView.contentSize.width
-        let scaleHeight = scrollViewFrame.size.height / scrollImageView.contentSize.height
-        let minScale = min(scaleWidth, scaleHeight)
         scrollImageView.minimumZoomScale = 0.3
         scrollImageView.maximumZoomScale = 2.0
-        scrollImageView.zoomScale = minScale
         scrollImageView.bouncesZoom = true
         scrollImageView.showsVerticalScrollIndicator = false
         scrollImageView.showsHorizontalScrollIndicator = false
