@@ -6,12 +6,11 @@
 //  Copyright © 2017年 KiraMelody. All rights reserved.
 //
 
-import UIKit
 import WYCDynamicTextController
 
 class TextViewController: WYCDynamicTextController
 {
-
+    
     var photoImageView: UIImageView!
     var photo: UIImage!
     var scrollImageView: UIScrollView!
@@ -66,6 +65,10 @@ class TextViewController: WYCDynamicTextController
         
         textField.isHidden = true
         textField.placeholder = "点击输入文字"
+        textField.backgroundColor = ColorandFontTable.transparent
+        textField.layer.borderColor = ColorandFontTable.primaryPink.cgColor
+        view.bringSubview(toFront: textField)
+        
         minDist = 20
     }
     
@@ -118,25 +121,38 @@ class TextViewController: WYCDynamicTextController
     
     func addText()
     {
-        textField.isHidden = false
-        view.bringSubview(toFront: textField)
+        textField.isHidden = !textField.isHidden
+        textField.layer.borderWidth = 1
+        if textField.isHidden
+        {
+            toolbarItems![2].title = "添加文字"
+        }
+        else
+        {
+            toolbarItems![2].title = "删除文字"
+        }
     }
     
     func done()
     {
-        if textField.text == ""
+        textField.layer.borderWidth = 0
+        if textField.text == "" && !textField.isHidden
         {
-            textField.isHidden = true
+            addText()
         }
-        else
+    }
+    
+    override func stateChanged()
+    {
+        if gestureState != .NONE
         {
-            textField.backgroundColor = ColorandFontTable.transparent
+            textField.layer.borderWidth = 1
         }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
-        textField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        textField.layer.borderWidth = 1
     }
 }
 
