@@ -62,14 +62,11 @@ class AlbumTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         preImageView = UIImageView()
         albumNameLabel = UILabel()
-        albumNameLabel.numberOfLines = 0
         albumNameLabel.font = UIFont.systemFont(ofSize: 20)
         securityLabel = UILabel()
-        securityLabel.numberOfLines = 0
         securityLabel.font = UIFont.systemFont(ofSize: 12)
         securityLabel.textColor = UIColor.gray
         countLabel = UILabel()
-        countLabel.numberOfLines = 0
         countLabel.font = UIFont.systemFont(ofSize: 20)
         countLabel.textColor = UIColor.gray
         contentView.addSubview(preImageView)
@@ -86,7 +83,8 @@ class AlbumTableViewCell: UITableViewCell {
         }
         albumNameLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(preImageView.snp.right).offset(15)
-            make.right.lessThanOrEqualTo(contentView).offset(-50)
+            make.right.lessThanOrEqualTo(contentView).offset(-70)
+            
             make.top.equalTo(contentView).offset(15)
         }
         securityLabel.snp.makeConstraints { (make) -> Void in
@@ -96,7 +94,7 @@ class AlbumTableViewCell: UITableViewCell {
         }
         countLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(albumNameLabel.snp.right)
-            make.right.lessThanOrEqualTo(contentView).offset(-50)
+            make.right.lessThanOrEqualTo(contentView).offset(-20)
             make.centerY.equalTo(albumNameLabel)
         }
     }
