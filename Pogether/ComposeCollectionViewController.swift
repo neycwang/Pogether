@@ -14,6 +14,7 @@ class ComposeCollectionViewController: UICollectionViewController {
     var scrollImageView: UIScrollView!
     var resource = [UIImage]()
     var imageControl = [(IndexPath, UIImageView)]()
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -70,7 +71,9 @@ class ComposeCollectionViewController: UICollectionViewController {
         }
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressHandler(sender:)))
+        collectionView!.addGestureRecognizer(longPressGesture)
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setToolbarHidden(true, animated: false)
@@ -98,9 +101,20 @@ class ComposeCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectCollectionViewCell", for: indexPath) as! SelectCollectionViewCell
         cell.photoView.image = resource[indexPath.row]
         cell.selectView.image = #imageLiteral(resourceName: "Select_None")
+        cell.tag = indexPath.row
         // Configure the cell
     
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: sourceIndexPath)!
+        var data = collectionView.visibleCells
+        data.remove(at: sourceIndexPath.row)
+        data.insert(cell, at: destinationIndexPath.row)
     }
 
     // MARK: UICollectionViewDelegate
@@ -140,4 +154,24 @@ class ComposeCollectionViewController: UICollectionViewController {
         self.navigationController?.pushViewController(avc, animated: true)
     }
     
+    func longPressHandler(sender: UILongPressGestureRecognizer)
+    {
+        let loc = sender.location(in: collectionView!)
+        let index = collectionView!.indexPathForItem(at: loc)
+        if index == nil
+        {
+            return
+        }
+        if sender.state == .began
+        {
+            collectionView!.beginInteractiveMovementForItem(at: index!)
+            return
+        }
+        if sender.state == .ended
+        {
+            collectionView!.endInteractiveMovement()
+            return
+        }
+        collectionView!.updateInteractiveMovementTargetPosition(loc)
+    }
 }
