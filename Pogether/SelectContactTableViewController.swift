@@ -34,6 +34,11 @@ class SelectContactTableViewController: UITableViewController {
         backImage.withRenderingMode(.alwaysOriginal)
         let backButton = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backButton
+        
+        let addImage = UIImage(cgImage: #imageLiteral(resourceName: "EditPhoto_Save").cgImage!, scale: 5, orientation: .up)
+        addImage.withRenderingMode(.alwaysOriginal)
+        let addButton = UIBarButtonItem(image: addImage, style: .plain, target: self, action: #selector(backToLast))
+        self.navigationItem.rightBarButtonItem = addButton
     }
     
     override func viewDidLoad() {
@@ -42,7 +47,7 @@ class SelectContactTableViewController: UITableViewController {
         initialize()
       
         self.title = "选择联系人"
-        self.navigationController?.navigationBar.isHidden=false
+        self.navigationController?.navigationBar.isHidden = false
         tableView.estimatedRowHeight = 56
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.delegate = self
