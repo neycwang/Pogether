@@ -144,6 +144,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     }
     
     //MARK: - set authority
+    var selectedContacts = [Account]()
     func setAll()
     {
         
@@ -155,11 +156,15 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     func setSome()
     {
         let avc = SelectContactTableViewController()
+        avc.delegate = self
+        avc.returnSelected = selectedContacts
         self.navigationController?.pushViewController(avc, animated: true)
     }
     func setSomeNot()
     {
         let avc = SelectContactTableViewController()
+        avc.delegate = self
+        avc.returnSelected = selectedContacts
         self.navigationController?.pushViewController(avc, animated: true)
     }
     func addNewPhoto()
@@ -169,4 +174,12 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         self.navigationController!.present(picker, animated: true, completion: nil)
     }
 
+}
+
+extension PhotoCollectionViewController: SelectContactDelegate
+{
+    func returnSelectedContacts(returnSelected: [Account])
+    {
+        self.selectedContacts = returnSelected
+    }
 }

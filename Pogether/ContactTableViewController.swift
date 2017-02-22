@@ -25,7 +25,6 @@ class ContactTableViewController: UITableViewController {
      ['A':["哎哎哎"],
      'B':["啵啵啵"]]
      */
-    var dataSource = ContactDataSource()
     
     func initialize()
     {

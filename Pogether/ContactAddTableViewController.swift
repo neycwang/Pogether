@@ -22,8 +22,6 @@ class ContactAddTableViewController: UITableViewController {
     
     private var filteredContacts: [Account] = []
     
-    var dataSource = ContactDataSource()
-    
     func initialize()
     {
         var backImage = #imageLiteral(resourceName: "ContactList_Back")

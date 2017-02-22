@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		357F45191E4701E8008B60CF /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45181E4701E8008B60CF /* Account.swift */; };
-		357F451B1E470F1B008B60CF /* ContactDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451A1E470F1B008B60CF /* ContactDataSource.swift */; };
 		357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */; };
 		357F451F1E4B0F61008B60CF /* ContactAddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */; };
 		357F45251E4CBDDF008B60CF /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45241E4CBDDF008B60CF /* AccountAPI.swift */; };
@@ -75,7 +74,6 @@
 		17E7E5D61EC1BD9099A72FAF /* Pods-PogetherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherTests/Pods-PogetherTests.release.xcconfig"; sourceTree = "<group>"; };
 		24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PogetherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		357F45181E4701E8008B60CF /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		357F451A1E470F1B008B60CF /* ContactDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDataSource.swift; sourceTree = "<group>"; };
 		357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithCheck.swift; sourceTree = "<group>"; };
 		357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactAddTableViewController.swift; sourceTree = "<group>"; };
 		357F45241E4CBDDF008B60CF /* AccountAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				359B031A1E45D94C0014D237 /* ColorandFontTable.swift */,
 				358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */,
 				357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */,
-				357F451A1E470F1B008B60CF /* ContactDataSource.swift */,
 				359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */,
 				359B031C1E46FCD60014D237 /* ContactTableViewController.swift */,
 				FB87023B1E5B5DB7006916C3 /* SelectContactTableViewCell.swift */,
@@ -599,7 +596,6 @@
 				35E6B3751E5B465E00BD7210 /* MovableImageView.swift in Sources */,
 				FB87023A1E5B5D91006916C3 /* SelectContactTableViewController.swift in Sources */,
 				35E6B2D91E59744600BD7210 /* ImageProcessing.swift in Sources */,
-				357F451B1E470F1B008B60CF /* ContactDataSource.swift in Sources */,
 				357F452D1E506031008B60CF /* EditViewController.swift in Sources */,
 				357F45331E5367AA008B60CF /* TextViewController.swift in Sources */,
 			);
