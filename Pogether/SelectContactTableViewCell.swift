@@ -31,7 +31,7 @@ class SelectContactTableViewCell: UITableViewCell {
         
         chooseView = UIImageView(frame: CGRect(x: 0, y: 0, width: 27, height: 27))
         
-        if isSelected {
+        if isChosen {
             chooseView.image = #imageLiteral(resourceName: "Select_Yes")
         }
         else{

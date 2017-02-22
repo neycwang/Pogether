@@ -29,8 +29,8 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
         width = UIScreen.main.bounds.width
         height = UIScreen.main.bounds.height
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 380, left: 20, bottom: 20, right: 20)
-        layout.itemSize = CGSize(width: width * 0.437, height: 100)
+        layout.sectionInset = UIEdgeInsets(top: height - 300, left: 20, bottom: 20, right: 20)
+        layout.itemSize = CGSize(width: width * 0.4, height: width * 0.24)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 15
         super.init(collectionViewLayout: layout)
@@ -139,6 +139,7 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
     {
         let avc = ProfileViewController()
         avc.isSetting = true
+        avc.user = Account(id: "1212121", username: "可爱的蓝精灵")
         navigationController?.pushViewController(avc, animated: false)
     }
     

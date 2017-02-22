@@ -57,10 +57,10 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     func setMenu()
     {
-        menuItems.append(YCXMenuItem("所有人可见", image: UIImage(), target: self, action: #selector(setAuthority)))
-        menuItems.append(YCXMenuItem("仅自己可见", image: UIImage(), target: self, action: #selector(setAuthority)))
-        menuItems.append(YCXMenuItem("部分可见", image: UIImage(), target: self, action: #selector(setAuthority)))
-        menuItems.append(YCXMenuItem("部分不可见", image: UIImage(), target: self, action: #selector(setAuthority)))
+        menuItems.append(YCXMenuItem("所有人可见", image: UIImage(), target: self, action: #selector(setAll)))
+        menuItems.append(YCXMenuItem("仅自己可见", image: UIImage(), target: self, action: #selector(setMyself)))
+        menuItems.append(YCXMenuItem("部分可见", image: UIImage(), target: self, action: #selector(setSome)))
+        menuItems.append(YCXMenuItem("部分不可见", image: UIImage(), target: self, action: #selector(setSomeNot)))
         
         for item in menuItems
         {
@@ -142,9 +142,30 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     {
         let _ = self.navigationController?.popViewController(animated: true)
     }
-    func setAuthority()
+    
+    //MARK: - set authority
+    var selectedContacts = [Account]()
+    func setAll()
     {
-        print("click")
+        
+    }
+    func setMyself()
+    {
+        
+    }
+    func setSome()
+    {
+        let avc = SelectContactTableViewController()
+        avc.delegate = self
+        avc.returnSelected = selectedContacts
+        self.navigationController?.pushViewController(avc, animated: true)
+    }
+    func setSomeNot()
+    {
+        let avc = SelectContactTableViewController()
+        avc.delegate = self
+        avc.returnSelected = selectedContacts
+        self.navigationController?.pushViewController(avc, animated: true)
     }
     func addNewPhoto()
     {
@@ -153,4 +174,12 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         self.navigationController!.present(picker, animated: true, completion: nil)
     }
 
+}
+
+extension PhotoCollectionViewController: SelectContactDelegate
+{
+    func returnSelectedContacts(returnSelected: [Account])
+    {
+        self.selectedContacts = returnSelected
+    }
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		357F45191E4701E8008B60CF /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45181E4701E8008B60CF /* Account.swift */; };
-		357F451B1E470F1B008B60CF /* ContactDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451A1E470F1B008B60CF /* ContactDataSource.swift */; };
 		357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */; };
 		357F451F1E4B0F61008B60CF /* ContactAddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */; };
 		357F45251E4CBDDF008B60CF /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45241E4CBDDF008B60CF /* AccountAPI.swift */; };
@@ -34,6 +33,7 @@
 		35E6B2D71E59631F00BD7210 /* TKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B2D61E59631F00BD7210 /* TKImageView.m */; };
 		35E6B2D91E59744600BD7210 /* ImageProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B2D81E59744600BD7210 /* ImageProcessing.swift */; };
 		35E6B3751E5B465E00BD7210 /* MovableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B3741E5B465E00BD7210 /* MovableImageView.swift */; };
+		35E6B3771E5C8E6D00BD7210 /* ScrollImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6B3761E5C8E6D00BD7210 /* ScrollImageViewController.swift */; };
 		35E6E20D1E2C6CAA0093F791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */; };
 		35E6E2161E2C6CAA0093F791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2151E2C6CAA0093F791 /* Assets.xcassets */; };
 		35E6E2191E2C6CAA0093F791 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */; };
@@ -74,7 +74,6 @@
 		17E7E5D61EC1BD9099A72FAF /* Pods-PogetherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherTests/Pods-PogetherTests.release.xcconfig"; sourceTree = "<group>"; };
 		24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PogetherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		357F45181E4701E8008B60CF /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		357F451A1E470F1B008B60CF /* ContactDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDataSource.swift; sourceTree = "<group>"; };
 		357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithCheck.swift; sourceTree = "<group>"; };
 		357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactAddTableViewController.swift; sourceTree = "<group>"; };
 		357F45241E4CBDDF008B60CF /* AccountAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		35E6B2D61E59631F00BD7210 /* TKImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKImageView.m; sourceTree = "<group>"; };
 		35E6B2D81E59744600BD7210 /* ImageProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessing.swift; sourceTree = "<group>"; };
 		35E6B3741E5B465E00BD7210 /* MovableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovableImageView.swift; sourceTree = "<group>"; };
+		35E6B3761E5C8E6D00BD7210 /* ScrollImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollImageViewController.swift; sourceTree = "<group>"; };
 		35E6E2091E2C6CAA0093F791 /* Pogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6E20C1E2C6CAA0093F791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35E6E2151E2C6CAA0093F791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -209,7 +209,6 @@
 				359B031A1E45D94C0014D237 /* ColorandFontTable.swift */,
 				358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */,
 				357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */,
-				357F451A1E470F1B008B60CF /* ContactDataSource.swift */,
 				359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */,
 				359B031C1E46FCD60014D237 /* ContactTableViewController.swift */,
 				FB87023B1E5B5DB7006916C3 /* SelectContactTableViewCell.swift */,
@@ -239,6 +238,7 @@
 				35E6B2D51E59631F00BD7210 /* TKImageView.h */,
 				35E6B2D61E59631F00BD7210 /* TKImageView.m */,
 				35E6B3741E5B465E00BD7210 /* MovableImageView.swift */,
+				35E6B3761E5C8E6D00BD7210 /* ScrollImageViewController.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -354,7 +354,7 @@
 				TargetAttributes = {
 					35E6E2081E2C6CAA0093F791 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 8FUMNGVDQQ;
+						DevelopmentTeam = 6484JS687H;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -568,6 +568,7 @@
 				35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */,
 				35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */,
 				35E6B2D71E59631F00BD7210 /* TKImageView.m in Sources */,
+				35E6B3771E5C8E6D00BD7210 /* ScrollImageViewController.swift in Sources */,
 				35E6E23F1E2DC9EC0093F791 /* AlbumTableViewController.swift in Sources */,
 				35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */,
 				357F45351E5367E3008B60CF /* CropViewController.swift in Sources */,
@@ -595,7 +596,6 @@
 				35E6B3751E5B465E00BD7210 /* MovableImageView.swift in Sources */,
 				FB87023A1E5B5D91006916C3 /* SelectContactTableViewController.swift in Sources */,
 				35E6B2D91E59744600BD7210 /* ImageProcessing.swift in Sources */,
-				357F451B1E470F1B008B60CF /* ContactDataSource.swift in Sources */,
 				357F452D1E506031008B60CF /* EditViewController.swift in Sources */,
 				357F45331E5367AA008B60CF /* TextViewController.swift in Sources */,
 			);
@@ -694,7 +694,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 8FUMNGVDQQ;
+				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -836,7 +836,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 8FUMNGVDQQ;
+				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -855,7 +855,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 8FUMNGVDQQ;
+				DEVELOPMENT_TEAM = 6484JS687H;
 				INFOPLIST_FILE = Pogether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

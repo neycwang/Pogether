@@ -24,13 +24,14 @@ class HomepageCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(iconView)
         contentView.addSubview(descLabel)
         iconView.snp.makeConstraints { (make) in
-            make.top.equalTo(contentView).offset(15)
+            make.top.equalTo(contentView).offset(14)
             make.left.equalTo(contentView).offset(20)
-            make.width.equalTo(iconView.snp.height)
+            make.width.equalTo(contentView.snp.height).multipliedBy(0.4)
+            make.height.equalTo(contentView.snp.height).multipliedBy(0.4)
         }
         descLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(iconView)
-            make.top.equalTo(iconView.snp.bottom).offset(15)
+            make.top.equalTo(iconView.snp.bottom).offset(12)
             make.bottom.equalTo(contentView).offset(-10)
         }
         

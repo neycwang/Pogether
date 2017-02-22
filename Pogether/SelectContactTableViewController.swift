@@ -27,13 +27,16 @@ class SelectContactTableViewController: UITableViewController {
     
     private var filteredContacts: [String : [Account]] = [:]
     
-    var dataSource = ContactDataSource()
-    
     func initialize() {
         let backImage = #imageLiteral(resourceName: "ContactList_Back")
         backImage.withRenderingMode(.alwaysOriginal)
         let backButton = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backButton
+        
+        let addImage = UIImage(cgImage: #imageLiteral(resourceName: "EditPhoto_Save").cgImage!, scale: 5, orientation: .up)
+        addImage.withRenderingMode(.alwaysOriginal)
+        let addButton = UIBarButtonItem(image: addImage, style: .plain, target: self, action: #selector(done))
+        self.navigationItem.rightBarButtonItem = addButton
     }
     
     override func viewDidLoad() {
@@ -42,7 +45,7 @@ class SelectContactTableViewController: UITableViewController {
         initialize()
       
         self.title = "选择联系人"
-        self.navigationController?.navigationBar.isHidden=false
+        self.navigationController?.navigationBar.isHidden = false
         tableView.estimatedRowHeight = 56
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.delegate = self
@@ -74,10 +77,10 @@ class SelectContactTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        contacts["T"] = [Account(id: "1", username: "童佳琪"), Account(id: "4", username: "童老师"), Account(id: "5", username: "童学姐"), Account(id: "6", username: "童金牌"), Account(id: "7", username: "太强了")]
-        contacts["B"] = [Account(id: "2", username: "别打我")]
-        contacts["P"] = [Account(id: "3", username: "Pogether")]
-        contacts["D"] = [Account(id: "3", username: "带我飞"), Account(id: "3", username: "大物"), Account(id: "3", username: "打地鼠"), Account(id: "3", username: "假设很长很长很长"), Account(id: "3", username: "假设特别特别特别长")]
+        contacts["T"] = [Account(id: "1", username: "童佳琪"), Account(id: "2", username: "童老师"), Account(id: "3", username: "童学姐"), Account(id: "4", username: "童金牌"), Account(id: "5", username: "太强了")]
+        contacts["B"] = [Account(id: "6", username: "别打我")]
+        contacts["P"] = [Account(id: "7", username: "Pogether")]
+        contacts["D"] = [Account(id: "8", username: "带我飞"), Account(id: "9", username: "大物"), Account(id: "10", username: "打地鼠"), Account(id: "11", username: "假设很长很长很长"), Account(id: "12", username: "假设特别特别特别长")]
         
     }
     
@@ -160,6 +163,13 @@ class SelectContactTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectContactTableViewCell", for: indexPath) as! SelectContactTableViewCell
         cell.selectionStyle = .none
         cell.contact = filteredContacts[sectionIndex[indexPath.section]]?[indexPath.row]
+        for e in returnSelected
+        {
+            if e.id == (cell.contact?.id)! {
+                cell.isChosen = true
+                cell.chooseView.image = #imageLiteral(resourceName: "Select_Yes")
+            }
+        }
         return cell
         
     }
@@ -168,16 +178,21 @@ class SelectContactTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! SelectContactTableViewCell
         if cell.isChosen {
             cell.chooseView.image = #imageLiteral(resourceName: "Select_None")
+            returnSelected = returnSelected.filter({$0.id != cell.contact?.id})
         }
         else {
             cell.chooseView.image = #imageLiteral(resourceName: "Select_Yes")
+            returnSelected.append(cell.contact!)
         }
         cell.isChosen = !cell.isChosen
     }
     
     //Mark: Respond function
-    
-    func backToLast(){
+    func backToLast() {
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
+    func done() {
+        returnSelected.removeAll()
         for allCells in tableView.visibleCells {
             let contactCells = allCells as! SelectContactTableViewCell
             if contactCells.isChosen {
