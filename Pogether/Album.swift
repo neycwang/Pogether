@@ -38,7 +38,7 @@ class Album {
             }
         }
     }
-    var avanter: URL?
+    var avatar: URL?
     
     init()
     {

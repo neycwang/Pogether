@@ -10,15 +10,10 @@ import Foundation
 
 class Account {
     
-    enum Sex {
-        case male
-        case female
-    }
     var id: String? //主键
     var username: String?
     var email: String?
     var signature: String?
-    var portrait: URL?
     var avatar: URL?
     
     init()
