@@ -71,9 +71,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         
         iconView = UIImageView(frame: CGRect(x: width / 2 - height * 0.08625, y: height * 0.26925, width: height * 0.1725, height: height * 0.1725))
         iconView.contentMode = .scaleAspectFill
-        if user.portrait != nil
+        if user.avatar != nil
         {
-            iconView.image = imageFromURL(url: user.portrait!)
+            iconView.image = imageFromURL(url: user.avatar!)
         }
         else
         {

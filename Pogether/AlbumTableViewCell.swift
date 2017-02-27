@@ -17,7 +17,7 @@ class AlbumTableViewCell: UITableViewCell {
     var countLabel: UILabel!
     var album: Album = Album() {
         didSet {
-            if album.avanter != nil {
+            if album.avatar != nil {
                 
             }
             albumNameLabel.text = album.name

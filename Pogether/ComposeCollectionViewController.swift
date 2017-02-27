@@ -12,8 +12,31 @@ class ComposeCollectionViewController: UICollectionViewController {
     var photoImageView: UIImageView!
     var photo: UIImage!
     var scrollImageView: UIScrollView!
-    var resource = [UIImage]()
-    var imageControl = [(IndexPath, UIImageView)]()
+    var resource = [UIImage]() {
+        willSet {
+            for imageView in imageControl
+            {
+                imageView.removeFromSuperview()
+            }
+            imageControl.removeAll()
+        }
+        didSet {
+            for (i,r) in resource.enumerated()
+            {
+                let imageView = MovableImageView(image: r)
+                imageView.layer.borderColor = ColorandFontTable.primaryPink.cgColor
+                imageView.layer.borderWidth = 1
+                imageView.tag = i
+                imageControl.append(imageView)
+            }
+            for i in (0..<resource.count).reversed()
+            {
+                self.view.addSubview(imageControl[i])
+                imageControl[i].isHidden = true
+            }
+        }
+    }
+    var imageControl = [UIImageView]()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -43,7 +66,7 @@ class ComposeCollectionViewController: UICollectionViewController {
         let barArray = [cancel, space, add, space, save]
         self.toolbarItems = barArray
         
-        resource = [#imageLiteral(resourceName: "icon"),#imageLiteral(resourceName: "icon1"),#imageLiteral(resourceName: "Select_Yes"),#imageLiteral(resourceName: "Select_None")]
+        
     }
 
     
@@ -69,6 +92,13 @@ class ComposeCollectionViewController: UICollectionViewController {
             make.right.equalTo(self.view).offset(-10)
             make.bottom.equalTo(self.view).offset(-170)
         }
+        resource = [#imageLiteral(resourceName: "icon"),#imageLiteral(resourceName: "icon1"),#imageLiteral(resourceName: "Select_Yes"),#imageLiteral(resourceName: "Select_None")]
+        for i in (0..<resource.count).reversed()
+        {
+            self.view.addSubview(imageControl[i])
+            imageControl[i].isHidden = true
+        }
+        
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -115,6 +145,12 @@ class ComposeCollectionViewController: UICollectionViewController {
         var data = collectionView.visibleCells
         data.remove(at: sourceIndexPath.row)
         data.insert(cell, at: destinationIndexPath.row)
+        let move = resource.remove(at: sourceIndexPath.row)
+        resource.insert(move, at: destinationIndexPath.row)
+        for i in 0..<imageControl.count
+        {
+            self.view.addSubview(imageControl[i])
+        }
     }
 
     // MARK: UICollectionViewDelegate
@@ -123,23 +159,12 @@ class ComposeCollectionViewController: UICollectionViewController {
         cell.isAdded = !cell.isAdded
         if cell.isAdded {
             cell.selectView.image = #imageLiteral(resourceName: "Select_Yes")
-            let imageView = MovableImageView(image: cell.photoView.image)
-            imageView.layer.borderColor = ColorandFontTable.primaryPink.cgColor
-            imageView.layer.borderWidth = 1
-            self.view.addSubview(imageView)
-            imageControl.append((indexPath, imageView))
+            imageControl[indexPath.row].isHidden = false
+
             
         } else {
             cell.selectView.image = #imageLiteral(resourceName: "Select_None")
-            imageControl = imageControl.filter({ (index, imageView) -> Bool in
-                if index == indexPath {
-                    print(indexPath)
-                    imageView.removeFromSuperview()
-                    return false
-                } else {
-                    return true
-                }
-            })
+            imageControl[indexPath.row].isHidden = true
         }
     }
 
