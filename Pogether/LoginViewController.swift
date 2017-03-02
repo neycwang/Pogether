@@ -66,6 +66,7 @@ class LoginViewController: UIViewController {
         passwordField = UITextField()
         passwordField.delegate = self
         passwordField.returnKeyType = .done
+        passwordField.isSecureTextEntry = true
         passwordField.placeholder = "密码"
         passwordField.font = UIFont.systemFont(ofSize: height * 0.03)
         passwordGroundView.addSubview(passwordField)
@@ -73,7 +74,7 @@ class LoginViewController: UIViewController {
         loginButton = UIButton(type: .roundedRect)
         loginButton.setTitle("登录", for: .normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: height * 0.039)
-        loginButton.addTarget(self, action: #selector(LoginViewController.jumpToAlbum), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(LoginViewController.login), for: .touchUpInside)
         let buttonImage = UIImage(cgImage: #imageLiteral(resourceName: "LoginView_Login").cgImage!, scale: 2000 / height, orientation: .up)
         loginButton.backgroundColor = UIColor(patternImage: buttonImage)
         loginButton.setTitleColor(.white, for: .normal)
@@ -132,6 +133,31 @@ class LoginViewController: UIViewController {
     */
     
     // MARK: - Touch event
+    func login(){
+        let url = URL(string: "https://private-59586c-pogether.apiary-mock.com/login")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = "{\n  \"username\": \(usernameField.text!),\n  \"password\": \(passwordField.text!)\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                //print(response)
+                
+                let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
+                print(json["email"])
+                //这里json保存了帐户id username email等各项属性的dictionary，等profile要用全局变量就在这里添加
+                
+                self.jumpToAlbum()
+                
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
+    }
+    
     func jumpToAlbum() {
         let avc = HomepageCollectionViewController()
         self.navigationController?.pushViewController(avc, animated: false)
