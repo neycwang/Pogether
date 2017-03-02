@@ -14,6 +14,8 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     var ImageArray = [UIImage?]()
     var lastSelect: IndexPath!
     var menuItems = [YCXMenuItem]()
+    var isSetting = true
+    var addButton: UIButton!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -35,17 +37,18 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         {
             ImageArray.append(#imageLiteral(resourceName: "default"))
         }
-        var setImage = #imageLiteral(resourceName: "PhotoList_Setting")
-        setImage = setImage.withRenderingMode(.alwaysOriginal)
-        let setItem = UIBarButtonItem (image: setImage, style: .plain, target: self, action: #selector(showSettings))
-        self.navigationItem.rightBarButtonItem = setItem
         
         var backImage = #imageLiteral(resourceName: "ContactList_Back")
         backImage = backImage.withRenderingMode(.alwaysOriginal)
         let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backItem
         
-        let addButton = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 46, width: UIScreen.main.bounds.width, height: 46))
+        var setImage = #imageLiteral(resourceName: "PhotoList_Setting")
+        setImage = setImage.withRenderingMode(.alwaysOriginal)
+        let setItem = UIBarButtonItem (image: setImage, style: .plain, target: self, action: #selector(showSettings))
+        self.navigationItem.rightBarButtonItem = setItem
+        
+        addButton = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 46, width: UIScreen.main.bounds.width, height: 46))
         addButton.titleLabel?.isHidden = false
         addButton.setTitle("添加", for: .normal)
         addButton.setTitleColor(UIColor.white, for: .normal)
@@ -53,6 +56,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         addButton.backgroundColor = ColorandFontTable.primaryPink
         addButton.addTarget(self, action: #selector(addNewPhoto), for: UIControlEvents.touchUpInside)
         self.view.addSubview(addButton)
+
     }
     
     func setMenu()
@@ -71,7 +75,10 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "默认相册"
-        setMenu()
+        if isSetting
+        {
+            setMenu()
+        }
     }
     
     func showSettings ()
@@ -88,6 +95,10 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+        if !isSetting {
+            addButton.removeFromSuperview()
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -103,7 +114,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pvc = PresentationViewController()
-        pvc.canDelete = true
+        pvc.canDelete = isSetting
         pvc.photo = ImageArray[indexPath.row]
         self.navigationController?.pushViewController(pvc, animated: true)
     }

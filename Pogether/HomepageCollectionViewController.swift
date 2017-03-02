@@ -139,6 +139,7 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
     {
         let avc = ProfileViewController()
         avc.isSetting = true
+        avc.isStranger = false
         avc.user = Account(id: "1212121", username: "可爱的蓝精灵")
         navigationController?.pushViewController(avc, animated: false)
     }
