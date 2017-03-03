@@ -1,29 +1,29 @@
 //
-//  MattingViewController.swift
+//  EraseViewController.swift
 //  Pogether
 //
-//  Created by KiraMelody on 2017/2/15.
+//  Created by KiraMelody on 2017/3/3.
 //  Copyright © 2017年 KiraMelody. All rights reserved.
 //
 
 import UIKit
 import MGDrawingSlate
 
-class MattingViewController: ScrollImageViewController {
-
+class EraseViewController: UIViewController {
+    var photoImageView: UIImageView!
+    var photo: UIImage!
     var groundView: UIView!
     var slider: UISlider!
     var sliderLabel : UILabel!
     var drawingSlate: MGDrawingSlate!
+    var weight: Int = 5
     func initialize()
     {
-        let a0 = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Feather"), style: .plain, target: self, action: #selector(featherSlider))
-        let a1 = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Weight"), style: .plain, target: self, action: #selector(weightSlider))
-        let a2 = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Contrast"), style: .plain, target: self, action: #selector(contrastSlider))
+        let a0 = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Weight"), style: .plain, target: self, action: #selector(weightSlider))
         let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
         let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(backToLast))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let barArray = [cancel, space, a0, space, a1, space, a2, space, save]
+        let barArray = [cancel, space, a0, space, save]
         self.toolbarItems = barArray
         
         groundView = UIView()
@@ -33,22 +33,20 @@ class MattingViewController: ScrollImageViewController {
         slider.minimumTrackTintColor = ColorandFontTable.purple
         slider.maximumTrackTintColor = ColorandFontTable.fillGray
         slider.thumbTintColor = UIColor.white
+        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         
         sliderLabel = UILabel()
         sliderLabel.font = UIFont.systemFont(ofSize: 14)
         sliderLabel.textColor = UIColor.white
+
+        photoImageView = UIImageView()//(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 190)))
+        photoImageView.image = photo
+        photoImageView.contentMode = .scaleAspectFit
         
-        super.setScrollView()
-        scrollImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(20)
-            make.bottom.equalTo(self.view).offset(-50)
-            make.left.equalTo(self.view).offset(10)
-            make.right.equalTo(self.view).offset(-10)
-        }
-        drawingSlate = MGDrawingSlate(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 190)))
+        drawingSlate = MGDrawingSlate()//(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 190)))
         drawingSlate.backgroundColor = UIColor.clear
-        scrollImageView.addSubview(drawingSlate)
-        
+        drawingSlate.changeColor(to: UIColor.white)
+        drawingSlate.changeLineWeight(to: weight)
     }
     
     override func viewDidLoad() {
@@ -57,6 +55,8 @@ class MattingViewController: ScrollImageViewController {
         self.view.addSubview(groundView)
         self.view.addSubview(slider)
         self.view.addSubview(sliderLabel)
+        self.view.addSubview(photoImageView)
+        self.view.addSubview(drawingSlate)
         groundView.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.view).offset(-45)
             make.height.equalTo(60)
@@ -73,6 +73,19 @@ class MattingViewController: ScrollImageViewController {
             make.top.equalTo(slider.snp.bottom).offset(8)
             make.centerX.equalTo(slider)
         }
+        photoImageView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.left.equalTo(self.view).offset(10)
+            make.top.equalTo(self.view).offset(10)
+            make.bottom.equalTo(self.view).offset(-50)
+        }
+        drawingSlate.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.left.equalTo(self.view).offset(10)
+            make.top.equalTo(self.view).offset(10)
+            make.bottom.equalTo(self.view).offset(-110)
+        }
+        photoImageView.image = photo
         self.view.backgroundColor = ColorandFontTable.groundGray
         self.groundView.isHidden = true
         self.slider.isHidden = true
@@ -86,36 +99,25 @@ class MattingViewController: ScrollImageViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setToolbarHidden(true, animated: false)
     }
-    func featherSlider()
-    {
-        self.groundView.isHidden = false
-        self.slider.isHidden = false
-        self.sliderLabel.isHidden = false
-        sliderLabel.text = "羽化"
-        slider.value = 50
-        slider.minimumValue = 0
-        slider.maximumValue = 100
-    }
     func weightSlider()
     {
         self.groundView.isHidden = false
         self.slider.isHidden = false
         self.sliderLabel.isHidden = false
         sliderLabel.text = "笔粗"
+        slider.value = Float(weight)
         slider.minimumValue = 0
-        slider.maximumValue = 10
+        slider.maximumValue = 20
+        slider.isContinuous = false
     }
-    func contrastSlider()
+    func sliderValueChanged()
     {
-        self.groundView.isHidden = false
-        self.slider.isHidden = false
-        self.sliderLabel.isHidden = false
-        sliderLabel.text = "对比度"
-        slider.minimumValue = 0
-        slider.maximumValue = 1
+        weight = Int(slider.value)
+        drawingSlate.changeLineWeight(to: weight)
     }
     func backToLast()
     {
         let _ = self.navigationController?.popViewController(animated: true)
     }
 }
+

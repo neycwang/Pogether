@@ -9,6 +9,7 @@ target 'Pogether' do
   pod 'PKHUD'
   pod 'YCXMenu'
   pod ‘WYCDynamicTextController’
+  pod 'MGDrawingSlate'
   # Pods for Pogether
 
   target 'PogetherTests' do

@@ -21,10 +21,11 @@ class EditViewController: ScrollImageViewController {
         let augment = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Augment"), style: .plain, target: self, action: #selector(jumpToAugment))
         let matting = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Matting"), style: .plain, target: self, action: #selector(jumpToMatting))
         let text = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Text"), style: .plain, target: self, action: #selector(jumpToText))
+        let erase = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Erase"), style: .plain, target: self, action: #selector(jumpToErase))
         let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
         let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(backToLast))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let barArray = [cancel, space, crop, space, augment, space, matting, space, text, space, save]
+        let barArray = [cancel, space, crop, space, augment, space, matting, space, text, space, erase, space, save]
         self.toolbarItems = barArray
     }
     
@@ -81,6 +82,12 @@ class EditViewController: ScrollImageViewController {
     func jumpToText()
     {
         let avc = TextViewController()
+        avc.photo = self.photo
+        self.navigationController?.pushViewController(avc, animated: false)
+    }
+    func jumpToErase()
+    {
+        let avc = EraseViewController()
         avc.photo = self.photo
         self.navigationController?.pushViewController(avc, animated: false)
     }

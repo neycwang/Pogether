@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3526677E1E6955B60066F4A1 /* EraseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526677D1E6955B60066F4A1 /* EraseViewController.swift */; };
 		357F45191E4701E8008B60CF /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45181E4701E8008B60CF /* Account.swift */; };
 		357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */; };
 		357F451F1E4B0F61008B60CF /* ContactAddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		17E7E5D61EC1BD9099A72FAF /* Pods-PogetherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherTests/Pods-PogetherTests.release.xcconfig"; sourceTree = "<group>"; };
 		24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PogetherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3526677D1E6955B60066F4A1 /* EraseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EraseViewController.swift; sourceTree = "<group>"; };
 		357F45181E4701E8008B60CF /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithCheck.swift; sourceTree = "<group>"; };
 		357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactAddTableViewController.swift; sourceTree = "<group>"; };
@@ -211,11 +213,10 @@
 				357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */,
 				359B031E1E46FCE90014D237 /* ContactTableViewCell.swift */,
 				359B031C1E46FCD60014D237 /* ContactTableViewController.swift */,
-				FB87023B1E5B5DB7006916C3 /* SelectContactTableViewCell.swift */,
-				FB8702391E5B5D91006916C3 /* SelectContactTableViewController.swift */,
 				357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */,
 				357F45341E5367E3008B60CF /* CropViewController.swift */,
 				357F452C1E506031008B60CF /* EditViewController.swift */,
+				3526677D1E6955B60066F4A1 /* EraseViewController.swift */,
 				359B03141E45BF3F0014D237 /* HomepageCollectionViewCell.swift */,
 				359B03181E45CA640014D237 /* HomepageCollectionViewController.swift */,
 				35E6B2D81E59744600BD7210 /* ImageProcessing.swift */,
@@ -223,22 +224,24 @@
 				35E6E2171E2C6CAA0093F791 /* LaunchScreen.storyboard */,
 				35E6E23C1E2C76B50093F791 /* LoginViewController.swift */,
 				357F45301E536713008B60CF /* MattingViewController.swift */,
+				35E6B3741E5B465E00BD7210 /* MovableImageView.swift */,
 				35E6E2461E2E6BC00093F791 /* PhotoCollectionViewCell.swift */,
 				35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */,
 				35E6B2D41E59631E00BD7210 /* Pogether-Bridging-Header.h */,
 				357F452A1E505413008B60CF /* PresentationViewController.swift */,
 				35E6E2421E2E53260093F791 /* ProfileViewController.swift */,
 				35E6E2481E2F451B0093F791 /* RegisterViewController.swift */,
+				35E6B3761E5C8E6D00BD7210 /* ScrollImageViewController.swift */,
 				358C11031E57E8EA0038F03C /* SelectAlbumCollectionViewController.swift */,
 				358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */,
+				FB87023B1E5B5DB7006916C3 /* SelectContactTableViewCell.swift */,
+				FB8702391E5B5D91006916C3 /* SelectContactTableViewController.swift */,
 				358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */,
 				357F45261E4CC589008B60CF /* SignatureViewController.swift */,
 				357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */,
 				357F45321E5367AA008B60CF /* TextViewController.swift */,
 				35E6B2D51E59631F00BD7210 /* TKImageView.h */,
 				35E6B2D61E59631F00BD7210 /* TKImageView.m */,
-				35E6B3741E5B465E00BD7210 /* MovableImageView.swift */,
-				35E6B3761E5C8E6D00BD7210 /* ScrollImageViewController.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 			files = (
 				357F45311E536713008B60CF /* MattingViewController.swift in Sources */,
 				358C11021E5755E10038F03C /* SelectPhotoCollectionViewController.swift in Sources */,
+				3526677E1E6955B60066F4A1 /* EraseViewController.swift in Sources */,
 				359B031F1E46FCE90014D237 /* ContactTableViewCell.swift in Sources */,
 				35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */,
 				35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */,
