@@ -21,6 +21,7 @@
 		357F45351E5367E3008B60CF /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45341E5367E3008B60CF /* CropViewController.swift */; };
 		357F45371E5466AD008B60CF /* CropCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */; };
 		357F453B1E558B40008B60CF /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F453A1E558B40008B60CF /* Album.swift */; };
+		358562651E6A552E00B60C02 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358562641E6A552E00B60C02 /* QuartzCore.framework */; };
 		358C10FE1E5602880038F03C /* ComposeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */; };
 		358C11001E5735140038F03C /* SelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */; };
 		358C11021E5755E10038F03C /* SelectPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */; };
@@ -88,6 +89,7 @@
 		357F45341E5367E3008B60CF /* CropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
 		357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropCollectionViewCell.swift; sourceTree = "<group>"; };
 		357F453A1E558B40008B60CF /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		358562641E6A552E00B60C02 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCollectionViewController.swift; sourceTree = "<group>"; };
 		358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPhotoCollectionViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				358562651E6A552E00B60C02 /* QuartzCore.framework in Frameworks */,
 				5D51FC7257F67778C048312C /* Pods_Pogether.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +170,7 @@
 		0FE48A4AE64295C247D3C3E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				358562641E6A552E00B60C02 /* QuartzCore.framework */,
 				DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */,
 				78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */,
 				24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */,

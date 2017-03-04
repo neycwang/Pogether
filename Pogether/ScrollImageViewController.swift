@@ -12,7 +12,14 @@ class ScrollImageViewController: UIViewController {
 
     var photoImageView: UIImageView!
     var scrollImageView: UIScrollView!
-    var photo: UIImage!
+    var photo: UIImage! {
+        didSet {
+            if photoImageView != nil
+            {
+                photoImageView.image = photo
+            }
+        }
+    }
     
     func setScrollView() {
         self.automaticallyAdjustsScrollViewInsets = false

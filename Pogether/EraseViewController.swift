@@ -11,7 +11,14 @@ import MGDrawingSlate
 
 class EraseViewController: UIViewController {
     var photoImageView: UIImageView!
-    var photo: UIImage!
+    var photo: UIImage! {
+        didSet {
+            if photoImageView != nil
+            {
+                photoImageView.image = photo
+            }
+        }
+    }
     var groundView: UIView!
     var slider: UISlider!
     var sliderLabel : UILabel!

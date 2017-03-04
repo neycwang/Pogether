@@ -10,7 +10,14 @@ import UIKit
 
 class ComposeCollectionViewController: UICollectionViewController {
     var photoImageView: UIImageView!
-    var photo: UIImage!
+    var photo: UIImage! {
+        didSet {
+            if photoImageView != nil
+            {
+                photoImageView.image = photo
+            }
+        }
+    }
     var scrollImageView: UIScrollView!
     var resource = [UIImage]()
     var imageControl = [(UIImage, UIImageView)]()

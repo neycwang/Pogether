@@ -118,4 +118,12 @@ class MattingViewController: ScrollImageViewController {
     {
         let _ = self.navigationController?.popViewController(animated: true)
     }
+    func saveToLast()
+    {
+        UIGraphicsBeginImageContext(self.view.bounds.size)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let viewImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        UIImageWriteToSavedPhotosAlbum(viewImage, nil, #selector(backToLast), nil)
+    }
 }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol EditPhoto: NSObjectProtocol {
+    func editPhoto(photo: UIImage)
+}
+
 class EditViewController: ScrollImageViewController {
     
     func initialize()
@@ -65,6 +69,7 @@ class EditViewController: ScrollImageViewController {
     {
         let avc = CropViewController()
         avc.photo = self.photo
+        avc.delegate = self
         self.navigationController?.pushViewController(avc, animated: false)
     }
     func jumpToAugment()
@@ -100,4 +105,11 @@ class EditViewController: ScrollImageViewController {
         
     }
     
+}
+
+extension EditViewController: EditPhoto
+{
+    func editPhoto(photo: UIImage) {
+        self.photo = photo
+    }
 }
