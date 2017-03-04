@@ -11,6 +11,11 @@ import SnapKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     var photoView: UIImageView!
+    var photo: UIImage! {
+        didSet {
+            self.photoView.image = photo
+        }
+    }
     var indexPath: IndexPath!
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,6 +31,13 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
+}
+
+extension PhotoCollectionViewCell: EditPhoto
+{
+    func editPhoto(photo: UIImage) {
+        self.photo = photo
+    }
 }
 
 

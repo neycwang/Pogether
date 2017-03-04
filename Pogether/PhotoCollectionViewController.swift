@@ -39,7 +39,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         self.collectionView!.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
         for _ in 1...20
         {
-            ImageArray.append(#imageLiteral(resourceName: "default"))
+            ImageArray.append(#imageLiteral(resourceName: "Homepage_Background"))
         }
         
         var backImage = #imageLiteral(resourceName: "ContactList_Back")
@@ -117,11 +117,13 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = self.collectionView?.cellForItem(at: indexPath) as! PhotoCollectionViewCell
         let pvc = PresentationViewController()
         pvc.canDelete = isSetting
         pvc.photo = ImageArray[indexPath.row]
         pvc.indexPath = indexPath
         pvc.delegate = self
+        pvc._delegate = cell
         self.navigationController?.pushViewController(pvc, animated: true)
     }
     

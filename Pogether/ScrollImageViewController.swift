@@ -23,7 +23,7 @@ class ScrollImageViewController: UIViewController {
     
     func setScrollView() {
         self.automaticallyAdjustsScrollViewInsets = false
-        scrollImageView = UIScrollView()
+        scrollImageView = UIScrollView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 120)))
         self.view.addSubview(scrollImageView)
         scrollImageView.backgroundColor = ColorandFontTable.groundGray
         scrollImageView.contentSize = photo.size

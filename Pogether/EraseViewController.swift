@@ -28,7 +28,7 @@ class EraseViewController: UIViewController {
     {
         let a0 = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Weight"), style: .plain, target: self, action: #selector(weightSlider))
         let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
-        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(backToLast))
+        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(saveToLast))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let barArray = [cancel, space, a0, space, save]
         self.toolbarItems = barArray
@@ -83,8 +83,9 @@ class EraseViewController: UIViewController {
         photoImageView.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.left.equalTo(self.view).offset(10)
-            make.top.equalTo(self.view).offset(10)
-            make.bottom.equalTo(self.view).offset(-50)
+            make.right.equalTo(self.view).offset(-10)
+            make.top.equalTo(self.view).offset(20)
+            make.bottom.equalTo(self.view).offset(-110)
         }
         drawingSlate.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
@@ -125,6 +126,15 @@ class EraseViewController: UIViewController {
     func backToLast()
     {
         let _ = self.navigationController?.popViewController(animated: true)
+    }
+    func saveToLast()
+    {
+        UIGraphicsBeginImageContext(self.view.bounds.size)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let viewImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        //UIImageWriteToSavedPhotosAlbum(viewImage, nil, #selector(backToLast), nil)
+        backToLast()
     }
 }
 
