@@ -7,11 +7,15 @@
 //
 
 import UIKit
+protocol DeletePhoto: NSObjectProtocol {
+    func delegePhoto(indexPath: IndexPath)
+}
 
 class PresentationViewController: ScrollImageViewController {
 
     var canDelete: Bool = false
-    
+    var indexPath: IndexPath!
+    weak var delegate: DeletePhoto?
     func initialize()
     {
         if canDelete
@@ -80,7 +84,7 @@ class PresentationViewController: ScrollImageViewController {
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
-        
+        self.delegate?.delegePhoto(indexPath: indexPath)
     }
     func editPhoto()
     {

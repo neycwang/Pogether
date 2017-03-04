@@ -8,15 +8,18 @@
 
 import UIKit
 import YCXMenu
+protocol EditLimit: NSObjectProtocol {
+    func editLimit(count: Int, limit: Limit)
+}
 
 class PhotoCollectionViewController:  UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var ImageArray = [UIImage?]()
-    var lastSelect: IndexPath!
     var menuItems = [YCXMenuItem]()
     var isSetting = true
     var addButton: UIButton!
-    
+    var indexPath: IndexPath!
+    weak var _delegate: EditLimit?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -116,6 +119,8 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         let pvc = PresentationViewController()
         pvc.canDelete = isSetting
         pvc.photo = ImageArray[indexPath.row]
+        pvc.indexPath = indexPath
+        pvc.delegate = self
         self.navigationController?.pushViewController(pvc, animated: true)
     }
     
@@ -158,14 +163,15 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     var selectedContacts = [Account]()
     func setAll()
     {
-        
+        self._delegate?.editLimit(count: ImageArray.count, limit: .all)
     }
     func setMyself()
     {
-        
+        self._delegate?.editLimit(count: ImageArray.count, limit: .myself)
     }
     func setSome()
     {
+        self._delegate?.editLimit(count: ImageArray.count, limit: .some)
         let avc = SelectContactTableViewController()
         avc.delegate = self
         avc.returnSelected = selectedContacts
@@ -173,6 +179,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     }
     func setSomeNot()
     {
+        self._delegate?.editLimit(count: ImageArray.count, limit: .somenot)
         let avc = SelectContactTableViewController()
         avc.delegate = self
         avc.returnSelected = selectedContacts
@@ -192,5 +199,13 @@ extension PhotoCollectionViewController: SelectContactDelegate
     func returnSelectedContacts(returnSelected: [Account])
     {
         self.selectedContacts = returnSelected
+    }
+}
+
+extension PhotoCollectionViewController: DeletePhoto
+{
+    func delegePhoto(indexPath: IndexPath) {
+        ImageArray.remove(at: indexPath.row)
+        collectionView?.reloadData()
     }
 }

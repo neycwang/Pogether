@@ -81,8 +81,10 @@ class AlbumTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! AlbumTableViewCell
         let avc = PhotoCollectionViewController()
         avc.isSetting = self.isSetting
+        avc._delegate = cell
         self.navigationController?.pushViewController(avc, animated: false)
     }
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -122,3 +124,5 @@ class AlbumTableViewController: UITableViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
+
+

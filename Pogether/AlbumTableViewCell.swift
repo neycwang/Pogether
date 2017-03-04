@@ -114,3 +114,13 @@ class AlbumTableViewCell: UITableViewCell {
     }
     
 }
+
+extension AlbumTableViewCell: EditLimit
+{
+    func editLimit(count: Int, limit: Limit) {
+        self.album.count = count
+        countLabel.text = " (\(album.count!.description))"
+        self.album.limit = limit
+        securityLabel.text = album.limitString
+    }
+}
