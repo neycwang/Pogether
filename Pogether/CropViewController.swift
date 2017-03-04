@@ -18,7 +18,7 @@ class CropViewController: UICollectionViewController {
     var cutButton: UIButton!
     var scrollImageView: UIScrollView!
     var cropImageView: TKImageView!
-    
+    weak var delegate: EditPhoto?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -62,7 +62,7 @@ class CropViewController: UICollectionViewController {
         
         let crop = UIBarButtonItem(title: "裁剪", style: .plain, target: nil, action: nil)
         let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
-        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(backToLast))
+        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(saveToLast))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let barArray = [cancel, space, crop, space, save]
         self.toolbarItems = barArray
@@ -171,10 +171,16 @@ class CropViewController: UICollectionViewController {
             cropImageView.cropAspectRatio = CGFloat(width)/CGFloat(height)
         }
     }
+    
     //MARK:- Button Tapped
     func backToLast()
     {
         let _ = self.navigationController?.popViewController(animated: true)
+    }
+    func saveToLast()
+    {
+        self.delegate?.editPhoto(photo: cropPhoto)
+        backToLast()
     }
     func reset()
     {

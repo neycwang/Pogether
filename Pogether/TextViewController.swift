@@ -14,7 +14,7 @@ class TextViewController: WYCDynamicTextController
     var photoImageView: UIImageView!
     var photo: UIImage!
     var scrollImageView: UIScrollView!
-    
+    weak var _delegate: EditPhoto?
     func initialize()
     {
         photoImageView = UIImageView(frame: self.view.frame)
@@ -23,7 +23,7 @@ class TextViewController: WYCDynamicTextController
         
         let text = UIBarButtonItem(title: "添加文字", style: .plain, target: self, action: #selector(addText))
         let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
-        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(done))
+        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(saveToLast))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let barArray = [cancel, space, text, space, save]
         self.toolbarItems = barArray
@@ -70,6 +70,9 @@ class TextViewController: WYCDynamicTextController
         view.bringSubview(toFront: textField)
         
         minDist = 20
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap(_:)))
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidLoad()
@@ -133,13 +136,32 @@ class TextViewController: WYCDynamicTextController
         }
     }
     
-    func done()
+    @objc func tap(_ sender: UITapGestureRecognizer)
     {
-        textField.layer.borderWidth = 0
+        let loc = sender.location(in: self.view)
+        if textField.frame.contains(loc)
+        {
+            textField.layer.borderWidth = 1
+        } else
+        {
+            textField.layer.borderWidth = 0
+        }
         if textField.text == "" && !textField.isHidden
         {
             addText()
         }
+    }
+    
+    func saveToLast()
+    {
+        self.view.backgroundColor = UIColor.clear
+        UIGraphicsBeginImageContext(self.photoImageView.bounds.size)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let viewImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self._delegate?.editPhoto(photo: viewImage)
+        //UIImageWriteToSavedPhotosAlbum(viewImage, nil, nil, nil)
+        backToLast()
     }
     
     override func stateChanged()

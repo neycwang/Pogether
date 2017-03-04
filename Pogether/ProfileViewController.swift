@@ -111,7 +111,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         }
         else
         {
-            signatureContentLabel!.text = ""
+            signatureContentLabel!.text = "默认签名"
         }
         signatureContentLabel!.font = .systemFont(ofSize: 18)
         signatureContentLabel!.lineBreakMode = .byTruncatingTail
@@ -181,9 +181,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         
         navigationController!.navigationBar.isHidden = true
         automaticallyAdjustsScrollViewInsets = false
-
-        user = Account(id: "14307130105", username: "膜TB")
-        user.signature = "我知道您不过生日了可是您也不能让它在这崩溃啊"
         
         initialize()
         
@@ -443,7 +440,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     
     func tappedAlbum()
     {
-        NSLog("Album")
+        let avc = AlbumTableViewController()
+        avc.isSetting = self.isSetting
+        navigationController?.pushViewController(avc, animated: true)
     }
     
     func settings()

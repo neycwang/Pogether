@@ -134,6 +134,10 @@ class LoginViewController: UIViewController {
     
     // MARK: - Touch event
     func login(){
+        //懒得等加载
+        self.jumpToHomepage()
+        return
+        
         let url = URL(string: "https://private-59586c-pogether.apiary-mock.com/login")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -141,24 +145,23 @@ class LoginViewController: UIViewController {
         request.httpBody = "{\n  \"username\": \(usernameField.text!),\n  \"password\": \(passwordField.text!)\n}".data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
+            if let _ = response, let data = data {
                 //print(response)
-                
                 let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
-                print(json["email"])
+                print(json["email"]!)
                 //这里json保存了帐户id username email等各项属性的dictionary，等profile要用全局变量就在这里添加
                 
-                self.jumpToAlbum()
+                self.jumpToHomepage()
                 
             } else {
-                print(error)
+                print(error!)
             }
         }
         
         task.resume()
     }
     
-    func jumpToAlbum() {
+    func jumpToHomepage() {
         let avc = HomepageCollectionViewController()
         self.navigationController?.pushViewController(avc, animated: false)
     }

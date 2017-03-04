@@ -8,13 +8,19 @@
 
 import UIKit
 import YCXMenu
+protocol EditLimit: NSObjectProtocol {
+    func editLimit(count: Int, limit: Limit?)
+}
 
 class PhotoCollectionViewController:  UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var ImageArray = [UIImage?]()
-    var lastSelect: IndexPath!
     var menuItems = [YCXMenuItem]()
-    
+    var isSetting = true
+    var addButton: UIButton!
+    var indexPath: IndexPath!
+    var limit: Limit? = nil
+    weak var _delegate: EditLimit?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -33,19 +39,20 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         self.collectionView!.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
         for _ in 1...20
         {
-            ImageArray.append(#imageLiteral(resourceName: "default"))
+            ImageArray.append(#imageLiteral(resourceName: "Homepage_Background"))
         }
-        var setImage = #imageLiteral(resourceName: "PhotoList_Setting")
-        setImage = setImage.withRenderingMode(.alwaysOriginal)
-        let setItem = UIBarButtonItem (image: setImage, style: .plain, target: self, action: #selector(showSettings))
-        self.navigationItem.rightBarButtonItem = setItem
         
         var backImage = #imageLiteral(resourceName: "ContactList_Back")
         backImage = backImage.withRenderingMode(.alwaysOriginal)
         let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backItem
         
-        let addButton = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 46, width: UIScreen.main.bounds.width, height: 46))
+        var setImage = #imageLiteral(resourceName: "PhotoList_Setting")
+        setImage = setImage.withRenderingMode(.alwaysOriginal)
+        let setItem = UIBarButtonItem (image: setImage, style: .plain, target: self, action: #selector(showSettings))
+        self.navigationItem.rightBarButtonItem = setItem
+        
+        addButton = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 46, width: UIScreen.main.bounds.width, height: 46))
         addButton.titleLabel?.isHidden = false
         addButton.setTitle("添加", for: .normal)
         addButton.setTitleColor(UIColor.white, for: .normal)
@@ -53,6 +60,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         addButton.backgroundColor = ColorandFontTable.primaryPink
         addButton.addTarget(self, action: #selector(addNewPhoto), for: UIControlEvents.touchUpInside)
         self.view.addSubview(addButton)
+
     }
     
     func setMenu()
@@ -71,7 +79,10 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "默认相册"
-        setMenu()
+        if isSetting
+        {
+            setMenu()
+        }
     }
     
     func showSettings ()
@@ -88,6 +99,10 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+        if !isSetting {
+            addButton.removeFromSuperview()
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -98,13 +113,17 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 20
+        return ImageArray.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = self.collectionView?.cellForItem(at: indexPath) as! PhotoCollectionViewCell
         let pvc = PresentationViewController()
-        pvc.canDelete = true
+        pvc.canDelete = isSetting
         pvc.photo = ImageArray[indexPath.row]
+        pvc.indexPath = indexPath
+        pvc.delegate = self
+        pvc._delegate = cell
         self.navigationController?.pushViewController(pvc, animated: true)
     }
     
@@ -140,6 +159,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     func backToLast()
     {
+        self._delegate?.editLimit(count: ImageArray.count, limit: limit)
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -147,14 +167,15 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     var selectedContacts = [Account]()
     func setAll()
     {
-        
+        self._delegate?.editLimit(count: ImageArray.count, limit: .all)
     }
     func setMyself()
     {
-        
+        self._delegate?.editLimit(count: ImageArray.count, limit: .myself)
     }
     func setSome()
     {
+        self._delegate?.editLimit(count: ImageArray.count, limit: .somecan)
         let avc = SelectContactTableViewController()
         avc.delegate = self
         avc.returnSelected = selectedContacts
@@ -162,6 +183,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     }
     func setSomeNot()
     {
+        self._delegate?.editLimit(count: ImageArray.count, limit: .somenot)
         let avc = SelectContactTableViewController()
         avc.delegate = self
         avc.returnSelected = selectedContacts
@@ -181,5 +203,14 @@ extension PhotoCollectionViewController: SelectContactDelegate
     func returnSelectedContacts(returnSelected: [Account])
     {
         self.selectedContacts = returnSelected
+    }
+}
+
+extension PhotoCollectionViewController: DeletePhoto
+{
+    func delegePhoto(indexPath: IndexPath) {
+        ImageArray.remove(at: indexPath.row)
+        collectionView?.reloadData()
+        backToLast()
     }
 }

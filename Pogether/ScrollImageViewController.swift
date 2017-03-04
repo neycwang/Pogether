@@ -12,11 +12,18 @@ class ScrollImageViewController: UIViewController {
 
     var photoImageView: UIImageView!
     var scrollImageView: UIScrollView!
-    var photo: UIImage!
+    var photo: UIImage! {
+        didSet {
+            if photoImageView != nil
+            {
+                photoImageView.image = photo
+            }
+        }
+    }
     
     func setScrollView() {
         self.automaticallyAdjustsScrollViewInsets = false
-        scrollImageView = UIScrollView()
+        scrollImageView = UIScrollView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width - 20, height: self.view.frame.height - 120)))
         self.view.addSubview(scrollImageView)
         scrollImageView.backgroundColor = ColorandFontTable.groundGray
         scrollImageView.contentSize = photo.size

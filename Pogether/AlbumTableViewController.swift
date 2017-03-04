@@ -10,6 +10,7 @@ import UIKit
 
 class AlbumTableViewController: UITableViewController {
     
+    var isSetting = true
     var albumArray = [Album]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ class AlbumTableViewController: UITableViewController {
         registerForCell()
         self.navigationController?.navigationBar.isHidden = false
         
-        albumArray = [Album(name: "默认相册", count: 50, limit: Limit.all), Album(name: "背景图片", count: 50, limit: Limit.myself), Album(name: "Pogether 数据库", count: 50, limit: Limit.some), Album(name: "个人收藏很长很长很长很长很长很长很长", count: 50, limit: Limit.somenot)]
+        albumArray = [Album(name: "默认相册", count: 50, limit: Limit.all), Album(name: "背景图片", count: 50, limit: Limit.myself), Album(name: "Pogether 数据库", count: 50, limit: Limit.somecan), Album(name: "个人收藏", count: 50, limit: Limit.somenot)]
         
     }
     
@@ -46,11 +47,12 @@ class AlbumTableViewController: UITableViewController {
         backImage = backImage.withRenderingMode(.alwaysOriginal)
         let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backItem
-        
-        var addImage = #imageLiteral(resourceName: "Album_Add")
-        addImage = addImage.withRenderingMode(.alwaysOriginal)
-        let addAlbum = UIBarButtonItem (image: addImage, style: .plain, target: self, action: #selector(addNewAlbum))
-        self.navigationItem.rightBarButtonItem = addAlbum
+        if isSetting {
+            var addImage = #imageLiteral(resourceName: "Album_Add")
+            addImage = addImage.withRenderingMode(.alwaysOriginal)
+            let addAlbum = UIBarButtonItem (image: addImage, style: .plain, target: self, action: #selector(addNewAlbum))
+            self.navigationItem.rightBarButtonItem = addAlbum
+        }
     }
     
     func registerForCell() {
@@ -72,9 +74,6 @@ class AlbumTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //set cell texts
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
-        //cell.albumNameLabel.text = albumString[indexPath.row]
-        //cell.securityLabel.text = securityString[securityArray[indexPath.row]]
-        //cell.countLabel.text = " (\(albumPhotosCountArray[indexPath.row]))"
         cell.album = albumArray[indexPath.row]
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
@@ -82,11 +81,15 @@ class AlbumTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! AlbumTableViewCell
         let avc = PhotoCollectionViewController()
+        avc.isSetting = self.isSetting
+        avc.limit = albumArray[indexPath.row].limit
+        avc._delegate = cell
         self.navigationController?.pushViewController(avc, animated: false)
     }
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return isSetting
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete)
@@ -122,3 +125,5 @@ class AlbumTableViewController: UITableViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
+
+

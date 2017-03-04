@@ -27,7 +27,7 @@ class SignatureViewController: UIViewController
         
         textView = UITextView()
         textView.delegate = self
-        textView.font = .systemFont(ofSize: 24)
+        textView.font = .systemFont(ofSize: 18)
         textView.textAlignment = .left
         if signature != nil
         {
@@ -41,7 +41,7 @@ class SignatureViewController: UIViewController
         countLabel = UILabel()
         let len = (textView.text as NSString).length
         countLabel.text = "\(textLimitation - len)"
-        countLabel.font = .systemFont(ofSize: 20)
+        countLabel.font = .systemFont(ofSize: 18)
         countLabel.textColor = ColorandFontTable.textPink
         self.automaticallyAdjustsScrollViewInsets = false
     }

@@ -10,34 +10,17 @@ import UIKit
 
 class ComposeCollectionViewController: UICollectionViewController {
     var photoImageView: UIImageView!
-    var photo: UIImage!
-    var scrollImageView: UIScrollView!
-    var resource = [UIImage]() {
-        willSet {
-            for imageView in imageControl
-            {
-                imageView.removeFromSuperview()
-            }
-            imageControl.removeAll()
-        }
+    var photo: UIImage! {
         didSet {
-            for (i,r) in resource.enumerated()
+            if photoImageView != nil
             {
-                let imageView = MovableImageView(image: r)
-                imageView.layer.borderColor = ColorandFontTable.primaryPink.cgColor
-                imageView.layer.borderWidth = 1
-                imageView.tag = i
-                imageControl.append(imageView)
-            }
-            for i in (0..<resource.count).reversed()
-            {
-                self.view.addSubview(imageControl[i])
-                imageControl[i].isHidden = true
+                photoImageView.image = photo
             }
         }
     }
-    var imageControl = [UIImageView]()
-    
+    var scrollImageView: UIScrollView!
+    var resource = [UIImage]()
+    var imageControl = [(UIImage, UIImageView)]()
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -92,11 +75,16 @@ class ComposeCollectionViewController: UICollectionViewController {
             make.right.equalTo(self.view).offset(-10)
             make.bottom.equalTo(self.view).offset(-170)
         }
-        resource = [#imageLiteral(resourceName: "icon"),#imageLiteral(resourceName: "icon1"),#imageLiteral(resourceName: "Select_Yes"),#imageLiteral(resourceName: "Select_None")]
+        resource = [#imageLiteral(resourceName: "icon"), #imageLiteral(resourceName: "icon1"), #imageLiteral(resourceName: "default"), #imageLiteral(resourceName: "whatwhat_pc_icons11")]
+        for i in 0..<resource.count
+        {
+            imageControl.append((resource[i], UIImageView(image: resource[i])))
+            imageControl[i].1.tag = i + 1
+        }
         for i in (0..<resource.count).reversed()
         {
-            self.view.addSubview(imageControl[i])
-            imageControl[i].isHidden = true
+            self.view.addSubview(imageControl[i].1)
+            imageControl[i].1.isHidden = true
         }
         
         self.navigationController?.setToolbarHidden(false, animated: false)
@@ -129,9 +117,8 @@ class ComposeCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectCollectionViewCell", for: indexPath) as! SelectCollectionViewCell
-        cell.photoView.image = resource[indexPath.row]
+        cell.photoView.image = imageControl[indexPath.row].0
         cell.selectView.image = #imageLiteral(resourceName: "Select_None")
-        cell.tag = indexPath.row
         // Configure the cell
     
         return cell
@@ -147,10 +134,24 @@ class ComposeCollectionViewController: UICollectionViewController {
         data.insert(cell, at: destinationIndexPath.row)
         let move = resource.remove(at: sourceIndexPath.row)
         resource.insert(move, at: destinationIndexPath.row)
-        for i in 0..<imageControl.count
+        var sourceIndex: Int = 0
+        var destinationIndex: Int = 0
+        for (index, subview) in self.view.subviews.enumerated()
         {
-            self.view.addSubview(imageControl[i])
+            print (subview.tag)
+            if subview.tag == sourceIndexPath.row + 1 {
+                sourceIndex = index
+            }
+            if subview.tag == destinationIndexPath.row + 1 {
+                destinationIndex = index
+            }
         }
+        if sourceIndex != 0 && destinationIndex != 0 {
+            let e = imageControl[sourceIndexPath.row]
+            e.1.removeFromSuperview()
+            self.view.insertSubview(e.1, at: destinationIndex)
+        }
+        
     }
 
     // MARK: UICollectionViewDelegate
@@ -159,12 +160,12 @@ class ComposeCollectionViewController: UICollectionViewController {
         cell.isAdded = !cell.isAdded
         if cell.isAdded {
             cell.selectView.image = #imageLiteral(resourceName: "Select_Yes")
-            imageControl[indexPath.row].isHidden = false
+            imageControl[indexPath.row].1.isHidden = false
 
             
         } else {
             cell.selectView.image = #imageLiteral(resourceName: "Select_None")
-            imageControl[indexPath.row].isHidden = true
+            imageControl[indexPath.row].1.isHidden = true
         }
     }
 

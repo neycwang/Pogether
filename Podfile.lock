@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.3.0)
+  - MGDrawingSlate (0.0.1)
   - PKHUD (4.2.0)
   - SnapKit (3.2.0)
   - WYCDynamicTextController (1.0.2)
@@ -7,6 +8,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - MGDrawingSlate
   - PKHUD
   - SnapKit
   - WYCDynamicTextController
@@ -14,11 +16,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  MGDrawingSlate: a7e2ff0546613c17549cb989ca030bff2ca93704
   PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   WYCDynamicTextController: 8186ba00d6b91d1bc54766942a333838aef34561
   YCXMenu: 6003bcd20d8ac72e3eb3c442c97ed21948c6dc1f
 
-PODFILE CHECKSUM: a02cc03277045e194f4c31efe68540584efef5dd
+PODFILE CHECKSUM: f238b2fec4abc18083e190b834d47a1edec321e3
 
 COCOAPODS: 1.1.1

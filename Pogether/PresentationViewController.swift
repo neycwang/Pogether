@@ -7,11 +7,16 @@
 //
 
 import UIKit
+protocol DeletePhoto: NSObjectProtocol {
+    func delegePhoto(indexPath: IndexPath)
+}
 
 class PresentationViewController: ScrollImageViewController {
 
     var canDelete: Bool = false
-    
+    var indexPath: IndexPath!
+    weak var delegate: DeletePhoto?
+    weak var _delegate: EditPhoto?
     func initialize()
     {
         if canDelete
@@ -32,7 +37,7 @@ class PresentationViewController: ScrollImageViewController {
         if canDelete
         {
             addButton.setTitle("编辑", for: .normal)
-            addButton.addTarget(self, action: #selector(editPhoto), for: UIControlEvents.touchUpInside)
+            addButton.addTarget(self, action: #selector(modifyPhoto), for: UIControlEvents.touchUpInside)
         } else {
             addButton.setTitle("收藏", for: .normal)
             addButton.addTarget(self, action: #selector(storePhoto), for: UIControlEvents.touchUpInside)
@@ -54,10 +59,12 @@ class PresentationViewController: ScrollImageViewController {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        centerScrollViewContents()
+        super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        centerScrollViewContents()
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -65,12 +72,15 @@ class PresentationViewController: ScrollImageViewController {
     
     func backToLast()
     {
+        self.delegate?.delegePhoto(indexPath: self.indexPath)
+        self._delegate?.editPhoto(photo: photo)
         let _ = self.navigationController?.popViewController(animated: true)
     }
 
     func deletePhoto()
     {
         let delete = UIAlertAction(title: "删除照片", style: UIAlertActionStyle.default) { (UIAlertAction) in
+            self.delegate?.delegePhoto(indexPath: self.indexPath)
             return
         }
         let cancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) { (UIAlertAction) in
@@ -80,16 +90,23 @@ class PresentationViewController: ScrollImageViewController {
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
-        
     }
-    func editPhoto()
+    func modifyPhoto()
     {
         let evc = EditViewController()
         evc.photo = self.photo
+        evc._delegate = self
         self.navigationController?.pushViewController(evc, animated: true)
     }
     func storePhoto()
     {
         
+    }
+}
+
+extension PresentationViewController: EditPhoto
+{
+    func editPhoto(photo: UIImage) {
+        self.photo = photo
     }
 }
