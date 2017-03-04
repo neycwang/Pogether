@@ -138,7 +138,7 @@ class LoginViewController: UIViewController {
         self.jumpToHomepage()
         return
         
-        let url = URL(string: "https://private-59586c-pogether.apiary-mock.com/login")!
+        let url = URL(string: "https://\(APIurl)/login")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

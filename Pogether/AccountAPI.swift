@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 
+let APIurl = "private-59586c-pogether.apiary-mock.com"
+
 class AccountAPI {
     static let module = "string"
         

@@ -133,10 +133,23 @@ class RegisterViewController: UIViewController {
     
     
     func register() {
-        //after registerButton tapped
-        //现在暂时用来跳转到选择联系人
-        let avc = SelectContactTableViewController()
-        self.navigationController?.pushViewController(avc, animated: false)
+        let url = URL(string: "https://\(APIurl)/signup")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = "{\n  \"email\": \(emailTextFieldWithCheck.textField.text!),\n  \"username\": \(usernameTextFieldWithCheck.textField.text!),\n  \"password\": \(passwordTextFieldWithCheck.textField.text!)\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                //暂时跳转回登录界面
+                self.backToLast()
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
     }
     
     func backToLast() {
