@@ -157,10 +157,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             settingsButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
         } else if isStranger {
             settingsButton.setTitle("加为好友", for: .normal)
-            settingsButton.addTarget(self, action: #selector(settings), for: .touchUpInside)
+            settingsButton.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
         } else {
             settingsButton.setTitle("删除好友", for: .normal)
-            settingsButton.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
+            settingsButton.addTarget(self, action: #selector(deleteFriend), for: .touchUpInside)
         }
         
         settingsButton.setTitleColor(.white, for: .normal)
@@ -462,6 +462,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         self.present(alert, animated: true, completion: nil)
     }
     func addFriend()
+    {
+        NSLog("addFriend")
+    }
+    func deleteFriend()
     {
         NSLog("addFriend")
     }
