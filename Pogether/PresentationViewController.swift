@@ -69,12 +69,14 @@ class PresentationViewController: ScrollImageViewController {
     
     func backToLast()
     {
+        self.delegate?.delegePhoto(indexPath: self.indexPath)
         let _ = self.navigationController?.popViewController(animated: true)
     }
 
     func deletePhoto()
     {
         let delete = UIAlertAction(title: "删除照片", style: UIAlertActionStyle.default) { (UIAlertAction) in
+            self.delegate?.delegePhoto(indexPath: self.indexPath)
             return
         }
         let cancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) { (UIAlertAction) in
@@ -84,7 +86,6 @@ class PresentationViewController: ScrollImageViewController {
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
-        self.delegate?.delegePhoto(indexPath: indexPath)
     }
     func editPhoto()
     {

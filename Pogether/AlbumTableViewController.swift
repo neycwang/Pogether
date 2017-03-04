@@ -31,7 +31,7 @@ class AlbumTableViewController: UITableViewController {
         registerForCell()
         self.navigationController?.navigationBar.isHidden = false
         
-        albumArray = [Album(name: "默认相册", count: 50, limit: Limit.all), Album(name: "背景图片", count: 50, limit: Limit.myself), Album(name: "Pogether 数据库", count: 50, limit: Limit.some), Album(name: "个人收藏", count: 50, limit: Limit.somenot)]
+        albumArray = [Album(name: "默认相册", count: 50, limit: Limit.all), Album(name: "背景图片", count: 50, limit: Limit.myself), Album(name: "Pogether 数据库", count: 50, limit: Limit.somecan), Album(name: "个人收藏", count: 50, limit: Limit.somenot)]
         
     }
     
@@ -84,6 +84,7 @@ class AlbumTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! AlbumTableViewCell
         let avc = PhotoCollectionViewController()
         avc.isSetting = self.isSetting
+        avc.limit = albumArray[indexPath.row].limit
         avc._delegate = cell
         self.navigationController?.pushViewController(avc, animated: false)
     }

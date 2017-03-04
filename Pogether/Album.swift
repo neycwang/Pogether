@@ -11,7 +11,7 @@ import Foundation
 public enum Limit {
     case all
     case myself
-    case some
+    case somecan
     case somenot
 }
 
@@ -31,7 +31,7 @@ class Album {
                 return "所有人可见"
             case .myself:
                 return "仅自己可见"
-            case .some:
+            case .somecan:
                 return "部分人可见"
             case .somenot:
                 return "部分人不可见"

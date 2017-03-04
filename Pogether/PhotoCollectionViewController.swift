@@ -9,7 +9,7 @@
 import UIKit
 import YCXMenu
 protocol EditLimit: NSObjectProtocol {
-    func editLimit(count: Int, limit: Limit)
+    func editLimit(count: Int, limit: Limit?)
 }
 
 class PhotoCollectionViewController:  UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -19,6 +19,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     var isSetting = true
     var addButton: UIButton!
     var indexPath: IndexPath!
+    var limit: Limit? = nil
     weak var _delegate: EditLimit?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -112,7 +113,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 20
+        return ImageArray.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -156,6 +157,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     func backToLast()
     {
+        self._delegate?.editLimit(count: ImageArray.count, limit: limit)
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -171,7 +173,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     }
     func setSome()
     {
-        self._delegate?.editLimit(count: ImageArray.count, limit: .some)
+        self._delegate?.editLimit(count: ImageArray.count, limit: .somecan)
         let avc = SelectContactTableViewController()
         avc.delegate = self
         avc.returnSelected = selectedContacts
@@ -207,5 +209,6 @@ extension PhotoCollectionViewController: DeletePhoto
     func delegePhoto(indexPath: IndexPath) {
         ImageArray.remove(at: indexPath.row)
         collectionView?.reloadData()
+        backToLast()
     }
 }
