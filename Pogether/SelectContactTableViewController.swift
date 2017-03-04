@@ -77,10 +77,10 @@ class SelectContactTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        contacts["T"] = [Account(id: "1", username: "童佳琪"), Account(id: "2", username: "童老师"), Account(id: "3", username: "童学姐"), Account(id: "4", username: "童金牌"), Account(id: "5", username: "太强了")]
-        contacts["B"] = [Account(id: "6", username: "别打我")]
-        contacts["P"] = [Account(id: "7", username: "Pogether")]
-        contacts["D"] = [Account(id: "8", username: "带我飞"), Account(id: "9", username: "大物"), Account(id: "10", username: "打地鼠"), Account(id: "11", username: "假设很长很长很长"), Account(id: "12", username: "假设特别特别特别长")]
+        contacts["T"] = [Account(username: "童佳琪"), Account(username: "童老师"), Account(username: "童学姐"), Account(username: "童金牌"), Account(username: "太强了")]
+        contacts["B"] = [Account(username: "别打我")]
+        contacts["P"] = [Account(username: "Pogether")]
+        contacts["D"] = [Account(username: "带我飞"), Account( username: "大物"), Account(username: "打地鼠"), Account(username: "假设很长很长很长"), Account(username: "假设特别特别特别长")]
         
     }
     
@@ -165,7 +165,7 @@ class SelectContactTableViewController: UITableViewController {
         cell.contact = filteredContacts[sectionIndex[indexPath.section]]?[indexPath.row]
         for e in returnSelected
         {
-            if e.id == (cell.contact?.id)! {
+            if e.username == (cell.contact?.username)! {
                 cell.isChosen = true
                 cell.chooseView.image = #imageLiteral(resourceName: "Select_Yes")
             }
@@ -178,7 +178,7 @@ class SelectContactTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! SelectContactTableViewCell
         if cell.isChosen {
             cell.chooseView.image = #imageLiteral(resourceName: "Select_None")
-            returnSelected = returnSelected.filter({$0.id != cell.contact?.id})
+            returnSelected = returnSelected.filter({$0.username != cell.contact?.username})
         }
         else {
             cell.chooseView.image = #imageLiteral(resourceName: "Select_Yes")

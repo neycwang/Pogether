@@ -17,7 +17,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     var iconView: UIImageView!
     
     var usernameLabel: UILabel!
-    var idLabel: UILabel!
     
     var signatureView: UIView!
     var signatureLabel: UILabel!
@@ -87,12 +86,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         usernameLabel.text = user.username
         usernameLabel.textAlignment = .center
         usernameLabel.font = .systemFont(ofSize: height * 0.036)
-        
-        idLabel = UILabel()
-        idLabel.text = "账号：\(user.id!)"
-        idLabel.textAlignment = .center
-        idLabel.font = .systemFont(ofSize: height * 0.024)
-        idLabel.textColor = ColorandFontTable.textGray0
         
         signatureView = UIView()
         signatureView.backgroundColor = ColorandFontTable.transparent
@@ -185,7 +178,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         initialize()
         
         scrollView.addSubview(usernameLabel)
-        scrollView.addSubview(idLabel)
         scrollView.addSubview(signatureView)
         scrollView.addSubview(signatureLabel)
         scrollView.addSubview(signatureContentLabel!)
@@ -209,11 +201,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             make.height.equalTo(height * 0.036)
         }
         
-        idLabel.snp.makeConstraints{(make) in
-            make.centerX.equalTo(scrollView.snp.centerX)
-            make.top.equalTo(scrollView).offset(height * 0.504)
-            make.height.equalTo(height * 0.024)
-        }
         
         signatureView.snp.makeConstraints{(make) in
             make.left.equalTo(scrollView)

@@ -76,7 +76,7 @@ class ContactAddTableViewController: UITableViewController {
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
         for _ in 0 ... 3 {
-            contacts.append(Account(id: "1", username: "aaa"))
+            contacts.append(Account(username: "aaa"))
         }
         //NotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         //NotificationCenter.defaultCenter().addObserver(self, selector: #selector(tokenExpired), name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
@@ -88,7 +88,6 @@ class ContactAddTableViewController: UITableViewController {
         self.filteredContacts = self.contacts.filter {
                 (!searchController.isActive
                     || ($0.username?.lowercased().contains(searchController.searchBar.text!.lowercased()))!
-                    || ($0.id?.description.contains(searchController.searchBar.text!.lowercased()))!
                     || (searchController.isActive && searchController.searchBar.text! == ""))
         }
         tableView.reloadData()
