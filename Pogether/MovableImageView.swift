@@ -15,6 +15,7 @@ public class MovableImageView: UIImageView, UIGestureRecognizerDelegate {
     public override init(image: UIImage?) {
         super.init(image: image)
         isUserInteractionEnabled = true
+        self.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
         movableGestureRecognizers.forEach(addGestureRecognizer)
     }
     public var movableGestureRecognizers: [UIGestureRecognizer] {

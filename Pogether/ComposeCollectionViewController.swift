@@ -78,10 +78,15 @@ class ComposeCollectionViewController: UICollectionViewController {
         resource = [#imageLiteral(resourceName: "icon"), #imageLiteral(resourceName: "icon1"), #imageLiteral(resourceName: "default"), #imageLiteral(resourceName: "whatwhat_pc_icons11")]
         for i in 0..<resource.count
         {
-            imageControl.append((resource[i], UIImageView(image: resource[i])))
+            resource[i] = removeBackground(image: resource[i])
+            let imageView = MovableImageView(image: resource[i])
+            imageView.layer.borderColor = ColorandFontTable.primaryPink.cgColor
+            imageView.layer.borderWidth = 1
+            imageView.tag = i + 1
+            imageControl.append((resource[i], imageView))
             imageControl[i].1.tag = i + 1
         }
-        for i in (0..<resource.count).reversed()
+        for i in 0..<resource.count
         {
             self.view.addSubview(imageControl[i].1)
             imageControl[i].1.isHidden = true
@@ -138,7 +143,6 @@ class ComposeCollectionViewController: UICollectionViewController {
         var destinationIndex: Int = 0
         for (index, subview) in self.view.subviews.enumerated()
         {
-            print (subview.tag)
             if subview.tag == sourceIndexPath.row + 1 {
                 sourceIndex = index
             }
@@ -199,5 +203,16 @@ class ComposeCollectionViewController: UICollectionViewController {
             return
         }
         collectionView!.updateInteractiveMovementTargetPosition(loc)
+    }
+    
+    func removeBackground(image: UIImage) -> UIImage {
+        let cubeMap = createCubeMap(60,90)
+        let data = NSData(bytesNoCopy: cubeMap.data, length: Int(cubeMap.length), freeWhenDone: true)
+        let colorCubeFilter = CIFilter(name: "CIColorCube")
+        
+        colorCubeFilter?.setValue(cubeMap.dimension, forKey: "inputCubeDimension")
+        colorCubeFilter?.setValue(data, forKey: "inputCubeData")
+        colorCubeFilter?.setValue(CIImage(image: image), forKey: kCIInputImageKey)
+        return UIImage(ciImage: (colorCubeFilter?.outputImage)!)
     }
 }

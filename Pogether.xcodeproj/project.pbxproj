@@ -22,6 +22,7 @@
 		357F45371E5466AD008B60CF /* CropCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */; };
 		357F453B1E558B40008B60CF /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F453A1E558B40008B60CF /* Album.swift */; };
 		358562651E6A552E00B60C02 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358562641E6A552E00B60C02 /* QuartzCore.framework */; };
+		358562671E6C0C7C00B60C02 /* CubeMap.c in Sources */ = {isa = PBXBuildFile; fileRef = 358562661E6C0C7C00B60C02 /* CubeMap.c */; };
 		358C10FE1E5602880038F03C /* ComposeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */; };
 		358C11001E5735140038F03C /* SelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */; };
 		358C11021E5755E10038F03C /* SelectPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */; };
@@ -90,6 +91,8 @@
 		357F45361E5466AD008B60CF /* CropCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropCollectionViewCell.swift; sourceTree = "<group>"; };
 		357F453A1E558B40008B60CF /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		358562641E6A552E00B60C02 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		358562661E6C0C7C00B60C02 /* CubeMap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CubeMap.c; sourceTree = "<group>"; };
+		358562681E6C2A7300B60C02 /* CubeMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeMap.h; sourceTree = "<group>"; };
 		358C10FD1E5602880038F03C /* ComposeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCollectionViewController.swift; sourceTree = "<group>"; };
 		358C10FF1E5735140038F03C /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		358C11011E5755E10038F03C /* SelectPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPhotoCollectionViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 				357F45321E5367AA008B60CF /* TextViewController.swift */,
 				35E6B2D51E59631F00BD7210 /* TKImageView.h */,
 				35E6B2D61E59631F00BD7210 /* TKImageView.m */,
+				358562661E6C0C7C00B60C02 /* CubeMap.c */,
+				358562681E6C2A7300B60C02 /* CubeMap.h */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -606,6 +611,7 @@
 				35E6B2D91E59744600BD7210 /* ImageProcessing.swift in Sources */,
 				357F452D1E506031008B60CF /* EditViewController.swift in Sources */,
 				357F45331E5367AA008B60CF /* TextViewController.swift in Sources */,
+				358562671E6C0C7C00B60C02 /* CubeMap.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
