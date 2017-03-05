@@ -165,32 +165,96 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     //MARK: - set authority
     var selectedContacts = [Account]()
-    func setAll()
-    {
-        self._delegate?.editLimit(count: ImageArray.count, limit: .all)
+    func setAll() {
+        let url = URL(string: "https://\(APIurl)/album/limit")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //这里albumid是什么 =-=
+        request.httpBody = "{\n  \"albumid\": \"333\",\n  \"limit\": \"all\"\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                self._delegate?.editLimit(count: self.ImageArray.count, limit: .all)
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
+        
     }
-    func setMyself()
-    {
-        self._delegate?.editLimit(count: ImageArray.count, limit: .myself)
+    func setMyself() {
+        let url = URL(string: "https://\(APIurl)/album/limit")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //这里albumid是什么 =-=
+        request.httpBody = "{\n  \"albumid\": \"333\",\n  \"limit\": \"myself\"\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                self._delegate?.editLimit(count: self.ImageArray.count, limit: .myself)
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
     }
-    func setSome()
-    {
-        self._delegate?.editLimit(count: ImageArray.count, limit: .somecan)
-        let avc = SelectContactTableViewController()
-        avc.delegate = self
-        avc.returnSelected = selectedContacts
-        self.navigationController?.pushViewController(avc, animated: true)
+    func setSome() {
+        
+        let url = URL(string: "https://\(APIurl)/album/limit")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //这里albumid是什么 =-=
+        request.httpBody = "{\n  \"albumid\": \"333\",\n  \"limit\": \"some\"\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                self._delegate?.editLimit(count: self.ImageArray.count, limit: .somecan)
+                let avc = SelectContactTableViewController()
+                avc.delegate = self
+                avc.returnSelected = self.selectedContacts
+                self.navigationController?.pushViewController(avc, animated: true)
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
+
     }
-    func setSomeNot()
-    {
-        self._delegate?.editLimit(count: ImageArray.count, limit: .somenot)
-        let avc = SelectContactTableViewController()
-        avc.delegate = self
-        avc.returnSelected = selectedContacts
-        self.navigationController?.pushViewController(avc, animated: true)
+    func setSomeNot() {
+        
+        let url = URL(string: "https://\(APIurl)/album/limit")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //这里albumid是什么 =-=
+        request.httpBody = "{\n  \"albumid\": \"333\",\n  \"limit\": \"somenot\"\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                self._delegate?.editLimit(count: self.ImageArray.count, limit: .somenot)
+                let avc = SelectContactTableViewController()
+                avc.delegate = self
+                avc.returnSelected = self.selectedContacts
+                self.navigationController?.pushViewController(avc, animated: true)
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
+    
     }
-    func addNewPhoto()
-    {
+    func addNewPhoto() {
         let picker = UIImagePickerController()
         picker.delegate = self
         self.navigationController!.present(picker, animated: true, completion: nil)

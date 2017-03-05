@@ -177,6 +177,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         
         initialize()
         
+        loadRecentThreePhotos()
+        
         scrollView.addSubview(usernameLabel)
         scrollView.addSubview(signatureView)
         scrollView.addSubview(signatureLabel)
@@ -295,6 +297,35 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         {
             signatureContentLabel!.text = user.signature
         }
+    }
+    
+    func loadRecentThreePhotos() {
+
+
+        let url = URL(string: "https://\(APIurl)/album/recent")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = "{\n  \"username\": \(user.username!)\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
+                let url1 = json["photo1"]!
+                let url2 = json["photo2"]!
+                let url3 = json["photo3"]!
+                self.albumFrame0.image = self.imageFromURL(url: URL(string: url1)!)
+                self.albumFrame1.image = self.imageFromURL(url: URL(string: url2)!)
+                self.albumFrame2.image = self.imageFromURL(url: URL(string: url3)!)
+                print(url1)
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
+ 
     }
     
     func imageFromURL(url: URL) -> UIImage?
@@ -432,25 +463,66 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         navigationController?.pushViewController(avc, animated: true)
     }
     
-    func settings()
-    {
-        NSLog("Settings")
-    }
     func logout()
     {
         let alert = UIAlertController(title: "注销", message: "您确定要注销帐号吗？", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "确定", style: .default, handler: { (action:UIAlertAction) in
-            let avc = LoginViewController()
-            let _ = self.navigationController?.popToRootViewController(animated: true)
-            self.navigationController?.pushViewController(avc, animated: false)
+            
+            let url = URL(string: "https://\(APIurl)/signout")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let response = response, let data = data {
+                    let avc = LoginViewController()
+                    let _ = self.navigationController?.popToRootViewController(animated: true)
+                    self.navigationController?.pushViewController(avc, animated: false)
+                } else {
+                    print(error)
+                }
+            }
+            task.resume()
             })
         )
         self.present(alert, animated: true, completion: nil)
     }
-    func addFriend()
-    {
-        NSLog("addFriend")
+    func addFriend() {
+        let url = URL(string: "https://\(APIurl)/addfriend")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = "{\n  \"username\": \(user.username!)\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                NSLog("加好友啦！QAQ")
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func deleteFriend() {
+        let url = URL(string: "https://\(APIurl)/deletefriend")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = "{\n  \"username\": \(user.username!)\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                NSLog("删好友啦！QAQ")
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
     }
     func deleteFriend()
     {
@@ -505,7 +577,24 @@ extension ProfileViewController: UIImagePickerControllerDelegate
 extension ProfileViewController: SignatureDelegate
 {
     func SignatureDidChange(signature: String) {
-        signatureContentLabel!.text = signature
-        user.signature = signature
+        
+        let url = URL(string: "https://\(APIurl)/changedetails")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = "{\n  \"username\": \(user.username),\n  \"email\": \(user.email),\n  \"signature\": \(user.signature),\n  \"avatar\": \(user.avatar)\n}".data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response, let data = data {
+                self.signatureContentLabel!.text = signature
+                self.user.signature = signature
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
+        
     }
 }

@@ -113,8 +113,25 @@ class AlbumTableViewController: UITableViewController {
         let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: {
             action in
             let name = alertController.textFields?[0].text
-            self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
-            self.tableView.reloadData()
+            
+            let url = URL(string: "https://\(APIurl)/album/create")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            request.httpBody = "{\n  \"albumname\": \(name!)\n}".data(using: .utf8)
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let response = response, let data = data {
+                    self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
+                    self.tableView.reloadData()
+                } else {
+                    print(error)
+                }
+            }
+            
+            task.resume()
+            
         })
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
