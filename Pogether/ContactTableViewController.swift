@@ -174,6 +174,8 @@ class ContactTableViewController: UITableViewController {
         avc.user = filteredContacts[sectionIndex[indexPath.section]]?[indexPath.row]
         avc.isStranger = false
         avc.isSetting = false
+        avc.indexPath = indexPath
+        avc.delegate = self
         self.navigationController?.pushViewController(avc, animated: true)
     }
     
@@ -227,5 +229,38 @@ extension ContactTableViewController: UISearchBarDelegate
     public func searchCancel()
     {
         updatefilteredContacts()
+    }
+}
+
+extension ContactTableViewController: ChangeFriend
+{
+    func firstCharactor(chineseString: String) -> String
+    {
+        let transformContents = CFStringCreateMutableCopy(nil, 0, chineseString as CFString!)
+        CFStringTransform(transformContents, nil, kCFStringTransformMandarinLatin, false)
+        let traStr = transformContents! as String
+        let index = traStr.index(traStr.startIndex, offsetBy: 1)
+        let str = traStr.uppercased().substring(to: index)
+        return str
+    }
+    func removefriend(username: String) {
+        let str = firstCharactor(chineseString: username)
+        var data = [Account]()
+        for e in contacts[str]!
+        {
+            if e.username != username
+            {
+                data.append(e)
+            }
+        }
+        data = data.sorted(by: { $0.username! < $1.username! })
+        contacts[str] = data
+    }
+    func addfriend(user: Account) {
+        let str = firstCharactor(chineseString: user.username!)
+        print(str)
+        contacts[str]?.insert(user, at: (contacts[str]?.count)!)
+        contacts[str] = (contacts[str]?.sorted(by: { $0.username! < $1.username! }))!
+        tableView.reloadData()
     }
 }

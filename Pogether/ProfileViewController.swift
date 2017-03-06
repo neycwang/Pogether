@@ -6,7 +6,10 @@
 //  Copyright © 2017年 Wang. All rights reserved.
 //
 
-import SnapKit
+protocol ChangeFriend: NSObjectProtocol {
+    func removefriend(username: String)
+    func addfriend(user: Account)
+}
 
 class ProfileViewController: UIViewController, UINavigationControllerDelegate
 {
@@ -41,6 +44,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     var isIcon = false
     var isSetting = false
     var isStranger = false
+    
+    weak var delegate: ChangeFriend?
+    var indexPath: IndexPath!
     
     func initialize()
     {
@@ -341,19 +347,22 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     func tapped(sender: UITapGestureRecognizer)
     {
         let loc = sender.location(in: view)
-        if iconView.frame.contains(loc)
+        if isSetting
         {
-            changeIcon()
-            return
-        }
-        if wallpaperView.frame.contains(loc)
-        {
-            changeWallpaper()
-            return
-        }
-        if signatureView.frame.contains(loc)
-        {
-            tappedSignature()
+            if iconView.frame.contains(loc)
+            {
+                changeIcon()
+                return
+            }
+            if wallpaperView.frame.contains(loc)
+            {
+                changeWallpaper()
+                return
+            }
+            if signatureView.frame.contains(loc)
+            {
+                tappedSignature()
+            }
         }
         if albumView.frame.contains(loc)
         {
@@ -504,6 +513,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         }
         
         task.resume()
+        self.delegate?.addfriend(user: self.user)
+        settingsButton.setTitle("删除好友", for: .normal)
+        settingsButton.addTarget(self, action: #selector(deleteFriend), for: .touchUpInside)
     }
     
     func deleteFriend() {
@@ -523,6 +535,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         }
         
         task.resume()
+        self.delegate?.removefriend(username: self.user.username!)
+        backToLast()
     }
 }
 

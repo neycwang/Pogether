@@ -123,6 +123,13 @@ class ContactAddTableViewController: UITableViewController {
         avc.user = filteredContacts[indexPath.row]
         avc.isStranger = true
         avc.isSetting = false
+        for controller in (self.navigationController?.viewControllers)!
+        {
+            if controller.isKind(of: ContactTableViewController.self)
+            {
+                avc.delegate = controller as! ContactTableViewController
+            }
+        }
         self.navigationController?.pushViewController(avc, animated: true)
     }
     

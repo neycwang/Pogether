@@ -54,3 +54,4 @@ class ContactTableViewCell: UITableViewCell {
     }
 
 }
+
