@@ -142,7 +142,15 @@ class RegisterViewController: UIViewController {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response, let data = data {
-                //暂时跳转回登录界面
+                //获取注册response
+                let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
+                let username = json["username"]!
+                let email = json["email"]!
+                let signature = json["signature"]!
+                let avatar = json["avatar"]!
+                let background = json["background"]!
+                print("\(username) has successfully signed up")
+                //跳转回登陆界面
                 self.backToLast()
             } else {
                 print(error!)

@@ -123,6 +123,13 @@ class AlbumTableViewController: UITableViewController {
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let response = response, let data = data {
+                    let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
+                    let id = json["id"]! //string
+                    let getName = json["name"]! //string
+                    let count = json["count"]! //int
+                    let avatar = json["avatar"]! //string
+                    let limit = json["limit"]! //enum
+                    
                     self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
                     self.tableView.reloadData()
                 } else {
