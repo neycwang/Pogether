@@ -10,7 +10,6 @@ import Foundation
 
 class Account {
     
-    var id: String? //主键
     var username: String?
     var email: String?
     var signature: String?
@@ -19,9 +18,8 @@ class Account {
     init()
     {
     }
-    init(id: String, username: String)
+    init(username: String)
     {
-        self.id = id
         self.username = username
     }
 }

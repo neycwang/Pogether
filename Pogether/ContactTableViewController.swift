@@ -76,10 +76,10 @@ class ContactTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        contacts["A"] = [Account(id: "1", username: "aaa"), Account(id: "4", username: "aba"), Account(id: "5", username: "aca"), Account(id: "6", username: "aac"), Account(id: "7", username: "acc")]
-        contacts["B"] = [Account(id: "2", username: "bbb")]
-        contacts["C"] = [Account(id: "3", username: "ccc")]
-        contacts["D"] = [Account(id: "3", username: "ddd"), Account(id: "3", username: "ddc"), Account(id: "3", username: "dddd"), Account(id: "3", username: "ddddd"), Account(id: "3", username: "ddddddd")]
+        contacts["A"] = [Account(username: "aaa"), Account(username: "aba"), Account(username: "aca"), Account( username: "aac"), Account(username: "acc")]
+        contacts["B"] = [Account(username: "bbb")]
+        contacts["C"] = [Account(username: "ccc")]
+        contacts["D"] = [Account(username: "ddd"), Account( username: "ddc"), Account(username: "dddd"), Account(username: "ddddd"), Account(username: "ddddddd")]
         //NotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         //NotificationCenter.defaultCenter().addObserver(self, selector: #selector(tokenExpired), name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         
@@ -174,6 +174,8 @@ class ContactTableViewController: UITableViewController {
         avc.user = filteredContacts[sectionIndex[indexPath.section]]?[indexPath.row]
         avc.isStranger = false
         avc.isSetting = false
+        avc.indexPath = indexPath
+        avc.delegate = self
         self.navigationController?.pushViewController(avc, animated: true)
     }
     
@@ -227,5 +229,38 @@ extension ContactTableViewController: UISearchBarDelegate
     public func searchCancel()
     {
         updatefilteredContacts()
+    }
+}
+
+extension ContactTableViewController: ChangeFriend
+{
+    func firstCharactor(chineseString: String) -> String
+    {
+        let transformContents = CFStringCreateMutableCopy(nil, 0, chineseString as CFString!)
+        CFStringTransform(transformContents, nil, kCFStringTransformMandarinLatin, false)
+        let traStr = transformContents! as String
+        let index = traStr.index(traStr.startIndex, offsetBy: 1)
+        let str = traStr.uppercased().substring(to: index)
+        return str
+    }
+    func removefriend(username: String) {
+        let str = firstCharactor(chineseString: username)
+        var data = [Account]()
+        for e in contacts[str]!
+        {
+            if e.username != username
+            {
+                data.append(e)
+            }
+        }
+        data = data.sorted(by: { $0.username! < $1.username! })
+        contacts[str] = data
+    }
+    func addfriend(user: Account) {
+        let str = firstCharactor(chineseString: user.username!)
+        print(str)
+        contacts[str]?.insert(user, at: (contacts[str]?.count)!)
+        contacts[str] = (contacts[str]?.sorted(by: { $0.username! < $1.username! }))!
+        tableView.reloadData()
     }
 }

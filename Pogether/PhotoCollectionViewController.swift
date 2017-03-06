@@ -178,7 +178,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
             if let response = response, let data = data {
                 self._delegate?.editLimit(count: self.ImageArray.count, limit: .all)
             } else {
-                print(error)
+                print(error!)
             }
         }
         
@@ -198,7 +198,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
             if let response = response, let data = data {
                 self._delegate?.editLimit(count: self.ImageArray.count, limit: .myself)
             } else {
-                print(error)
+                print(error!)
             }
         }
         
@@ -222,7 +222,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
                 avc.returnSelected = self.selectedContacts
                 self.navigationController?.pushViewController(avc, animated: true)
             } else {
-                print(error)
+                print(error!)
             }
         }
         
@@ -247,7 +247,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
                 avc.returnSelected = self.selectedContacts
                 self.navigationController?.pushViewController(avc, animated: true)
             } else {
-                print(error)
+                print(error!)
             }
         }
         

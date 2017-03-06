@@ -6,7 +6,10 @@
 //  Copyright © 2017年 Wang. All rights reserved.
 //
 
-import SnapKit
+protocol ChangeFriend: NSObjectProtocol {
+    func removefriend(username: String)
+    func addfriend(user: Account)
+}
 
 class ProfileViewController: UIViewController, UINavigationControllerDelegate
 {
@@ -17,7 +20,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     var iconView: UIImageView!
     
     var usernameLabel: UILabel!
-    var idLabel: UILabel!
     
     var signatureView: UIView!
     var signatureLabel: UILabel!
@@ -42,6 +44,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     var isIcon = false
     var isSetting = false
     var isStranger = false
+    
+    weak var delegate: ChangeFriend?
+    var indexPath: IndexPath!
     
     func initialize()
     {
@@ -87,12 +92,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         usernameLabel.text = user.username
         usernameLabel.textAlignment = .center
         usernameLabel.font = .systemFont(ofSize: height * 0.036)
-        
-        idLabel = UILabel()
-        idLabel.text = "账号：\(user.id!)"
-        idLabel.textAlignment = .center
-        idLabel.font = .systemFont(ofSize: height * 0.024)
-        idLabel.textColor = ColorandFontTable.textGray0
         
         signatureView = UIView()
         signatureView.backgroundColor = ColorandFontTable.transparent
@@ -187,7 +186,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         loadRecentThreePhotos()
         
         scrollView.addSubview(usernameLabel)
-        scrollView.addSubview(idLabel)
         scrollView.addSubview(signatureView)
         scrollView.addSubview(signatureLabel)
         scrollView.addSubview(signatureContentLabel!)
@@ -211,11 +209,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             make.height.equalTo(height * 0.036)
         }
         
-        idLabel.snp.makeConstraints{(make) in
-            make.centerX.equalTo(scrollView.snp.centerX)
-            make.top.equalTo(scrollView).offset(height * 0.504)
-            make.height.equalTo(height * 0.024)
-        }
         
         signatureView.snp.makeConstraints{(make) in
             make.left.equalTo(scrollView)
@@ -333,7 +326,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
                 self.albumFrame2.image = self.imageFromURL(url: URL(string: url3)!)
                 print(url1)
             } else {
-                print(error)
+                print(error!)
             }
         }
         
@@ -354,19 +347,22 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     func tapped(sender: UITapGestureRecognizer)
     {
         let loc = sender.location(in: view)
-        if iconView.frame.contains(loc)
+        if isSetting
         {
-            changeIcon()
-            return
-        }
-        if wallpaperView.frame.contains(loc)
-        {
-            changeWallpaper()
-            return
-        }
-        if signatureView.frame.contains(loc)
-        {
-            tappedSignature()
+            if iconView.frame.contains(loc)
+            {
+                changeIcon()
+                return
+            }
+            if wallpaperView.frame.contains(loc)
+            {
+                changeWallpaper()
+                return
+            }
+            if signatureView.frame.contains(loc)
+            {
+                tappedSignature()
+            }
         }
         if albumView.frame.contains(loc)
         {
@@ -492,7 +488,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
                     let _ = self.navigationController?.popToRootViewController(animated: true)
                     self.navigationController?.pushViewController(avc, animated: false)
                 } else {
-                    print(error)
+                    print(error!)
                 }
             }
             task.resume()
@@ -512,11 +508,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             if let response = response, let data = data {
                 NSLog("加好友啦！QAQ")
             } else {
-                print(error)
+                print(error!)
             }
         }
         
         task.resume()
+        self.delegate?.addfriend(user: self.user)
+        settingsButton.setTitle("删除好友", for: .normal)
+        settingsButton.addTarget(self, action: #selector(deleteFriend), for: .touchUpInside)
     }
     
     func deleteFriend() {
@@ -531,11 +530,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             if let response = response, let data = data {
                 NSLog("删好友啦！QAQ")
             } else {
-                print(error)
+                print(error!)
             }
         }
         
         task.resume()
+        self.delegate?.removefriend(username: self.user.username!)
+        backToLast()
     }
 }
 
@@ -599,7 +600,7 @@ extension ProfileViewController: SignatureDelegate
                 self.signatureContentLabel!.text = signature
                 self.user.signature = signature
             } else {
-                print(error)
+                print(error!)
             }
         }
         

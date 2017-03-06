@@ -126,7 +126,7 @@ class AlbumTableViewController: UITableViewController {
                     self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
                     self.tableView.reloadData()
                 } else {
-                    print(error)
+                    print(error!)
                 }
             }
             
