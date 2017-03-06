@@ -37,7 +37,7 @@ void rgbToHSV(float *rgb, float *hsv) {
         *h += 360;
 }
 
-struct CubeMap createCubeMap(float minHueAngle, float maxHueAngle) {
+struct CubeMap createCubeMap() {
     const unsigned int size = 64;
     struct CubeMap map;
     map.length = size * size * size * sizeof (float) * 4;
@@ -55,7 +55,9 @@ struct CubeMap createCubeMap(float minHueAngle, float maxHueAngle) {
                 // Use the hue value to determine which to make transparent
                 // The minimum and maximum hue angle depends on
                 // the color you want to remove
-                float alpha = (hsv[0] > minHueAngle && hsv[0] < maxHueAngle) ? 0.0f: 1.0f;
+                float alpha = (hsv[1] > -0.0001f && hsv[1] < 0.0001f && hsv[2] > 0.95f && hsv[2] < 1.0001f) ? 0.0f: 1.0f;
+                if (hsv[1] > -0.0001f && hsv[1] < 0.0001f && hsv[2] > 0.9999f && hsv[2] < 1.0001f)
+                    printf("r = %f g = %f b = %f\n",rgb[0],rgb[1],rgb[2]);
                 // Calculate premultiplied alpha values for the cube
                 c[0] = rgb[0] * alpha;
                 c[1] = rgb[1] * alpha;

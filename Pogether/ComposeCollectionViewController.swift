@@ -75,11 +75,13 @@ class ComposeCollectionViewController: UICollectionViewController {
             make.right.equalTo(self.view).offset(-10)
             make.bottom.equalTo(self.view).offset(-170)
         }
-        resource = [#imageLiteral(resourceName: "icon"), #imageLiteral(resourceName: "icon1"), #imageLiteral(resourceName: "default"), #imageLiteral(resourceName: "whatwhat_pc_icons11")]
+        resource = [#imageLiteral(resourceName: "icon"), #imageLiteral(resourceName: "icon1"), #imageLiteral(resourceName: "default"), #imageLiteral(resourceName: "whatwhat_pc_icons11"), #imageLiteral(resourceName: "童佳琪 大头照")]
+        
         for i in 0..<resource.count
         {
             resource[i] = removeBackground(image: resource[i])
             let imageView = MovableImageView(image: resource[i])
+            imageView.contentMode = .scaleAspectFit
             imageView.layer.borderColor = ColorandFontTable.primaryPink.cgColor
             imageView.layer.borderWidth = 1
             imageView.tag = i + 1
@@ -206,7 +208,7 @@ class ComposeCollectionViewController: UICollectionViewController {
     }
     
     func removeBackground(image: UIImage) -> UIImage {
-        let cubeMap = createCubeMap(60,90)
+        let cubeMap = createCubeMap()
         let data = NSData(bytesNoCopy: cubeMap.data, length: Int(cubeMap.length), freeWhenDone: true)
         let colorCubeFilter = CIFilter(name: "CIColorCube")
         

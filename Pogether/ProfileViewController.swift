@@ -320,7 +320,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
                 self.albumFrame2.image = self.imageFromURL(url: URL(string: url3)!)
                 print(url1)
             } else {
-                print(error)
+                print(error!)
             }
         }
         
@@ -479,7 +479,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
                     let _ = self.navigationController?.popToRootViewController(animated: true)
                     self.navigationController?.pushViewController(avc, animated: false)
                 } else {
-                    print(error)
+                    print(error!)
                 }
             }
             task.resume()
@@ -499,7 +499,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             if let response = response, let data = data {
                 NSLog("加好友啦！QAQ")
             } else {
-                print(error)
+                print(error!)
             }
         }
         
@@ -518,15 +518,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             if let response = response, let data = data {
                 NSLog("删好友啦！QAQ")
             } else {
-                print(error)
+                print(error!)
             }
         }
         
         task.resume()
-    }
-    func deleteFriend()
-    {
-        NSLog("addFriend")
     }
 }
 
@@ -590,7 +586,7 @@ extension ProfileViewController: SignatureDelegate
                 self.signatureContentLabel!.text = signature
                 self.user.signature = signature
             } else {
-                print(error)
+                print(error!)
             }
         }
         

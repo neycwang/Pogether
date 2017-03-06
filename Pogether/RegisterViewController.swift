@@ -145,7 +145,7 @@ class RegisterViewController: UIViewController {
                 //暂时跳转回登录界面
                 self.backToLast()
             } else {
-                print(error)
+                print(error!)
             }
         }
         

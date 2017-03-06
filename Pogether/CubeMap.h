@@ -16,6 +16,6 @@ struct CubeMap {
 };
 
 void rgbToHSV(float *rgb, float *hsv);
-struct CubeMap createCubeMap(float minHueAngle, float maxHueAngle);
+struct CubeMap createCubeMap();
 
 #endif /* CubeMap_h */
