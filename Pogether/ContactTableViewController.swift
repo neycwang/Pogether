@@ -104,7 +104,7 @@ class ContactTableViewController: UITableViewController {
             {
                 if (!searchController.isActive
                     ||
-                    (i.username?.lowercased().contains(searchController.searchBar.text!.lowercased()))!
+                    (i.username.lowercased().contains(searchController.searchBar.text!.lowercased()))
                     ||
                     (searchController.isActive && searchController.searchBar.text! == ""))
                 {
@@ -253,14 +253,14 @@ extension ContactTableViewController: ChangeFriend
                 data.append(e)
             }
         }
-        data = data.sorted(by: { $0.username! < $1.username! })
+        data = data.sorted(by: { $0.username < $1.username })
         contacts[str] = data
     }
     func addfriend(user: Account) {
-        let str = firstCharactor(chineseString: user.username!)
+        let str = firstCharactor(chineseString: user.username)
         print(str)
         contacts[str]?.insert(user, at: (contacts[str]?.count)!)
-        contacts[str] = (contacts[str]?.sorted(by: { $0.username! < $1.username! }))!
+        contacts[str] = (contacts[str]?.sorted(by: { $0.username < $1.username }))!
         tableView.reloadData()
     }
 }

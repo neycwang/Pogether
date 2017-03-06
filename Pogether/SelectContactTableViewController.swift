@@ -99,7 +99,7 @@ class SelectContactTableViewController: UITableViewController {
             for i in e.value {
                 if (!searchController.isActive
                     ||
-                    (i.username?.lowercased().contains(searchController.searchBar.text!.lowercased()))!
+                    (i.username.lowercased().contains(searchController.searchBar.text!.lowercased()))
                     ||
                     (searchController.isActive && searchController.searchBar.text! == "")) {
                     if filteredContacts[e.key] == nil {

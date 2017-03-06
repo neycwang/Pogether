@@ -10,6 +10,7 @@ target 'Pogether' do
   pod 'YCXMenu'
   pod ‘WYCDynamicTextController’
   pod 'MGDrawingSlate'
+  pod 'SDWebImage'
   # Pods for Pogether
 
   target 'PogetherTests' do

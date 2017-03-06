@@ -6,6 +6,8 @@
 //  Copyright © 2017年 Wang. All rights reserved.
 //
 
+import SDWebImage
+
 protocol ChangeFriend: NSObjectProtocol {
     func removefriend(username: String)
     func addfriend(user: Account)
@@ -52,13 +54,23 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     {
         width = view.frame.width
         height = view.frame.height
-        
+        user = Account(username: UserDefaults.standard.value(forKey: "USERNAME") as! String)
+        user.email = UserDefaults.standard.value(forKey: "EMAIL") as! String?
+        user.signature = UserDefaults.standard.value(forKey: "SIGNATURE") as! String?
+        if (UserDefaults.standard.value(forKey: "AVATAR") != nil)
+        {
+            user.avatar = URL(string: (UserDefaults.standard.value(forKey: "AVATAR") as! String))
+        }
+        if (UserDefaults.standard.value(forKey: "BACKGROUND") != nil)
+        {
+            user.background = URL(string: UserDefaults.standard.value(forKey: "BACKGROUND") as! String)
+        }
         wallpaperView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height * 0.3555))
         wallpaperView.contentMode = .scaleAspectFill
         wallpaperView.clipsToBounds = true
-        if user.avatar != nil
+        if user.background != nil
         {
-            wallpaperView.image = imageFromURL(url: user.avatar!)
+            wallpaperView.sd_setImage(with: user.background, placeholderImage: #imageLiteral(resourceName: "Profile_Background"))
         }
         else
         {
@@ -78,7 +90,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         iconView.contentMode = .scaleAspectFill
         if user.avatar != nil
         {
-            iconView.image = imageFromURL(url: user.avatar!)
+            iconView.sd_setImage(with: user.avatar, placeholderImage: #imageLiteral(resourceName: "whatwhat_pc_icons2"))
         }
         else
         {
@@ -313,7 +325,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        request.httpBody = "{\n  \"username\": \(user.username!)\n}".data(using: .utf8)
+        request.httpBody = "{\n  \"username\": \(user.username)\n}".data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response, let data = data {
@@ -483,16 +495,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             request.httpMethod = "POST"
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let response = response, let data = data {
-                    //log out居然也要response =-=
-                    let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
-                    let username = json["username"]!
-                    let email = json["email"]!
-                    let signature = json["signature"]!
-                    let avatar = json["avatar"]!
-                    let background = json["background"]!
-                    print("\(username) has successfully loged out")
-                    
+                if let _ = response, let _ = data {
+                    print("successfully loged out")
+                    UserDefaults.standard.removeObject(forKey: "USERNAME")
+                    UserDefaults.standard.removeObject(forKey: "EMAIL")
+                    UserDefaults.standard.removeObject(forKey: "SIGNATURE")
+                    UserDefaults.standard.removeObject(forKey: "AVATAR")
+                    UserDefaults.standard.removeObject(forKey: "BACKGROUND")
                     let avc = LoginViewController()
                     let _ = self.navigationController?.popToRootViewController(animated: true)
                     self.navigationController?.pushViewController(avc, animated: false)
@@ -511,11 +520,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        request.httpBody = "{\n  \"username\": \(user.username!)\n}".data(using: .utf8)
+        request.httpBody = "{\n  \"username\": \(user.username)\n}".data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
-                //no response
+            if let _ = response, let _ = data {
                 NSLog("加好友啦！QAQ")
             } else {
                 print(error!)
@@ -534,7 +542,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        request.httpBody = "{\n  \"username\": \(user.username!)\n}".data(using: .utf8)
+        request.httpBody = "{\n  \"username\": \(user.username)\n}".data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response, let data = data {
@@ -546,7 +554,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         }
         
         task.resume()
-        self.delegate?.removefriend(username: self.user.username!)
+        self.delegate?.removefriend(username: self.user.username)
         backToLast()
     }
 }

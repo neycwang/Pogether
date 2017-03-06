@@ -87,7 +87,7 @@ class ContactAddTableViewController: UITableViewController {
     func updatefilteredContacts() {
         self.filteredContacts = self.contacts.filter {
                 (!searchController.isActive
-                    || ($0.username?.lowercased().contains(searchController.searchBar.text!.lowercased()))!
+                    || ($0.username.lowercased().contains(searchController.searchBar.text!.lowercased()))
                     || (searchController.isActive && searchController.searchBar.text! == ""))
         }
         tableView.reloadData()

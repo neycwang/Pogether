@@ -135,8 +135,8 @@ class LoginViewController: UIViewController {
     // MARK: - Touch event
     func login(){
         //懒得等加载
-        self.jumpToHomepage()
-        return
+        //self.jumpToHomepage()
+        //return
         
         let url = URL(string: "https://\(APIurl)/login")!
         var request = URLRequest(url: url)
@@ -149,20 +149,22 @@ class LoginViewController: UIViewController {
                 //print(response)
                 let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
                 let username = json["username"]!
-                let email = json["email"]!
-                let signature = json["signature"]!
-                let avatar = json["avatar"]!
-                let background = json["background"]!
+                let email = json["email"]
+                let signature = json["signature"]
+                let avatar = json["avatar"]
+                let background = json["background"]
                 print("\(username) has successfully loged in")
-                //这里json保存了帐户id username email等各项属性的dictionary，等profile要用全局变量就在这里添加
-                
+                UserDefaults.standard.set(username, forKey: "USERNAME")
+                UserDefaults.standard.set(email, forKey: "EMAIL")
+                UserDefaults.standard.set(signature, forKey: "SIGNATURE")
+                UserDefaults.standard.set(avatar, forKey: "AVATAR")
+                UserDefaults.standard.set(background, forKey: "BACKGROUND")
                 self.jumpToHomepage()
                 
             } else {
                 print(error!)
             }
         }
-        
         task.resume()
     }
     

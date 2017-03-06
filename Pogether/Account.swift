@@ -10,16 +10,21 @@ import Foundation
 
 class Account {
     
-    var username: String?
+    var username: String
     var email: String?
     var signature: String?
     var avatar: URL?
-    
-    init()
-    {
-    }
+    var background: URL?
     init(username: String)
     {
         self.username = username
+    }
+    init(username: String, email: String?, signature: String?, avatar: URL?, background: URL?)
+    {
+        self.username = username
+        self.email = email
+        self.signature = signature
+        self.avatar = avatar
+        self.background = background
     }
 }
