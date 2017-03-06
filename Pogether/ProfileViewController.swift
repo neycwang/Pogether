@@ -484,6 +484,15 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let response = response, let data = data {
+                    //log out居然也要response =-=
+                    let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
+                    let username = json["username"]!
+                    let email = json["email"]!
+                    let signature = json["signature"]!
+                    let avatar = json["avatar"]!
+                    let background = json["background"]!
+                    print("\(username) has successfully loged out")
+                    
                     let avc = LoginViewController()
                     let _ = self.navigationController?.popToRootViewController(animated: true)
                     self.navigationController?.pushViewController(avc, animated: false)
@@ -506,6 +515,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response, let data = data {
+                //no response
                 NSLog("加好友啦！QAQ")
             } else {
                 print(error!)
@@ -528,6 +538,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response, let data = data {
+                //no response
                 NSLog("删好友啦！QAQ")
             } else {
                 print(error!)
@@ -597,6 +608,7 @@ extension ProfileViewController: SignatureDelegate
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response, let data = data {
+                //no response
                 self.signatureContentLabel!.text = signature
                 self.user.signature = signature
             } else {

@@ -147,8 +147,13 @@ class LoginViewController: UIViewController {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let _ = response, let data = data {
                 //print(response)
-                let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
-                print(json["email"]!)
+                let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
+                let username = json["username"]!
+                let email = json["email"]!
+                let signature = json["signature"]!
+                let avatar = json["avatar"]!
+                let background = json["background"]!
+                print("\(username) has successfully loged in")
                 //这里json保存了帐户id username email等各项属性的dictionary，等profile要用全局变量就在这里添加
                 
                 self.jumpToHomepage()
