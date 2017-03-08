@@ -12,7 +12,7 @@ class SelectAlbumTableViewController: UITableViewController {
     
     var albumArray = [Album]()
     var selectedPhotos = [UIImage]()
-    
+    weak var _delegate: SelectPhotoDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +25,7 @@ class SelectAlbumTableViewController: UITableViewController {
         tableView.sectionIndexColor = ColorandFontTable.primaryPink
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.bounces = false
         
         //set navigation bar
         self.title = "添加素材"
@@ -49,7 +50,7 @@ class SelectAlbumTableViewController: UITableViewController {
         let backItem = UIBarButtonItem (image: backImage, style: .plain, target: self, action: #selector(backToLast))
         self.navigationItem.leftBarButtonItem = backItem
         
-        let addButton = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 46, width: UIScreen.main.bounds.width, height: 46))
+        let addButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height - 90, width: self.view.frame.width, height: 46))
         addButton.titleLabel?.isHidden = false
         addButton.setTitle("开始合成", for: .normal)
         addButton.setTitleColor(UIColor.white, for: .normal)
@@ -92,6 +93,7 @@ class SelectAlbumTableViewController: UITableViewController {
     }
 
     func backToLast() {
+        self._delegate?.returnSelectedPhotos(indexPath: [0,0], photos: selectedPhotos)
         let _ = self.navigationController?.popViewController(animated: true)
     }
 }

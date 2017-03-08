@@ -18,7 +18,6 @@ class ComposeCollectionViewController: UICollectionViewController {
             }
         }
     }
-    var scrollImageView: UIScrollView!
     var resource = [UIImage]()
     var imageControl = [(UIImage, UIImageView)]()
     required init?(coder aDecoder: NSCoder) {
@@ -75,7 +74,7 @@ class ComposeCollectionViewController: UICollectionViewController {
             make.right.equalTo(self.view).offset(-10)
             make.bottom.equalTo(self.view).offset(-170)
         }
-        resource = [#imageLiteral(resourceName: "icon"), #imageLiteral(resourceName: "icon1"), #imageLiteral(resourceName: "default"), #imageLiteral(resourceName: "whatwhat_pc_icons11"), #imageLiteral(resourceName: "童佳琪 大头照")]
+        /*resource = [#imageLiteral(resourceName: "icon"), #imageLiteral(resourceName: "icon1")]
         
         for i in 0..<resource.count
         {
@@ -93,7 +92,7 @@ class ComposeCollectionViewController: UICollectionViewController {
             self.view.addSubview(imageControl[i].1)
             imageControl[i].1.isHidden = true
         }
-        
+        */
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -122,6 +121,10 @@ class ComposeCollectionViewController: UICollectionViewController {
         return resource.count
     }
 
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: 80, height: 80)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectCollectionViewCell", for: indexPath) as! SelectCollectionViewCell
         cell.photoView.image = imageControl[indexPath.row].0
@@ -183,6 +186,7 @@ class ComposeCollectionViewController: UICollectionViewController {
     func addResource()
     {
         let avc = SelectAlbumTableViewController()
+        avc._delegate = self
         self.navigationController?.pushViewController(avc, animated: true)
     }
     
@@ -216,5 +220,27 @@ class ComposeCollectionViewController: UICollectionViewController {
         colorCubeFilter?.setValue(data, forKey: "inputCubeData")
         colorCubeFilter?.setValue(CIImage(image: image), forKey: kCIInputImageKey)
         return UIImage(ciImage: (colorCubeFilter?.outputImage)!)
+    }
+}
+
+extension ComposeCollectionViewController: SelectPhotoDelegate
+{
+    func returnSelectedPhotos(indexPath: IndexPath, photos: [UIImage])
+    {
+        resource.append(contentsOf: photos)
+        for i in resource.count - photos.count ..< resource.count
+        {
+            resource[i] = removeBackground(image: resource[i])
+            let imageView = MovableImageView(image: resource[i])
+            imageView.contentMode = .scaleAspectFit
+            imageView.layer.borderColor = ColorandFontTable.primaryPink.cgColor
+            imageView.layer.borderWidth = 1
+            imageView.tag = i + 1
+            imageControl.append((resource[i], imageView))
+            imageControl[i].1.tag = i + 1
+            self.view.addSubview(imageControl[i].1)
+            imageControl[i].1.isHidden = true
+        }
+        collectionView?.reloadData()
     }
 }

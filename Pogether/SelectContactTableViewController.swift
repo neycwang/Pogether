@@ -77,10 +77,10 @@ class SelectContactTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        contacts["T"] = [Account(username: "童佳琪"), Account(username: "童老师"), Account(username: "童学姐"), Account(username: "童金牌"), Account(username: "太强了")]
-        contacts["B"] = [Account(username: "别打我")]
-        contacts["P"] = [Account(username: "Pogether")]
-        contacts["D"] = [Account(username: "带我飞"), Account( username: "大物"), Account(username: "打地鼠"), Account(username: "假设很长很长很长"), Account(username: "假设特别特别特别长")]
+        contacts["A"] = [Account(username: "aaa"), Account(username: "aba"), Account(username: "aca"), Account( username: "aac"), Account(username: "acc")]
+        contacts["B"] = [Account(username: "bbb")]
+        contacts["C"] = [Account(username: "ccc")]
+        contacts["D"] = [Account(username: "ddd"), Account( username: "ddc"), Account(username: "dddd"), Account(username: "ddddd"), Account(username: "ddddddd")]
         
     }
     

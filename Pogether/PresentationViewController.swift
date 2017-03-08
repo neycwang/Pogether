@@ -7,16 +7,18 @@
 //
 
 import UIKit
-protocol DeletePhoto: NSObjectProtocol {
+protocol ModifyPhoto: NSObjectProtocol {
     func delegePhoto(indexPath: IndexPath)
+    func addPhoto(photo: UIImage)
+    func modifyPhoto(photo: UIImage, indexPath: IndexPath)
 }
 
 class PresentationViewController: ScrollImageViewController {
 
     var canDelete: Bool = false
+    var isNew = false
     var indexPath: IndexPath!
-    weak var delegate: DeletePhoto?
-    weak var _delegate: EditPhoto?
+    weak var delegate: ModifyPhoto?
     func initialize()
     {
         if canDelete
@@ -39,8 +41,13 @@ class PresentationViewController: ScrollImageViewController {
             addButton.setTitle("编辑", for: .normal)
             addButton.addTarget(self, action: #selector(modifyPhoto), for: UIControlEvents.touchUpInside)
         } else {
-            addButton.setTitle("收藏", for: .normal)
-            addButton.addTarget(self, action: #selector(storePhoto), for: UIControlEvents.touchUpInside)
+            if isNew {
+                addButton.setTitle("保存", for: .normal)
+                addButton.addTarget(self, action: #selector(storePhoto), for: UIControlEvents.touchUpInside)
+            } else {
+                addButton.setTitle("收藏", for: .normal)
+                addButton.addTarget(self, action: #selector(collectPhoto), for: UIControlEvents.touchUpInside)
+            }
         }
         self.view.addSubview(addButton)
     }
@@ -48,7 +55,11 @@ class PresentationViewController: ScrollImageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
-        self.title = "详情"
+        if isNew {
+            self.title = "新增"
+        } else {
+            self.title = "详情"
+        }
         self.view.backgroundColor = ColorandFontTable.groundGray
         super.setScrollView()
         scrollImageView.snp.makeConstraints { (make) in
@@ -60,7 +71,7 @@ class PresentationViewController: ScrollImageViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(true, animated: false)
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         centerScrollViewContents()
     }
@@ -72,8 +83,11 @@ class PresentationViewController: ScrollImageViewController {
     
     func backToLast()
     {
-        self.delegate?.delegePhoto(indexPath: self.indexPath)
-        self._delegate?.editPhoto(photo: photo)
+        if isNew {
+            self.delegate?.addPhoto(photo: photo)
+        } else {
+            self.delegate?.modifyPhoto(photo: photo, indexPath: indexPath)
+        }
         let _ = self.navigationController?.popViewController(animated: true)
     }
 
@@ -81,6 +95,7 @@ class PresentationViewController: ScrollImageViewController {
     {
         let delete = UIAlertAction(title: "删除照片", style: UIAlertActionStyle.default) { (UIAlertAction) in
             self.delegate?.delegePhoto(indexPath: self.indexPath)
+            let _ = self.navigationController?.popViewController(animated: true)
             return
         }
         let cancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) { (UIAlertAction) in
@@ -98,9 +113,19 @@ class PresentationViewController: ScrollImageViewController {
         evc._delegate = self
         self.navigationController?.pushViewController(evc, animated: true)
     }
+    func collectPhoto()
+    {
+        var data = UserDefaults.standard.array(forKey: "collection")
+        if data == nil {
+            data = [UIImage]()
+        }
+        data?.append(photo)
+        UserDefaults.standard.set(data, forKey: "collection")
+    }
+    //Todo
     func storePhoto()
     {
-        
+        backToLast()
     }
 }
 

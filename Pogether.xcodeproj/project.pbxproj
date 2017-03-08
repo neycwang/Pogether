@@ -11,7 +11,6 @@
 		357F45191E4701E8008B60CF /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45181E4701E8008B60CF /* Account.swift */; };
 		357F451D1E4B0DC7008B60CF /* TextFieldWithCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */; };
 		357F451F1E4B0F61008B60CF /* ContactAddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */; };
-		357F45251E4CBDDF008B60CF /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45241E4CBDDF008B60CF /* AccountAPI.swift */; };
 		357F45271E4CC589008B60CF /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F45261E4CC589008B60CF /* SignatureViewController.swift */; };
 		357F452B1E505413008B60CF /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F452A1E505413008B60CF /* PresentationViewController.swift */; };
 		357F452D1E506031008B60CF /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F452C1E506031008B60CF /* EditViewController.swift */; };
@@ -49,6 +48,7 @@
 		35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */; };
 		35E6E2471E2E6BC00093F791 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E2461E2E6BC00093F791 /* PhotoCollectionViewCell.swift */; };
 		35E6E2491E2F451B0093F791 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6E2481E2F451B0093F791 /* RegisterViewController.swift */; };
+		35E928C71E6F1C520035ABBC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E928C61E6F1C520035ABBC /* Global.swift */; };
 		5D51FC7257F67778C048312C /* Pods_Pogether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC304A7F301CDF4FA824D7A /* Pods_Pogether.framework */; };
 		65267959BE5D0A770A9C80EA /* Pods_PogetherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78ACE63B16D276550CF4F2E9 /* Pods_PogetherTests.framework */; };
 		AC66FF04222EB85EBE37D037 /* Pods_PogetherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24531C7D5572CF384D14D461 /* Pods_PogetherUITests.framework */; };
@@ -80,7 +80,6 @@
 		357F45181E4701E8008B60CF /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		357F451C1E4B0DC7008B60CF /* TextFieldWithCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithCheck.swift; sourceTree = "<group>"; };
 		357F451E1E4B0F61008B60CF /* ContactAddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactAddTableViewController.swift; sourceTree = "<group>"; };
-		357F45241E4CBDDF008B60CF /* AccountAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = "<group>"; };
 		357F45261E4CC589008B60CF /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		357F452A1E505413008B60CF /* PresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
 		357F452C1E506031008B60CF /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +126,7 @@
 		35E6E2441E2E6AB10093F791 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		35E6E2461E2E6BC00093F791 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		35E6E2481E2F451B0093F791 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		35E928C61E6F1C520035ABBC /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		504614C52C3F4F858441BE5E /* Pods-Pogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.debug.xcconfig"; sourceTree = "<group>"; };
 		5273CA1ECC176F4723A93E76 /* Pods-PogetherTests.ad hoc distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PogetherTests.ad hoc distribution.xcconfig"; path = "Pods/Target Support Files/Pods-PogetherTests/Pods-PogetherTests.ad hoc distribution.xcconfig"; sourceTree = "<group>"; };
 		668F2E7DA02BF07323746E35 /* Pods-Pogether.ad hoc distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pogether.ad hoc distribution.xcconfig"; path = "Pods/Target Support Files/Pods-Pogether/Pods-Pogether.ad hoc distribution.xcconfig"; sourceTree = "<group>"; };
@@ -208,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				357F45181E4701E8008B60CF /* Account.swift */,
-				357F45241E4CBDDF008B60CF /* AccountAPI.swift */,
 				357F453A1E558B40008B60CF /* Album.swift */,
 				35E6E2401E2DCA690093F791 /* AlbumTableViewCell.swift */,
 				35E6E23E1E2DC9EC0093F791 /* AlbumTableViewController.swift */,
@@ -251,6 +250,7 @@
 				35E6B2D61E59631F00BD7210 /* TKImageView.m */,
 				358562661E6C0C7C00B60C02 /* CubeMap.c */,
 				358562681E6C2A7300B60C02 /* CubeMap.h */,
+				35E928C61E6F1C520035ABBC /* Global.swift */,
 			);
 			path = Pogether;
 			sourceTree = "<group>";
@@ -578,6 +578,7 @@
 				358C11021E5755E10038F03C /* SelectPhotoCollectionViewController.swift in Sources */,
 				3526677E1E6955B60066F4A1 /* EraseViewController.swift in Sources */,
 				359B031F1E46FCE90014D237 /* ContactTableViewCell.swift in Sources */,
+				35E928C71E6F1C520035ABBC /* Global.swift in Sources */,
 				35E6E23D1E2C76B50093F791 /* LoginViewController.swift in Sources */,
 				35E6E2451E2E6AB10093F791 /* PhotoCollectionViewController.swift in Sources */,
 				35E6B2D71E59631F00BD7210 /* TKImageView.m in Sources */,
@@ -598,7 +599,6 @@
 				357F451F1E4B0F61008B60CF /* ContactAddTableViewController.swift in Sources */,
 				FB87023C1E5B5DB7006916C3 /* SelectContactTableViewCell.swift in Sources */,
 				359B031D1E46FCD60014D237 /* ContactTableViewController.swift in Sources */,
-				357F45251E4CBDDF008B60CF /* AccountAPI.swift in Sources */,
 				359B031B1E45D94C0014D237 /* ColorandFontTable.swift in Sources */,
 				35E6E20D1E2C6CAA0093F791 /* AppDelegate.swift in Sources */,
 				35E6E2411E2DCA690093F791 /* AlbumTableViewCell.swift in Sources */,

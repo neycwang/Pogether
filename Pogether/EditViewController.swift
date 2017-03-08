@@ -101,17 +101,9 @@ class EditViewController: ScrollImageViewController {
     {
         let avc = EraseViewController()
         avc.photo = self.photo
+        avc.delegate = self
         self.navigationController?.pushViewController(avc, animated: false)
     }
-    func editPhoto()
-    {
-        
-    }
-    func storePhoto()
-    {
-        
-    }
-    
 }
 
 extension EditViewController: EditPhoto

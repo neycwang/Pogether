@@ -135,8 +135,8 @@ class LoginViewController: UIViewController {
     // MARK: - Touch event
     func login(){
         //懒得等加载
-        //self.jumpToHomepage()
-        //return
+        self.jumpToHomepage()
+        return
         
         let url = URL(string: "https://\(APIurl)/login")!
         var request = URLRequest(url: url)

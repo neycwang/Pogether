@@ -24,6 +24,7 @@ class AlbumTableViewController: UITableViewController {
         tableView.sectionIndexColor = ColorandFontTable.primaryPink
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.bounces = false
         
         //set navigation bar
         self.title = "素材库"
@@ -113,7 +114,8 @@ class AlbumTableViewController: UITableViewController {
         let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: {
             action in
             let name = alertController.textFields?[0].text
-            
+            self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
+            self.tableView.reloadData()
             let url = URL(string: "https://\(APIurl)/album/create")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
@@ -124,14 +126,14 @@ class AlbumTableViewController: UITableViewController {
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let response = response, let data = data {
                     let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
+                    /*
                     let id = json["id"]! //string
                     let getName = json["name"]! //string
                     let count = json["count"]! //int
                     let avatar = json["avatar"]! //string
                     let limit = json["limit"]! //enum
+                    */
                     
-                    self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
-                    self.tableView.reloadData()
                 } else {
                     print(error!)
                 }

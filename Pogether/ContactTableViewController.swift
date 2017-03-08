@@ -246,6 +246,9 @@ extension ContactTableViewController: ChangeFriend
     func removefriend(username: String) {
         let str = firstCharactor(chineseString: username)
         var data = [Account]()
+        if contacts[str] == nil{
+            return
+        }
         for e in contacts[str]!
         {
             if e.username != username

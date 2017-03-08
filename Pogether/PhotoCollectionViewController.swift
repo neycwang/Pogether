@@ -120,10 +120,9 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         let cell = self.collectionView?.cellForItem(at: indexPath) as! PhotoCollectionViewCell
         let pvc = PresentationViewController()
         pvc.canDelete = isSetting
-        pvc.photo = ImageArray[indexPath.row]
+        pvc.photo = cell.photoView.image
         pvc.indexPath = indexPath
         pvc.delegate = self
-        pvc._delegate = cell
         self.navigationController?.pushViewController(pvc, animated: true)
     }
     
@@ -147,8 +146,11 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         let selectImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let avc = EditViewController()
+        let avc = PresentationViewController()
         avc.photo = selectImage
+        avc.delegate = self
+        avc.canDelete = true
+        avc.isNew = true
         self.navigationController?.pushViewController(avc, animated: true)
         picker.dismiss(animated: true, completion: nil)
     }
@@ -166,91 +168,61 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     //MARK: - set authority
     var selectedContacts = [Account]()
     func setAll() {
+        self._delegate?.editLimit(count: self.ImageArray.count, limit: .all)
+        
         let url = URL(string: "https://\(APIurl)/album/limit")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        //这里albumid是什么 =-=
         request.httpBody = "{\n  \"albumid\": \"333\",\n  \"limit\": \"all\"\n}".data(using: .utf8)
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
-                self._delegate?.editLimit(count: self.ImageArray.count, limit: .all)
-            } else {
-                print(error!)
-            }
-        }
-        
+        let task = URLSession.shared.dataTask(with: request)
         task.resume()
         
     }
     func setMyself() {
+        self._delegate?.editLimit(count: self.ImageArray.count, limit: .myself)
+        
         let url = URL(string: "https://\(APIurl)/album/limit")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        //这里albumid是什么 =-=
         request.httpBody = "{\n  \"albumid\": \"333\",\n  \"limit\": \"myself\"\n}".data(using: .utf8)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
-                self._delegate?.editLimit(count: self.ImageArray.count, limit: .myself)
-            } else {
-                print(error!)
-            }
-        }
-        
+        let task = URLSession.shared.dataTask(with: request)
         task.resume()
     }
     func setSome() {
+        self._delegate?.editLimit(count: self.ImageArray.count, limit: .somecan)
+        let avc = SelectContactTableViewController()
+        avc.delegate = self
+        avc.returnSelected = self.selectedContacts
+        self.navigationController?.pushViewController(avc, animated: true)
         
         let url = URL(string: "https://\(APIurl)/album/limit")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        //这里albumid是什么 =-=
         request.httpBody = "{\n  \"albumid\": \"333\",\n  \"limit\": \"some\"\n}".data(using: .utf8)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
-                self._delegate?.editLimit(count: self.ImageArray.count, limit: .somecan)
-                let avc = SelectContactTableViewController()
-                avc.delegate = self
-                avc.returnSelected = self.selectedContacts
-                self.navigationController?.pushViewController(avc, animated: true)
-            } else {
-                print(error!)
-            }
-        }
-        
+        let task = URLSession.shared.dataTask(with: request)
         task.resume()
 
     }
     func setSomeNot() {
+        self._delegate?.editLimit(count: self.ImageArray.count, limit: .somenot)
+        let avc = SelectContactTableViewController()
+        avc.delegate = self
+        avc.returnSelected = self.selectedContacts
+        self.navigationController?.pushViewController(avc, animated: true)
         
         let url = URL(string: "https://\(APIurl)/album/limit")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        //这里albumid是什么 =-=
         request.httpBody = "{\n  \"albumid\": \"333\",\n  \"limit\": \"somenot\"\n}".data(using: .utf8)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
-                self._delegate?.editLimit(count: self.ImageArray.count, limit: .somenot)
-                let avc = SelectContactTableViewController()
-                avc.delegate = self
-                avc.returnSelected = self.selectedContacts
-                self.navigationController?.pushViewController(avc, animated: true)
-            } else {
-                print(error!)
-            }
-        }
-        
+        let task = URLSession.shared.dataTask(with: request)
         task.resume()
     
     }
@@ -270,11 +242,18 @@ extension PhotoCollectionViewController: SelectContactDelegate
     }
 }
 
-extension PhotoCollectionViewController: DeletePhoto
+extension PhotoCollectionViewController: ModifyPhoto
 {
     func delegePhoto(indexPath: IndexPath) {
         ImageArray.remove(at: indexPath.row)
         collectionView?.reloadData()
-        backToLast()
+    }
+    func addPhoto(photo: UIImage) {
+        ImageArray.append(photo)
+        collectionView?.reloadData()
+    }
+    func modifyPhoto(photo: UIImage, indexPath: IndexPath) {
+        ImageArray[indexPath.row] = photo
+        collectionView?.reloadData()
     }
 }

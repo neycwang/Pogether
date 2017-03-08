@@ -145,6 +145,7 @@ class TextViewController: WYCDynamicTextController
         } else
         {
             textField.layer.borderWidth = 0
+            textField.endFloatingCursor()
         }
         if textField.text == "" && !textField.isHidden
         {
@@ -155,6 +156,7 @@ class TextViewController: WYCDynamicTextController
     func saveToLast()
     {
         self.view.backgroundColor = UIColor.clear
+        self.textField.layer.borderWidth = 0
         UIGraphicsBeginImageContext(self.photoImageView.bounds.size)
         self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let viewImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!

@@ -24,6 +24,8 @@ class EraseViewController: UIViewController {
     var sliderLabel : UILabel!
     var drawingSlate: MGDrawingSlate!
     var weight: Int = 5
+    
+    weak var delegate: EditPhoto?
     func initialize()
     {
         let a0 = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Weight"), style: .plain, target: self, action: #selector(weightSlider))
@@ -133,7 +135,7 @@ class EraseViewController: UIViewController {
         self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let viewImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        //UIImageWriteToSavedPhotosAlbum(viewImage, nil, #selector(backToLast), nil)
+        self.delegate?.editPhoto(photo: viewImage)
         backToLast()
     }
 }

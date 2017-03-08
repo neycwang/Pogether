@@ -54,16 +54,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     {
         width = view.frame.width
         height = view.frame.height
-        user = Account(username: UserDefaults.standard.value(forKey: "USERNAME") as! String)
-        user.email = UserDefaults.standard.value(forKey: "EMAIL") as! String?
-        user.signature = UserDefaults.standard.value(forKey: "SIGNATURE") as! String?
-        if (UserDefaults.standard.value(forKey: "AVATAR") != nil)
-        {
-            user.avatar = URL(string: (UserDefaults.standard.value(forKey: "AVATAR") as! String))
-        }
-        if (UserDefaults.standard.value(forKey: "BACKGROUND") != nil)
-        {
-            user.background = URL(string: UserDefaults.standard.value(forKey: "BACKGROUND") as! String)
+        if isSetting {
+            user = Account(username: UserDefaults.standard.value(forKey: "USERNAME") as! String)
+            user.email = UserDefaults.standard.value(forKey: "EMAIL") as! String?
+            user.signature = UserDefaults.standard.value(forKey: "SIGNATURE") as! String?
+            if (UserDefaults.standard.value(forKey: "AVATAR") != nil)
+            {
+                user.avatar = URL(string: (UserDefaults.standard.value(forKey: "AVATAR") as! String))
+            }
+            if (UserDefaults.standard.value(forKey: "BACKGROUND") != nil)
+            {
+                user.background = URL(string: UserDefaults.standard.value(forKey: "BACKGROUND") as! String)
+            }
         }
         wallpaperView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height * 0.3555))
         wallpaperView.contentMode = .scaleAspectFill

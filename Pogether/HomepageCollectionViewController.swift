@@ -140,7 +140,6 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
         let avc = ProfileViewController()
         avc.isSetting = true
         avc.isStranger = false
-        avc.user = Account(username: "可爱的蓝精灵")
         navigationController?.pushViewController(avc, animated: false)
     }
     
@@ -150,10 +149,21 @@ extension HomepageCollectionViewController: UIImagePickerControllerDelegate
 {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
-        let selectImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let avc = ComposeCollectionViewController()
+        var selectImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageOrientation = selectImage.imageOrientation
+        if imageOrientation != UIImageOrientation.up
+        {
+            UIGraphicsBeginImageContext(selectImage.size);
+            selectImage.draw(in: CGRect(x: 0, y: 0, width: selectImage.size.width, height: selectImage.size.height))
+            selectImage = UIGraphicsGetImageFromCurrentImageContext()!;
+            UIGraphicsEndImageContext();
+        }
+        
+        let avc = PresentationViewController()
         avc.photo = selectImage
-        jumpTo(page: avc)
+        avc.canDelete = false
+        avc.isNew = true
+        navigationController?.pushViewController(avc, animated: true)
         picker.dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
