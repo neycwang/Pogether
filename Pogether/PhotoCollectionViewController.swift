@@ -126,18 +126,10 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as! PhotoCollectionViewCell
-
+        cell.photoView.image = ImageArray[indexPath.row]
         cell.photoView.contentMode = .scaleAspectFit
         cell.indexPath = indexPath
-        if (ImageArray[indexPath.row] != nil)
-        {
-            cell.photoView.image = ImageArray[indexPath.row]
-            cell.photoView.contentMode = .scaleAspectFit
-        }
-        else
-        {
-            cell.photoView.image = nil
-        }
+        
         return cell
     }
 

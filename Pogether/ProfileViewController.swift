@@ -60,11 +60,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
             user.signature = UserDefaults.standard.value(forKey: "SIGNATURE") as! String?
             if (UserDefaults.standard.value(forKey: "AVATAR") != nil)
             {
-                user.avatar = URL(string: (UserDefaults.standard.value(forKey: "AVATAR") as! String))
+                //user.avatar = URL(string: (UserDefaults.standard.value(forKey: "AVATAR") as! String))
             }
             if (UserDefaults.standard.value(forKey: "BACKGROUND") != nil)
             {
-                user.background = URL(string: UserDefaults.standard.value(forKey: "BACKGROUND") as! String)
+                //user.background = URL(string: UserDefaults.standard.value(forKey: "BACKGROUND") as! String)
             }
         }
         wallpaperView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height * 0.3555))

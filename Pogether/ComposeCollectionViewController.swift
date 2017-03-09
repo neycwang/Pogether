@@ -32,6 +32,7 @@ class ComposeCollectionViewController: UICollectionViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: height - 160, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
         super.init(collectionViewLayout: layout)
         collectionView = UICollectionView(frame: CGRect(x: 0, y: height - 160, width: width, height: 80), collectionViewLayout: layout)
         collectionView?.delegate = self
@@ -43,15 +44,35 @@ class ComposeCollectionViewController: UICollectionViewController {
         
         let add = UIBarButtonItem(title: "添加素材", style: .plain, target: self, action: #selector(addResource))
         let cancel = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Cancel"), style: .plain, target: self, action: #selector(backToLast))
-        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(addResource))
+        let save = UIBarButtonItem(image: #imageLiteral(resourceName: "EditPhoto_Save"), style: .plain, target: self, action: #selector(saveToLast))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let barArray = [cancel, space, add, space, save]
         self.toolbarItems = barArray
         
+        resource = [#imageLiteral(resourceName: "icon"),#imageLiteral(resourceName: "icon"),#imageLiteral(resourceName: "icon")]
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped(sender:)))
+        for i in 0..<resource.count
+        {
+            resource[i] = removeBackground(image: resource[i])
+            let imageView = MovableImageView(image: resource[i])
+            imageView.contentMode = .scaleAspectFit
+            imageView.layer.borderColor = ColorandFontTable.primaryPink.cgColor
+            imageView.layer.borderWidth = 1
+            //imageView.addGestureRecognizer(tap)
+            imageView.tag = i + 1
+            imageControl.append((resource[i], imageView))
+            imageControl[i].1.tag = i + 1
+            imageControl[i].1.isHidden = true
+        }
         
     }
 
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "照片合成"
+        definesPresentationContext = true
+        
+    }
     //MARK:- View Control
     override func viewWillAppear(_ animated: Bool) {
         let tagView = UIImageView()
@@ -74,28 +95,13 @@ class ComposeCollectionViewController: UICollectionViewController {
             make.right.equalTo(self.view).offset(-10)
             make.bottom.equalTo(self.view).offset(-170)
         }
-        /*resource = [#imageLiteral(resourceName: "icon"), #imageLiteral(resourceName: "icon1")]
         
-        for i in 0..<resource.count
-        {
-            resource[i] = removeBackground(image: resource[i])
-            let imageView = MovableImageView(image: resource[i])
-            imageView.contentMode = .scaleAspectFit
-            imageView.layer.borderColor = ColorandFontTable.primaryPink.cgColor
-            imageView.layer.borderWidth = 1
-            imageView.tag = i + 1
-            imageControl.append((resource[i], imageView))
-            imageControl[i].1.tag = i + 1
-        }
+        self.navigationController?.setToolbarHidden(false, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         for i in 0..<resource.count
         {
             self.view.addSubview(imageControl[i].1)
-            imageControl[i].1.isHidden = true
         }
-        */
-        self.navigationController?.setToolbarHidden(false, animated: false)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressHandler(sender:)))
         collectionView!.addGestureRecognizer(longPressGesture)
     }
@@ -118,7 +124,7 @@ class ComposeCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return resource.count
+        return imageControl.count
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -129,8 +135,7 @@ class ComposeCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectCollectionViewCell", for: indexPath) as! SelectCollectionViewCell
         cell.photoView.image = imageControl[indexPath.row].0
         cell.selectView.image = #imageLiteral(resourceName: "Select_None")
-        // Configure the cell
-    
+        cell.setNeedsLayout()
         return cell
     }
     
@@ -183,6 +188,39 @@ class ComposeCollectionViewController: UICollectionViewController {
     {
         let _ = self.navigationController?.popViewController(animated: true)
     }
+    func saveToLast()
+    {
+        for subview in self.view.subviews
+        {
+            if subview.tag > 0 {
+                subview.layer.borderWidth = 0
+            }
+        }
+        let rect = CGRect(x: 10, y: 20, width: self.view.frame.width - 20, height: self.view.frame.height - 200)
+        UIGraphicsBeginImageContext(rect.size)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let viewImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        definedAlbum["默认相册"]?.append(viewImage)
+        backToLast()
+    }
+
+    func tapped(sender: UITapGestureRecognizer)
+    {
+        let loc = sender.location(in: view)
+        for subview in self.view.subviews
+        {
+            if subview.tag > 0 {
+                if subview.frame.contains(loc)
+                {
+                    subview.layer.borderWidth = 1
+                } else
+                {
+                    subview.layer.borderWidth = 0
+                }
+            }
+        }
+    }
     func addResource()
     {
         let avc = SelectAlbumTableViewController()
@@ -227,9 +265,14 @@ extension ComposeCollectionViewController: SelectPhotoDelegate
 {
     func returnSelectedPhotos(indexPath: IndexPath, photos: [UIImage])
     {
-        resource.append(contentsOf: photos)
+        for p in photos
+        {
+            resource.append(p)
+        }
+        print(resource.count)
         for i in resource.count - photos.count ..< resource.count
         {
+            print(i)
             resource[i] = removeBackground(image: resource[i])
             let imageView = MovableImageView(image: resource[i])
             imageView.contentMode = .scaleAspectFit
@@ -241,6 +284,7 @@ extension ComposeCollectionViewController: SelectPhotoDelegate
             self.view.addSubview(imageControl[i].1)
             imageControl[i].1.isHidden = true
         }
-        collectionView?.reloadData()
+        self.collectionView?.reloadData()
+        print(self.collectionView(collectionView!, numberOfItemsInSection: 0))
     }
 }

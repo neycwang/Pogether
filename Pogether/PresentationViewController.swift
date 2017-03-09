@@ -115,12 +115,7 @@ class PresentationViewController: ScrollImageViewController {
     }
     func collectPhoto()
     {
-        var data = UserDefaults.standard.array(forKey: "collection")
-        if data == nil {
-            data = [UIImage]()
-        }
-        data?.append(photo)
-        UserDefaults.standard.set(data, forKey: "collection")
+        definedAlbum["个人收藏"]?.append(photo)
     }
     //Todo
     func storePhoto()
