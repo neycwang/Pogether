@@ -24,7 +24,7 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
     var posterView: UIImageView!
     var settingButton: UIButton!
     var width, height: CGFloat!
-
+    var isCompose = true
     init() {
         width = UIScreen.main.bounds.width
         height = UIScreen.main.bounds.height
@@ -64,6 +64,14 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
             make.height.equalTo(32)
             make.width.equalTo(32)
         }
+        
+        definedAlbum ["默认相册"] = [#imageLiteral(resourceName: "icon")]
+        
+        definedAlbum ["背景图片"] = [#imageLiteral(resourceName: "长城"), #imageLiteral(resourceName: "云海"),#imageLiteral(resourceName: "雪原"),#imageLiteral(resourceName: "天宫"),#imageLiteral(resourceName: "桃花林"),#imageLiteral(resourceName: "山路"),#imageLiteral(resourceName: "森林"),#imageLiteral(resourceName: "海滩"),#imageLiteral(resourceName: "桂林"),#imageLiteral(resourceName: "草原")]
+        
+        definedAlbum ["Pogether 数据库"] = [#imageLiteral(resourceName: "表情包1"),#imageLiteral(resourceName: "表情包2"),#imageLiteral(resourceName: "表情包3"),#imageLiteral(resourceName: "表情包4"),#imageLiteral(resourceName: "表情包5"),#imageLiteral(resourceName: "表情包6"),#imageLiteral(resourceName: "表情包7"),#imageLiteral(resourceName: "表情包8"),#imageLiteral(resourceName: "表情包9"),#imageLiteral(resourceName: "表情包10")]
+        
+        definedAlbum ["个人收藏"] = [UIImage]()
 
     }
     
@@ -82,12 +90,16 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
         switch indexPath {
         case [0,0]:
             let picker = UIImagePickerController()
+            isCompose = true
             picker.delegate = self
-            self.navigationController!.present(picker, animated: true, completion: nil)
+            self.navigationController!.present(picker, animated: true, completion: { 
+                
+            })
         case [0,1]:
             jumpTo(page: ContactTableViewController())
         case [0,2]:
             let picker = UIImagePickerController()
+            isCompose = false
             picker.delegate = self
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
             {
@@ -158,12 +170,17 @@ extension HomepageCollectionViewController: UIImagePickerControllerDelegate
             selectImage = UIGraphicsGetImageFromCurrentImageContext()!;
             UIGraphicsEndImageContext();
         }
-        
-        let avc = PresentationViewController()
-        avc.photo = selectImage
-        avc.canDelete = false
-        avc.isNew = true
-        navigationController?.pushViewController(avc, animated: true)
+        if isCompose {
+            let avc = ComposeCollectionViewController()
+            avc.photo = selectImage
+            navigationController?.pushViewController(avc, animated: true)
+        } else {
+            let avc = PresentationViewController()
+            avc.photo = selectImage
+            avc.canDelete = false
+            avc.isNew = true
+            navigationController?.pushViewController(avc, animated: true)
+        }
         picker.dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)

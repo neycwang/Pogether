@@ -73,7 +73,7 @@ class AlbumTableViewCell: UITableViewCell {
         contentView.addSubview(albumNameLabel)
         contentView.addSubview(securityLabel)
         contentView.addSubview(countLabel)
-        preImageView.image = #imageLiteral(resourceName: "default")
+        preImageView.backgroundColor = ColorandFontTable.fillGray
         preImageView.contentMode = .scaleToFill
         preImageView.snp.makeConstraints { (make) -> Void in
             make.centerY.equalTo(contentView)
@@ -126,5 +126,8 @@ extension AlbumTableViewCell: EditLimit
             self.album.limit = limit
         }
         securityLabel.text = album.limitString
+    }
+    func changeImage(imageArray: [UIImage]) {
+        definedAlbum[self.album.name!] = imageArray
     }
 }

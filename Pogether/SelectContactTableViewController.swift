@@ -77,11 +77,7 @@ class SelectContactTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        contacts["A"] = [Account(username: "aaa"), Account(username: "aba"), Account(username: "aca"), Account( username: "aac"), Account(username: "acc")]
-        contacts["B"] = [Account(username: "bbb")]
-        contacts["C"] = [Account(username: "ccc")]
-        contacts["D"] = [Account(username: "ddd"), Account( username: "ddc"), Account(username: "dddd"), Account(username: "ddddd"), Account(username: "ddddddd")]
-        
+        contacts = definedContact
     }
     
     override func viewWillAppear(_ animated: Bool) {

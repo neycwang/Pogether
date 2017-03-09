@@ -59,7 +59,7 @@ class ContactTableViewController: UITableViewController {
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.hidesNavigationBarDuringPresentation = false
-            controller.dimsBackgroundDuringPresentation = true
+            controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .minimal
             controller.searchBar.sizeToFit()
             controller.searchBar.removeFromSuperview()
@@ -80,6 +80,7 @@ class ContactTableViewController: UITableViewController {
         contacts["B"] = [Account(username: "bbb")]
         contacts["C"] = [Account(username: "ccc")]
         contacts["D"] = [Account(username: "ddd"), Account( username: "ddc"), Account(username: "dddd"), Account(username: "ddddd"), Account(username: "ddddddd")]
+        definedContact = contacts
         //NotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         //NotificationCenter.defaultCenter().addObserver(self, selector: #selector(tokenExpired), name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         
@@ -89,10 +90,14 @@ class ContactTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+        self.searchController.searchBar.isHidden = false
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        self.searchController.searchBar.isHidden = true
+        UIApplication.shared.keyWindow?.endEditing(true)
+    }
     
     //MARK: - SearchBar
     
@@ -192,6 +197,7 @@ class ContactTableViewController: UITableViewController {
     }
     func backToLast()
     {
+        definedContact = contacts
         let _ = self.navigationController?.popViewController(animated: true)
     }
 
@@ -228,7 +234,7 @@ extension ContactTableViewController: UISearchBarDelegate
     
     public func searchCancel()
     {
-        updatefilteredContacts()
+        self.updatefilteredContacts()
     }
 }
 

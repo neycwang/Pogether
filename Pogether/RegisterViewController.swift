@@ -133,15 +133,26 @@ class RegisterViewController: UIViewController {
     
     
     func register() {
-        let url = URL(string: "https://\(APIurl)/signup")!
+        let url = URL(string: "\(APIurl)/signup")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         request.httpBody = "{\n  \"email\": \(emailTextFieldWithCheck.textField.text!),\n  \"username\": \(usernameTextFieldWithCheck.textField.text!),\n  \"password\": \(passwordTextFieldWithCheck.textField.text!)\n}".data(using: .utf8)
-        
+        let cookie = HTTPCookie(properties: [
+            HTTPCookiePropertyKey.name:"Set-Cookie",
+            HTTPCookiePropertyKey.value:"user=fsfsdfsdfsfef",
+            HTTPCookiePropertyKey.path:"/",
+            HTTPCookiePropertyKey.domain: APIurl])
+        let storage = HTTPCookieStorage.shared
+        storage.setCookie(cookie!)
+        let cookieArray = storage.cookies!
+        for cookie in cookieArray
+        {
+            print("name:\(cookie.name),value:\(cookie.value)")
+        }
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
+            if let _ = response, let data = data {
                 //获取注册response
                 let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
                 let username = json["username"]!

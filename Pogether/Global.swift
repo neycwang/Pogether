@@ -8,4 +8,8 @@
 
 import Foundation
 
-public let APIurl = "private-59586c-pogether.apiary-mock.com"
+public let APIurl = "http://10.221.161.23:8888"
+
+public var definedAlbum  = [String: [UIImage]]()
+
+public var definedContact = [String : [Account]]()

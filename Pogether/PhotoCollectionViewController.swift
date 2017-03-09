@@ -10,11 +10,12 @@ import UIKit
 import YCXMenu
 protocol EditLimit: NSObjectProtocol {
     func editLimit(count: Int, limit: Limit?)
+    func changeImage (imageArray: [UIImage])
 }
 
 class PhotoCollectionViewController:  UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-    var ImageArray = [UIImage?]()
+    var ImageArray = [UIImage]()
     var menuItems = [YCXMenuItem]()
     var isSetting = true
     var addButton: UIButton!
@@ -37,10 +38,6 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         collectionView!.backgroundColor = ColorandFontTable.groundGray
         self.view.addSubview(collectionView!)
         self.collectionView!.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
-        for _ in 1...20
-        {
-            ImageArray.append(#imageLiteral(resourceName: "Homepage_Background"))
-        }
         
         var backImage = #imageLiteral(resourceName: "ContactList_Back")
         backImage = backImage.withRenderingMode(.alwaysOriginal)
@@ -79,6 +76,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "默认相册"
+        definesPresentationContext = true
         if isSetting
         {
             setMenu()
@@ -162,6 +160,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     func backToLast()
     {
         self._delegate?.editLimit(count: ImageArray.count, limit: limit)
+        self._delegate?.changeImage(imageArray: ImageArray)
         let _ = self.navigationController?.popViewController(animated: true)
     }
     

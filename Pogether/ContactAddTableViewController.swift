@@ -57,15 +57,17 @@ class ContactAddTableViewController: UITableViewController {
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.hidesNavigationBarDuringPresentation = false
-            controller.dimsBackgroundDuringPresentation = true
+            controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .minimal
             controller.searchBar.sizeToFit()
             controller.searchBar.removeFromSuperview()
-            
             controller.delegate = self
             return controller
         })()
-        
+        for dict in definedContact
+        {
+            contacts.append(contentsOf: dict.value)
+        }
         let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: self.searchController.searchBar.frame.height + 2))
         header.backgroundColor = ColorandFontTable.groundGray
         header.addSubview(self.searchController.searchBar)
@@ -75,9 +77,6 @@ class ContactAddTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        for _ in 0 ... 3 {
-            contacts.append(Account(username: "aaa"))
-        }
         //NotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         //NotificationCenter.defaultCenter().addObserver(self, selector: #selector(tokenExpired), name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
     }
@@ -85,10 +84,9 @@ class ContactAddTableViewController: UITableViewController {
     //MARK: - SearchBar
     
     func updatefilteredContacts() {
-        self.filteredContacts = self.contacts.filter {
-                (!searchController.isActive
-                    || ($0.username.lowercased().contains(searchController.searchBar.text!.lowercased()))
-                    || (searchController.isActive && searchController.searchBar.text! == ""))
+        self.filteredContacts = contacts.filter {
+                (($0.username.lowercased().contains(searchController.searchBar.text!.lowercased()))
+                    && searchController.searchBar.text! != "")
         }
         tableView.reloadData()
     }
@@ -109,8 +107,6 @@ class ContactAddTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let key = self.filteredContacts[indexPath.section]
-        //let sectionContacts = self.dataSource.searchResult[key as! String]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell", for: indexPath) as! ContactTableViewCell
         cell.selectionStyle = .none
         cell.contact = filteredContacts[indexPath.row]
@@ -130,11 +126,17 @@ class ContactAddTableViewController: UITableViewController {
                 avc.delegate = controller as! ContactTableViewController
             }
         }
+        
         self.navigationController?.pushViewController(avc, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.searchController.searchBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = false
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.searchController.searchBar.isHidden = true
+        UIApplication.shared.keyWindow?.endEditing(true)
     }
     
     //Mark: Respond function

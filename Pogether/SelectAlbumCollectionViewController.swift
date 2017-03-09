@@ -33,7 +33,10 @@ class SelectAlbumTableViewController: UITableViewController {
         registerForCell()
         self.navigationController?.navigationBar.isHidden = false
         
-        albumArray = [Album(name: "默认相册", count: 50, limit: Limit.all), Album(name: "背景图片", count: 50, limit: Limit.myself), Album(name: "Pogether 数据库", count: 50, limit: Limit.somecan), Album(name: "个人收藏", count: 50, limit: Limit.somenot)]
+        for dict in definedAlbum
+        {
+            albumArray.append(Album(name: dict.key, count: dict.value.count, limit: .all))
+        }
         
     }
     
@@ -80,6 +83,10 @@ class SelectAlbumTableViewController: UITableViewController {
         //set cell texts
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
         cell.album = albumArray[indexPath.row]
+        if definedAlbum[cell.album.name!]?.count != 0
+        {
+            cell.preImageView.image = definedAlbum[cell.album.name!]?[0]
+        }
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -89,6 +96,7 @@ class SelectAlbumTableViewController: UITableViewController {
         let avc = SelectPhotoCollectionViewController()
         avc.delegate = self
         avc.indexPath = indexPath
+        avc.ImageArray = definedAlbum[self.albumArray[indexPath.row].name!]!
         self.navigationController?.pushViewController(avc, animated: false)
     }
 

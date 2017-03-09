@@ -35,11 +35,6 @@ class SelectPhotoCollectionViewController:  UICollectionViewController, UINaviga
         collectionView!.backgroundColor = ColorandFontTable.groundGray
         self.view.addSubview(collectionView!)
         self.collectionView!.register(SelectCollectionViewCell.self, forCellWithReuseIdentifier: "SelectCollectionViewCell")
-        for _ in 0...20
-        {
-            ImageArray.append(#imageLiteral(resourceName: "default"))
-            isSelected.append(false)
-        }
         
         var backImage = #imageLiteral(resourceName: "ContactList_Back")
         backImage = backImage.withRenderingMode(.alwaysOriginal)
@@ -87,7 +82,7 @@ class SelectPhotoCollectionViewController:  UICollectionViewController, UINaviga
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "SelectCollectionViewCell", for: indexPath) as! SelectCollectionViewCell
-        
+        isSelected.append(false)
         cell.photoView.contentMode = .scaleAspectFit
         cell.indexPath = indexPath
         if (ImageArray[indexPath.row] != nil)

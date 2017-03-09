@@ -32,7 +32,10 @@ class AlbumTableViewController: UITableViewController {
         registerForCell()
         self.navigationController?.navigationBar.isHidden = false
         
-        albumArray = [Album(name: "默认相册", count: 50, limit: Limit.all), Album(name: "背景图片", count: 50, limit: Limit.myself), Album(name: "Pogether 数据库", count: 50, limit: Limit.somecan), Album(name: "个人收藏", count: 50, limit: Limit.somenot)]
+        for dict in definedAlbum
+        {
+            albumArray.append(Album(name: dict.key, count: dict.value.count, limit: .all))
+        }
         
     }
     
@@ -40,6 +43,14 @@ class AlbumTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        let cells = tableView.visibleCells as! [AlbumTableViewCell]
+        for cell in cells
+        {
+            if definedAlbum[cell.album.name!]?.count != 0
+            {
+                cell.preImageView.image = definedAlbum[cell.album.name!]?[0]
+            }
+        }
     }
     
     func initialize(){
@@ -76,6 +87,10 @@ class AlbumTableViewController: UITableViewController {
         //set cell texts
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
         cell.album = albumArray[indexPath.row]
+        if definedAlbum[cell.album.name!]?.count != 0
+        {
+            cell.preImageView.image = definedAlbum[cell.album.name!]?[0]
+        }
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -84,6 +99,7 @@ class AlbumTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! AlbumTableViewCell
         let avc = PhotoCollectionViewController()
+        avc.ImageArray = definedAlbum[cell.album.name!]!
         avc.isSetting = self.isSetting
         avc.limit = albumArray[indexPath.row].limit
         avc._delegate = cell
@@ -115,6 +131,7 @@ class AlbumTableViewController: UITableViewController {
             action in
             let name = alertController.textFields?[0].text
             self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
+            definedAlbum [name!] = [UIImage]()
             self.tableView.reloadData()
             let url = URL(string: "https://\(APIurl)/album/create")!
             var request = URLRequest(url: url)
@@ -124,8 +141,8 @@ class AlbumTableViewController: UITableViewController {
             request.httpBody = "{\n  \"albumname\": \(name!)\n}".data(using: .utf8)
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let response = response, let data = data {
-                    let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
+                if let _ = response, let data = data {
+                    _ = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
                     /*
                     let id = json["id"]! //string
                     let getName = json["name"]! //string

@@ -330,7 +330,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         request.httpBody = "{\n  \"username\": \(user.username)\n}".data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
+            if let _ = response, let data = data {
                 let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
                 let url1 = json["photo1"]!
                 let url2 = json["photo2"]!
@@ -547,7 +547,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         request.httpBody = "{\n  \"username\": \(user.username)\n}".data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
+            if let _ = response, let _ = data {
                 //no response
                 NSLog("删好友啦！QAQ")
             } else {
@@ -608,6 +608,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate
 extension ProfileViewController: SignatureDelegate
 {
     func SignatureDidChange(signature: String) {
+        self.signatureContentLabel!.text = signature
+        self.user.signature = signature
         
         let url = URL(string: "https://\(APIurl)/changedetails")!
         var request = URLRequest(url: url)
@@ -617,10 +619,9 @@ extension ProfileViewController: SignatureDelegate
         request.httpBody = "{\n  \"username\": \(user.username),\n  \"email\": \(user.email),\n  \"signature\": \(user.signature),\n  \"avatar\": \(user.avatar)\n}".data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response, let data = data {
+            if let _ = response, let _ = data {
                 //no response
-                self.signatureContentLabel!.text = signature
-                self.user.signature = signature
+                
             } else {
                 print(error!)
             }
