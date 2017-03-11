@@ -21,6 +21,7 @@ class SelectCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         photoView = UIImageView()
+        photoView.contentMode = .scaleAspectFit
         selectView = UIImageView()
         contentView.addSubview(photoView)
         contentView.addSubview(selectView)

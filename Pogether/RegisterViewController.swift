@@ -137,32 +137,29 @@ class RegisterViewController: UIViewController {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        request.httpBody = "{\n  \"email\": \(emailTextFieldWithCheck.textField.text!),\n  \"username\": \(usernameTextFieldWithCheck.textField.text!),\n  \"password\": \(passwordTextFieldWithCheck.textField.text!)\n}".data(using: .utf8)
+        request.addValue("user=567ajsdgfhkjhawegr", forHTTPHeaderField: "Cookie")
+        request.httpBody = ("{" + token + " \"email\": \"\(emailTextFieldWithCheck.textField.text!)\",   \"username\": \"\(usernameTextFieldWithCheck.textField.text!)\",  \"password\": \"\(passwordTextFieldWithCheck.textField.text!)\"}").data(using: .utf8)
+        print(request)
         let cookie = HTTPCookie(properties: [
-            HTTPCookiePropertyKey.name:"Set-Cookie",
+            HTTPCookiePropertyKey.name:"Cookie",
             HTTPCookiePropertyKey.value:"user=fsfsdfsdfsfef",
+            HTTPCookiePropertyKey(rawValue: "httpOnly"): "false",
+            HTTPCookiePropertyKey.secure: "isSecure",
             HTTPCookiePropertyKey.path:"/",
             HTTPCookiePropertyKey.domain: APIurl])
         let storage = HTTPCookieStorage.shared
-        storage.setCookie(cookie!)
+        storage.setCookies([cookie!], for: URL(string: APIurl) , mainDocumentURL: nil)
         let cookieArray = storage.cookies!
         for cookie in cookieArray
         {
             print("name:\(cookie.name),value:\(cookie.value)")
         }
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let _ = response, let data = data {
-                //获取注册response
-                let json = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
-                let username = json["username"]!
-                let email = json["email"]!
-                let signature = json["signature"]!
-                let avatar = json["avatar"]!
-                let background = json["background"]!
-                print("\(username) has successfully signed up")
-                //跳转回登陆界面
-                self.backToLast()
+            if let _ = response, let _ = data {
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.backToLast()
+                })
+                print("has successfully signed up")
             } else {
                 print(error!)
             }

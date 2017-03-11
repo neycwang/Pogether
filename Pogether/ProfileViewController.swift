@@ -142,16 +142,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         albumLabel.textAlignment =  .center
         albumLabel.font = .systemFont(ofSize: 20)
         albumFrame0 = UIImageView()
+        albumFrame0.image = #imageLiteral(resourceName: "表情包1")
         albumFrame0.backgroundColor = ColorandFontTable.fillGray
         albumFrame0.layer.borderWidth = 1
         albumFrame0.layer.borderColor = ColorandFontTable.borderGray.cgColor
         albumFrame0.contentMode = .scaleAspectFit
         albumFrame1 = UIImageView()
+        albumFrame1.image = #imageLiteral(resourceName: "表情包2")
         albumFrame1.backgroundColor = ColorandFontTable.fillGray
         albumFrame1.layer.borderWidth = 1
         albumFrame1.layer.borderColor = ColorandFontTable.borderGray.cgColor
         albumFrame1.contentMode = .scaleAspectFit
         albumFrame2 = UIImageView()
+        albumFrame2.image = #imageLiteral(resourceName: "表情包3")
         albumFrame2.backgroundColor = ColorandFontTable.fillGray
         albumFrame2.layer.borderWidth = 1
         albumFrame2.layer.borderColor = ColorandFontTable.borderGray.cgColor
@@ -322,7 +325,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     func loadRecentThreePhotos() {
 
 
-        let url = URL(string: "https://\(APIurl)/album/recent")!
+        let url = URL(string: "\(APIurl)/album/recent")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -492,7 +495,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "确定", style: .default, handler: { (action:UIAlertAction) in
             
-            let url = URL(string: "https://\(APIurl)/signout")!
+            let url = URL(string: "\(APIurl)/signout")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             
@@ -517,7 +520,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
         self.present(alert, animated: true, completion: nil)
     }
     func addFriend() {
-        let url = URL(string: "https://\(APIurl)/addfriend")!
+        let url = URL(string: "\(APIurl)/addfriend")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -539,7 +542,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate
     }
     
     func deleteFriend() {
-        let url = URL(string: "https://\(APIurl)/deletefriend")!
+        let url = URL(string: "\(APIurl)/deletefriend")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -611,7 +614,7 @@ extension ProfileViewController: SignatureDelegate
         self.signatureContentLabel!.text = signature
         self.user.signature = signature
         
-        let url = URL(string: "https://\(APIurl)/changedetails")!
+        let url = URL(string: "\(APIurl)/changedetails")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

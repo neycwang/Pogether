@@ -76,11 +76,8 @@ class ContactTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        contacts["A"] = [Account(username: "aaa"), Account(username: "aba"), Account(username: "aca"), Account( username: "aac"), Account(username: "acc")]
-        contacts["B"] = [Account(username: "bbb")]
-        contacts["C"] = [Account(username: "ccc")]
-        contacts["D"] = [Account(username: "ddd"), Account( username: "ddc"), Account(username: "dddd"), Account(username: "ddddd"), Account(username: "ddddddd")]
-        definedContact = contacts
+        
+        contacts = definedContact
         //NotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         //NotificationCenter.defaultCenter().addObserver(self, selector: #selector(tokenExpired), name: NOTIFICATION_TOKEN_EXPIRED, object: nil)
         

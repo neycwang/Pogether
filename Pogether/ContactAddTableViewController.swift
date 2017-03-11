@@ -68,12 +68,13 @@ class ContactAddTableViewController: UITableViewController {
         {
             contacts.append(contentsOf: dict.value)
         }
+        print (contacts)
         let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: self.searchController.searchBar.frame.height + 2))
         header.backgroundColor = ColorandFontTable.groundGray
         header.addSubview(self.searchController.searchBar)
         tableView.tableHeaderView = header
         self.searchController.searchBar.isHidden = false
-        self.searchController.searchBar.placeholder = "用户名/账号"
+        self.searchController.searchBar.placeholder = "用户名"
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink

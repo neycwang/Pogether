@@ -8,7 +8,9 @@
 
 import Foundation
 
-public let APIurl = "http://10.221.161.23:8888"
+public let APIurl = "http://10.222.165.179:8888"
+
+public let token = "{\"token\": \"asdfliaubvlibwefiluahsdiluhef\","
 
 public var definedAlbum  = [String: [UIImage]]()
 

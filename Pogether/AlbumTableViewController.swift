@@ -106,6 +106,10 @@ class AlbumTableViewController: UITableViewController {
         self.navigationController?.pushViewController(avc, animated: false)
     }
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row < 4
+        {
+            return false
+        }
         return isSetting
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -133,7 +137,7 @@ class AlbumTableViewController: UITableViewController {
             self.albumArray.append(Album(name: name!, count: 0, limit: Limit.all))
             definedAlbum [name!] = [UIImage]()
             self.tableView.reloadData()
-            let url = URL(string: "https://\(APIurl)/album/create")!
+            let url = URL(string: "\(APIurl)/album/create")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")

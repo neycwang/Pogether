@@ -16,7 +16,7 @@ class SelectContactTableViewCell: UITableViewCell {
 
     var contact: Account? {
         didSet {
-            portraitView.image = #imageLiteral(resourceName: "icon1")
+            portraitView.image = #imageLiteral(resourceName: "icon")
             chooseView.image = #imageLiteral(resourceName: "Select_None")
             usernameLabel.text = contact?.username
         }
@@ -25,7 +25,8 @@ class SelectContactTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         portraitView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
-        portraitView.image = #imageLiteral(resourceName: "default")
+        portraitView.contentMode = .scaleAspectFit
+        portraitView.image = #imageLiteral(resourceName: "icon")
         portraitView.layer.masksToBounds = true
         portraitView.layer.cornerRadius = portraitView.frame.size.height / 2
         
@@ -49,6 +50,8 @@ class SelectContactTableViewCell: UITableViewCell {
         portraitView.snp.makeConstraints({(make) in
             make.centerY.equalTo(contentView.snp.centerY)
             make.left.equalTo(contentView.snp.left).offset(11)
+            make.width.equalTo(36)
+            make.height.equalTo(36)
         })
         usernameLabel.snp.makeConstraints({(make) in
             make.centerY.equalTo(contentView.snp.centerY)

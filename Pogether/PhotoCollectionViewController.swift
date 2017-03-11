@@ -161,7 +161,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     func setAll() {
         self._delegate?.editLimit(count: self.ImageArray.count, limit: .all)
         
-        let url = URL(string: "https://\(APIurl)/album/limit")!
+        let url = URL(string: "\(APIurl)/album/limit")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -175,7 +175,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
     func setMyself() {
         self._delegate?.editLimit(count: self.ImageArray.count, limit: .myself)
         
-        let url = URL(string: "https://\(APIurl)/album/limit")!
+        let url = URL(string: "\(APIurl)/album/limit")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -191,7 +191,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         avc.returnSelected = self.selectedContacts
         self.navigationController?.pushViewController(avc, animated: true)
         
-        let url = URL(string: "https://\(APIurl)/album/limit")!
+        let url = URL(string: "\(APIurl)/album/limit")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -207,7 +207,7 @@ class PhotoCollectionViewController:  UICollectionViewController, UINavigationCo
         avc.returnSelected = self.selectedContacts
         self.navigationController?.pushViewController(avc, animated: true)
         
-        let url = URL(string: "https://\(APIurl)/album/limit")!
+        let url = URL(string: "\(APIurl)/album/limit")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

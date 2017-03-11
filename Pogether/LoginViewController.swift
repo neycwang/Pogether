@@ -135,14 +135,15 @@ class LoginViewController: UIViewController {
     // MARK: - Touch event
     func login(){
         //懒得等加载
+        UserDefaults.standard.set(usernameField.text!, forKey: "USERNAME")
         self.jumpToHomepage()
         return
         
-        let url = URL(string: "https://\(APIurl)/login")!
+        let url = URL(string: "\(APIurl)/login")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\n  \"username\": \(usernameField.text!),\n  \"password\": \(passwordField.text!)\n}".data(using: .utf8)
+        request.httpBody = (token + "\"username\": \"\(usernameField.text!)\",  \"password\": \"\(passwordField.text!)\"}").data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let _ = response, let data = data {
@@ -159,8 +160,9 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.set(signature, forKey: "SIGNATURE")
                 UserDefaults.standard.set(avatar, forKey: "AVATAR")
                 UserDefaults.standard.set(background, forKey: "BACKGROUND")
-                self.jumpToHomepage()
-                
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.jumpToHomepage()
+                })
             } else {
                 print(error!)
             }

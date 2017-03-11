@@ -49,9 +49,7 @@ class ComposeCollectionViewController: UICollectionViewController {
         let barArray = [cancel, space, add, space, save]
         self.toolbarItems = barArray
         
-        resource = [#imageLiteral(resourceName: "icon"),#imageLiteral(resourceName: "icon"),#imageLiteral(resourceName: "icon")]
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped(sender:)))
-        for i in 0..<resource.count
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            for i in 0..<resource.count
         {
             resource[i] = removeBackground(image: resource[i])
             let imageView = MovableImageView(image: resource[i])
@@ -125,10 +123,6 @@ class ComposeCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return imageControl.count
-    }
-
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 80, height: 80)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -265,26 +259,29 @@ extension ComposeCollectionViewController: SelectPhotoDelegate
 {
     func returnSelectedPhotos(indexPath: IndexPath, photos: [UIImage])
     {
+        var indexs = [IndexPath]()
         for p in photos
         {
-            resource.append(p)
+            self.resource.append(p)
         }
-        print(resource.count)
-        for i in resource.count - photos.count ..< resource.count
+        print(self.resource.count)
+        for i in self.resource.count - photos.count ..< self.resource.count
         {
-            print(i)
-            resource[i] = removeBackground(image: resource[i])
-            let imageView = MovableImageView(image: resource[i])
+            indexs.append([0,i])
+            self.resource[i] = self.removeBackground(image: self.resource[i])
+            let imageView = MovableImageView(image: self.resource[i])
             imageView.contentMode = .scaleAspectFit
             imageView.layer.borderColor = ColorandFontTable.primaryPink.cgColor
             imageView.layer.borderWidth = 1
             imageView.tag = i + 1
-            imageControl.append((resource[i], imageView))
-            imageControl[i].1.tag = i + 1
-            self.view.addSubview(imageControl[i].1)
-            imageControl[i].1.isHidden = true
+            self.imageControl.append((self.resource[i], imageView))
+            self.imageControl[i].1.tag = i + 1
+            self.view.addSubview(self.imageControl[i].1)
+            self.imageControl[i].1.isHidden = true
         }
-        self.collectionView?.reloadData()
-        print(self.collectionView(collectionView!, numberOfItemsInSection: 0))
+        self.collectionView?.performBatchUpdates({
+            
+            self.collectionView?.insertItems(at: indexs)
+        }, completion: nil)
     }
 }

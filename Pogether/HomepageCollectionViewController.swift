@@ -65,13 +65,19 @@ class HomepageCollectionViewController: UICollectionViewController, UINavigation
             make.width.equalTo(32)
         }
         
-        definedAlbum ["默认相册"] = [#imageLiteral(resourceName: "icon")]
+        definedAlbum ["默认相册"] = [#imageLiteral(resourceName: "人物1"), #imageLiteral(resourceName: "人物2")]
         
         definedAlbum ["背景图片"] = [#imageLiteral(resourceName: "长城"), #imageLiteral(resourceName: "云海"),#imageLiteral(resourceName: "雪原"),#imageLiteral(resourceName: "天宫"),#imageLiteral(resourceName: "桃花林"),#imageLiteral(resourceName: "山路"),#imageLiteral(resourceName: "森林"),#imageLiteral(resourceName: "海滩"),#imageLiteral(resourceName: "桂林"),#imageLiteral(resourceName: "草原")]
         
         definedAlbum ["Pogether 数据库"] = [#imageLiteral(resourceName: "表情包1"),#imageLiteral(resourceName: "表情包2"),#imageLiteral(resourceName: "表情包3"),#imageLiteral(resourceName: "表情包4"),#imageLiteral(resourceName: "表情包5"),#imageLiteral(resourceName: "表情包6"),#imageLiteral(resourceName: "表情包7"),#imageLiteral(resourceName: "表情包8"),#imageLiteral(resourceName: "表情包9"),#imageLiteral(resourceName: "表情包10")]
         
         definedAlbum ["个人收藏"] = [UIImage]()
+        
+        definedContact["T"] = [Account(username: "童佳琪1"),Account(username: "童佳琪2"),Account(username: "童佳琪3")]
+        definedContact["W"] = [Account(username: "王禹程"),Account(username: "王沛晟")]
+        definedContact["H"] = [Account(username: "胡天晓")]
+        definedContact["L"] = [Account(username: "兰石懿")]
+        definedContact["Z"] = [Account(username: "张昊晗")]
 
     }
     

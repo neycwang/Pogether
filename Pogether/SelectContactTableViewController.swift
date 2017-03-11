@@ -37,6 +37,9 @@ class SelectContactTableViewController: UITableViewController {
         addImage.withRenderingMode(.alwaysOriginal)
         let addButton = UIBarButtonItem(image: addImage, style: .plain, target: self, action: #selector(done))
         self.navigationItem.rightBarButtonItem = addButton
+        
+        contacts = definedContact
+        self.updatefilteredContacts()
     }
     
     override func viewDidLoad() {
@@ -77,7 +80,7 @@ class SelectContactTableViewController: UITableViewController {
         self.searchController.searchBar.tintColor = ColorandFontTable.textPink
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.backgroundColor = ColorandFontTable.groundPink
-        contacts = definedContact
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

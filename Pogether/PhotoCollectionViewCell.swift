@@ -25,6 +25,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         photoView = UIImageView()
+        photoView.contentMode = .scaleAspectFit
         contentView.addSubview(photoView)
         photoView.snp.makeConstraints { (make) in
             make.edges.equalTo(contentView)
